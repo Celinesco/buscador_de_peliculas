@@ -1,0 +1,30 @@
+.navbar {
+ 
+    background: rgb(30,31,50);
+    background: linear-gradient(90deg, rgba(30,31,50,1) 0%, rgba(41,45,112,1) 52%, rgba(61,109,186,1) 100%);
+    height: 90px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    border-bottom: 2px solid white;
+}
+
+.ul__navbar {
+    display: flex;
+    align-items: center;
+
+    li {
+        text-align: center;
+        width: 100px;
+        margin: 0px 10px;
+        color: white;
+        font-weight: bold;
+    }
+}
+
+.container__img-icon {
+    width: 90px;
+    img {
+        width: 100%;
+    }
+}

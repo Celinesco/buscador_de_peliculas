@@ -1,9 +1,27 @@
 import './App.scss';
+import NavBar from './components/NavBar/NavBar';
+import Footer from './components/Footer/Footer'
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import HomeSection from './components/HomeSection';
+import NewReleasesSection from './components/NewReleasesSection';
+import MostPopularSection from './components/MostPopularSection';
+import SearchSection from './components/SearchSection';
+
 
 const App = () => {
   return (
     <div className="App">
-   
+      <BrowserRouter>
+        <NavBar />
+        <Routes>
+          <Route path="/" element={<HomeSection />} />
+          <Route path="/newreleases" element={<NewReleasesSection />} />
+          <Route path="/mostpopular" element={<MostPopularSection />} />
+          <Route path="/search" element={<SearchSection />} />
+        </Routes>
+        <Footer />
+      </BrowserRouter>
+
     </div>
   );
 }
