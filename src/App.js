@@ -6,6 +6,7 @@ import HomeSection from './components/HomeSection';
 import NewReleasesSection from './components/NewReleasesSection';
 import MostPopularSection from './components/MostPopularSection';
 import SearchSection from './components/SearchSection';
+import MovieDetails from './components/MovieDetails'
 
 
 const App = () => {
@@ -19,6 +20,7 @@ const App = () => {
           <Route path='/mostpopular' element={<MostPopularSection />} />
           <Route path='/search' element={<SearchSection />} />
           <Route path='/search/:results' element={<SearchSection />} />
+          <Route path='/movie/:idMovie' element={<MovieDetails />} />
         </Routes>
         <Footer />
       </BrowserRouter>
