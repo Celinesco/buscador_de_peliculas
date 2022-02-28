@@ -6,7 +6,17 @@
 
 .container__movie-cards {
     display: flex;
-    justify-content: center;
-    padding: 100px 50px;
+    justify-content:space-between;
+    align-items: center;
     flex-wrap: wrap;
+}
+
+.container__results {
+  padding: 100px 50px;
+}
+
+.p__results {
+  color: white;
+  font-weight: bold;
+  font-size: 35px;
 }
