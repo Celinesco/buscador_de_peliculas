@@ -5,19 +5,24 @@
     flex-direction: column;
     border-top: 2px solid white;
     height: 90px;
-    padding: 20px;
+    padding: 40px;
     background: rgb(61,109,186);
     background: linear-gradient(90deg, rgba(61,109,186,1) 0%, rgba(41,45,112,1) 52%, rgba(30,31,50,1) 100%);
     p {
         color: white;
+        font-size: 20px;
+        margin: 20px 0;
     }
 }
 
 .ul__footer {
     display: flex;
-
     li {
-        color:white;
         margin: 10px;
     }
+}
+
+.icons-footer {
+    color: white;
+    font-size: 30px;
 }
