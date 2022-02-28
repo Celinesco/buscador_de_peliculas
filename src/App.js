@@ -14,10 +14,11 @@ const App = () => {
       <BrowserRouter>
         <NavBar />
         <Routes>
-          <Route path="/" element={<HomeSection />} />
-          <Route path="/newreleases" element={<NewReleasesSection />} />
-          <Route path="/mostpopular" element={<MostPopularSection />} />
-          <Route path="/search" element={<SearchSection />} />
+          <Route path='/' element={<HomeSection />} />
+          <Route path='/newreleases' element={<NewReleasesSection />} />
+          <Route path='/mostpopular' element={<MostPopularSection />} />
+          <Route path='/search' element={<SearchSection />} />
+          <Route path='/search/:results' element={<SearchSection />} />
         </Routes>
         <Footer />
       </BrowserRouter>
