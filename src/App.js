@@ -4,7 +4,8 @@ import Footer from './components/Footer/Footer'
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HomeSection from './components/HomeSection';
 import NewReleasesSection from './components/NewReleasesSection';
-import MostPopularSection from './components/MostPopularSection'
+import MostPopularSection from './components/MostPopularSection';
+import SearchSection from './components/SearchSection';
 
 const App = () => {
   return (
@@ -15,7 +16,7 @@ const App = () => {
           <Route path="/" element={<HomeSection />} />
           <Route path="/newreleases" element={<NewReleasesSection />} />
           <Route path="/mostpopular" element={<MostPopularSection />} />
-          <Route path="/trending/page/:number-page" />
+          <Route path="/search" element={<SearchSection />} />
         </Routes>
 
         <Footer />
