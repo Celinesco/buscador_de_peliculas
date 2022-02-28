@@ -1,15 +1,17 @@
-.App {
-  text-align: center;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
+ul {
+  list-style: none;
+}
 
+body {
+  background-color: rgb(95, 4, 4);
+}
 
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.sections__styles {
+  min-height: 100vh;
 }
