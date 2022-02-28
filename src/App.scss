@@ -8,6 +8,12 @@ ul {
   list-style: none;
 }
 
+.App {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
 body {
   background-color: rgb(95, 4, 4);
 }
