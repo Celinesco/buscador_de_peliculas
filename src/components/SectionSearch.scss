@@ -6,12 +6,13 @@
 
 .container__movie-cards {
     display: flex;
-    justify-content:space-between;
+    justify-content:center;
     align-items: center;
     flex-wrap: wrap;
 }
 
 .container__results {
+  max-width: 2300px;
   padding: 100px 50px;
 }
 

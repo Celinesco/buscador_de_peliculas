@@ -4,6 +4,7 @@ import { VscSearch } from "react-icons/vsc";
 import Card from './Card';
 import './SectionSearch.scss';
 import posterNotFound from '../assets/posterNotFound.png'
+import ButtonPages from "./ButtonPages";
 
 const SearchSection = () => {
     const API_KEY = '65039781e8b8e09c46c6da646de7be01';
@@ -11,6 +12,8 @@ const SearchSection = () => {
     const IMG_URL = 'https://image.tmdb.org/t/p/w500'
     const [search, setSearch] = useState([])
     const [totalResults, setTotalResults] = useState(0)
+    const [page, setPage] = useState(1);
+    const [totalPages, setTotalPages] = useState(1);
     const [searchParams, setSearchParams] = useSearchParams({
         title_contains: "",
     });
@@ -26,14 +29,15 @@ const SearchSection = () => {
         })
     }
     useEffect(() => {
-        fetch(`${BASE_URL}api_key=${API_KEY}&query=${searchParams.get('title_contains')}`)
+        fetch(`${BASE_URL}api_key=${API_KEY}&query=${searchParams.get('title_contains')}&page=${page}`)
             .then(res => res.json())
             .then(data => {
+                setTotalPages(data.total_pages)
                 setSearch(data.results ? data.results : [])
                 setTotalResults(data.total_results)
 
             })
-    }, [searchParams])
+    }, [searchParams, page])
 
 
     return (
@@ -61,7 +65,13 @@ const SearchSection = () => {
                         </Link>
                     )
                     )}
+                   
                 </div>
+                <ButtonPages 
+                 page={page}
+                 totalPages={totalPages}
+                 setPage={setPage}
+                />
             </div>
 
         </section>
