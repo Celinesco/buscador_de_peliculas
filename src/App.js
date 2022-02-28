@@ -2,6 +2,9 @@ import './App.scss';
 import NavBar from './components/NavBar/NavBar';
 import Footer from './components/Footer/Footer'
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import HomeSection from './components/HomeSection';
+import NewReleasesSection from './components/NewReleasesSection';
+import MostPopularSection from './components/MostPopularSection'
 
 const App = () => {
   return (
@@ -9,17 +12,10 @@ const App = () => {
       <BrowserRouter>
         <NavBar />
         <Routes>
-          <Route path="/" />
-          <Route path="/new-realeases"/>
-          <Route path="/popular" />
+          <Route path="/" element={<HomeSection />} />
+          <Route path="/newreleases" element={<NewReleasesSection />} />
+          <Route path="/mostpopular" element={<MostPopularSection />} />
           <Route path="/trending/page/:number-page" />
-          <Route path="/top_rated/page:number-page" />
-          <Route path="/upcoming/page/:number-page" />
-          <Route path="on_cinemas/page/:number-page" />
-          <Route path="/movie/:idMovie/info" />
-          <Route path="/movie/:idMovie/cast" />
-          <Route path="/movie/:idMovie/trailer" />
-          <Route path="/movie/:idMovie/similar-movies" />
         </Routes>
 
         <Footer />
