@@ -15,7 +15,7 @@ const SearchSection = () => {
     const [page, setPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
     const [searchParams, setSearchParams] = useSearchParams({
-        title_contains: "",
+        title_contains: "Mickey",
     });
     const [inputValue, setInputValue] = useState(searchParams.get('title_contains'));
 
