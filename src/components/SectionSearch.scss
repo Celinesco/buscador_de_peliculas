@@ -5,6 +5,7 @@
 }
 
 .container__movie-cards {
+    width: 100%;
     display: flex;
     justify-content:center;
     align-items: center;
@@ -12,12 +13,36 @@
 }
 
 .container__results {
-  max-width: 2300px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
   padding: 100px 50px;
 }
 
 .p__results {
+  text-align: left;
   color: white;
   font-weight: bold;
   font-size: 35px;
+}
+
+.container__title-section {
+  margin-top: 150px;
+  background-color: white;
+  position: relative;
+  width: 600px;
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  h2 {
+    font-size: 50px;
+    width: 100%;
+    position: absolute;
+    text-align: center;
+    color: white
+  }
+  img {
+    width: 100%;
+  }
 }

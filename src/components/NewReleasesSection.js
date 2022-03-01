@@ -4,6 +4,7 @@ import Card from './Card';
 import posterNotFound from '../assets/posterNotFound.png'
 import ButtonPages from "./ButtonPages";
 import './SectionSearch.scss';
+import backgroundTitleSection from '../assets/backgroundTitleSection.png'
 
 const NewReleasesSection = () => {
     const API_KEY = '65039781e8b8e09c46c6da646de7be01';
@@ -25,8 +26,11 @@ const NewReleasesSection = () => {
     }, [page])
 
     return (
-        <section className="section__newReleases sections__styles">
-            <h2>New Releases</h2>
+        <section className="sections__styles">
+            <div className="container__title-section">
+                <img src={backgroundTitleSection} alt=""></img>
+                <h2 className="title__section">New Releases</h2>
+            </div>
             <div className="container__results">
                 <p className="p__results">Results: {totalResults}</p>
                 <div className="container__movie-cards">
