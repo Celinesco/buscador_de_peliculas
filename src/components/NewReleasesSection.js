@@ -6,19 +6,19 @@ import ButtonPages from "./ButtonPages";
 import './SectionSearch.scss';
 import backgroundTitleSection from '../assets/backgroundTitleSection.png'
 
+
 const NewReleasesSection = () => {
     const API_KEY = '65039781e8b8e09c46c6da646de7be01';
-    const URL_LASTS_RELEASES = 'https://api.themoviedb.org/3/discover/movie?';
+    const URL_LASTS_RELEASES = 'https://api.themoviedb.org/3/discover/movie?&primary_release_year=2022';
     const IMG_URL = 'https://image.tmdb.org/t/p/w500'
     const [search, setSearch] = useState([])
     const [totalResults, setTotalResults] = useState(0);
     const [page, setPage] = useState(1);
 
     useEffect(() => {
-        fetch(`${URL_LASTS_RELEASES}api_key=${API_KEY}&release_dates&page=${page}`)
+        fetch(`${URL_LASTS_RELEASES}&api_key=${API_KEY}&page=${page}`)
             .then(res => res.json())
             .then(data => {
-                console.log(data)
                 setSearch(data.results ? data.results : [])
                 setTotalResults(data.total_results)
     
