@@ -4,25 +4,20 @@ import Card from './Card';
 import posterNotFound from '../assets/posterNotFound.png'
 import ButtonPages from "./ButtonPages";
 import './SectionSearch.scss';
-import backgroundTitleSection from '../assets/backgroundTitleSection.png'
+import backgroundTitleSection from '../assets/backgroundTitleSection.png';
+import { API_KEY, URL_BASE, IMG_URL } from './export_files';
 
 
 const MostPopularSection = () => {
-    const API_KEY = '65039781e8b8e09c46c6da646de7be01';
-    const URL_LASTS_RELEASES = 'https://api.themoviedb.org/3/discover/movie?';
-    const IMG_URL = 'https://image.tmdb.org/t/p/w500'
+
     const [search, setSearch] = useState([])
-    const [totalResults, setTotalResults] = useState(0);
     const [page, setPage] = useState(1);
 
     useEffect(() => {
-        fetch(`${URL_LASTS_RELEASES}api_key=${API_KEY}&sort_by=popularity.desc&page=${page}`)
+        fetch(`${URL_BASE}popular?api_key=${API_KEY}&language=de-DE&page=${page}`)
             .then(res => res.json())
             .then(data => {
-                console.log(data)
                 setSearch(data.results ? data.results : [])
-                setTotalResults(data.total_results)
-    
             })
     }, [page])
 
@@ -34,7 +29,6 @@ const MostPopularSection = () => {
                 <h2 className="title__section">Most Popular</h2>
             </div>
             <div className="container__results">
-                <p className="p__results">Results: {totalResults}</p>
                 <div className="container__movie-cards">
                     {search.map((movie) => (
                         <Link to={`/movie/${movie.id}`} key={movie.id}>
@@ -46,6 +40,7 @@ const MostPopularSection = () => {
                                 alt={movie.poster_path !== null
                                     ? `Poster from ${movie.title}`
                                     : `Poster not available`}
+                                overview={movie.overview}
                             />
                         </Link>
                     )
