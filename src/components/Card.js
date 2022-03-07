@@ -47,7 +47,7 @@ const Card = ({ img, title, overview }) => {
                     <div className="square"></div>
                     <div className="square"></div>
                 </div>
-                <h4>Überblick</h4>
+                <h4>Handlung</h4>
                 <p className="sinopsis">{overview}</p>
             </div>
         </div>
