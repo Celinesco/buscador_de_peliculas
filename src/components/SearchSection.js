@@ -5,13 +5,14 @@ import Card from './Card';
 import './SectionSearch.scss';
 import posterNotFound from '../assets/posterNotFound.png'
 import ButtonPages from "./ButtonPages";
-import { API_KEY, URL_BASE, IMG_URL } from "./export_files";
+import { API_KEY, IMG_URL } from "./export_files";
 
 const SearchSection = () => {
+    const URL = 'https://api.themoviedb.org/3/search/movie?';
     const [search, setSearch] = useState([])
     const [page, setPage] = useState(1);
     const [searchParams, setSearchParams] = useSearchParams({
-        title_contains: "Mickey",
+        title_contains: "Herzog",
     });
 
     const [inputValue, setInputValue] = useState(searchParams.get('title_contains'));
@@ -26,11 +27,10 @@ const SearchSection = () => {
         })
     }
     useEffect(() => {
-        fetch(`${URL_BASE}api_key=${API_KEY}&query=${searchParams.get('title_contains')}&page=${page}`)
+        fetch(`${URL}api_key=${API_KEY}&query=${searchParams.get('title_contains')}&language=de-DE&page=${page}`)
             .then(res => res.json())
             .then(data => {
                 setSearch(data.results ? data.results : [])
-            
             })
     }, [searchParams, page])
 
