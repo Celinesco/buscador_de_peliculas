@@ -10,10 +10,10 @@ const NavBar = () => {
                 <img src={popCorn} alt="popcorn, cotufas, palomitas de maiz, pororo, pururu"></img>
             </div>
             <ul className='ul__navbar'>
-                <Link to="/"><li>Home</li></Link>
-                <Link to="/newreleases"><li>New Releases</li></Link>
-                <Link to="/mostpopular"><li>Most Popular</li></Link>
-                <Link to="/search/"><li>Search</li></Link>
+                <Link to="/"><li>Start</li></Link>
+                <Link to="/newreleases"><li>Neuer- scheinungen</li></Link>
+                <Link to="/mostpopular"><li>Populäres</li></Link>
+                <Link to="/search/"><li>Suchen</li></Link>
                 <Link to="/movie/:idMovie"></Link>
             </ul>
         </nav>

@@ -14,7 +14,7 @@ const NewReleasesSection = () => {
     const [page, setPage] = useState(1);
 
     useEffect(() => {
-        fetch(`${URL_BASE}/now_playing?api_key=${API_KEY}&language=de-DE&page=${page}`)
+        fetch(`${URL_BASE}now_playing?api_key=${API_KEY}&language=de-DE&page=${page}`)
             .then(res => res.json())
             .then(data => {
                 setSearch(data.results ? data.results : [])
@@ -25,13 +25,14 @@ const NewReleasesSection = () => {
         <section className="sections__styles">
             <div className="container__title-section">
                 <img src={backgroundTitleSection} alt=""></img>
-                <h2 className="title__section">New Releases</h2>
+                <h2 className="title__section">Neuerscheinungen</h2>
             </div>
             <div className="container__results">
                 <div className="container__movie-cards">
                     {search.map((movie) => (
                         <Link to={`/movie/${movie.id}`} key={movie.id}>
                             <Card
+                                id={movie.id}
                                 title={movie.title}
                                 img={movie.poster_path !== null ?
                                     `${IMG_URL}${movie.poster_path}`
