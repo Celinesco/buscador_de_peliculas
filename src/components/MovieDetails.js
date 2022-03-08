@@ -3,6 +3,8 @@ import { useParams } from "react-router-dom";
 import { URL_BASE, API_KEY, IMG_URL } from "./export_files";
 import './MovieDetails.scss';
 import posterNotFound from '../assets/posterNotFound.png';
+import { BsFillStarFill } from "react-icons/bs";
+
 
 const MovieDetails = () => {
 
@@ -18,32 +20,48 @@ const MovieDetails = () => {
     }, [selectedMovie.idMovie])
 
 
+    const datum = new Date(movieInfo.release_date)
+    const jahre = datum.getFullYear()
+
+    console.log(jahre)
 
     return (
         <section className='section__details'>
             <div className="container__background-img" style={{ backgroundImage: `url(https://image.tmdb.org/t/p/original${movieInfo.backdrop_path})` }}>
                 {movieInfo.backdrop_path === null && <p> Leider gibt es kein Foto </p>}
-            <div className="main-container">
-                <div className="container__poster">
-                    {movieInfo.poster_path !== null 
-                    ? <img src={`${IMG_URL}${movieInfo.poster_path}`} alt="POSTER DE LA PELI CAMBIAR ESTO "></img>
-                    : <img src={posterNotFound}  className="img-not-found" alt="poster not found"></img>
-                    }
-                   
-                </div>
-                <div className="container__info">
-                    <h3>{movieInfo.title}</h3>
-                    <p>Jahre</p>
-                    <h4>Geschlecht</h4>
-                    <h4>Handlung:</h4>
-                    <p>{movieInfo.overview}</p>
-                    <div className="container-video">
-                        <video></video>
+                <div className="main-container">
+                    <div className="container__poster">
+                        {movieInfo.poster_path !== null
+                            ? <img src={`${IMG_URL}${movieInfo.poster_path}`} alt="POSTER DE LA PELI CAMBIAR ESTO "></img>
+                            : <img src={posterNotFound} className="img-not-found" alt="Gibt es kein photo"></img>
+                        }
+                    </div>
+                    <div className="container__info">
+                        <h3>{movieInfo.title}</h3>
+                        <div className="container__raiting-year">
+                            {jahre !== NaN && <p>{jahre}</p>}
+                            <div className="raiting">
+                                <BsFillStarFill fontSize="22px" color="#ffd505" />
+                                <span>{movieInfo.vote_average}</span><p>/ 10</p>
+                            </div>
+                        </div>
+                        <div className="container__genres">
+                            <h4>Geschlecht</h4>
+                            <div>{movieInfo?.genres?.map(genero => (
+                                <p>{genero.name}</p>
+                            ))}</div>
+                        </div>
+                        <div className="container__overview">
+                            <h4>Handlung:</h4>
+                            <p>{movieInfo.overview}</p>
+                        </div>
+                        <div className="container-video">
+                            <video></video>
+                        </div>
                     </div>
                 </div>
             </div>
-            </div>
-        
+
         </section >
     )
 }
