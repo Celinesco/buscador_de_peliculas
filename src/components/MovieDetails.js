@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { URL_BASE, API_KEY, IMG_URL } from "./export_files";
 import './MovieDetails.scss';
-import backgroundTitleSection from '../assets/backgroundTitleSection.png';
+import posterNotFound from '../assets/posterNotFound.png';
 
 const MovieDetails = () => {
 
@@ -22,9 +22,14 @@ const MovieDetails = () => {
     return (
         <section className='section__details'>
             <div className="container__background-img" style={{ backgroundImage: `url(https://image.tmdb.org/t/p/original${movieInfo.backdrop_path})` }}>
-            <div class="main-container">
+                {movieInfo.backdrop_path === null && <p> Leider gibt es kein Foto </p>}
+            <div className="main-container">
                 <div className="container__poster">
-                    <img src={`${IMG_URL}${movieInfo.poster_path}`} alt="POSTER DE LA PELI CAMBIAR ESTO "></img>
+                    {movieInfo.poster_path !== null 
+                    ? <img src={`${IMG_URL}${movieInfo.poster_path}`} alt="POSTER DE LA PELI CAMBIAR ESTO "></img>
+                    : <img src={posterNotFound}  className="img-not-found" alt="poster not found"></img>
+                    }
+                   
                 </div>
                 <div className="container__info">
                     <h3>{movieInfo.title}</h3>
