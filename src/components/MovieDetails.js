@@ -32,21 +32,21 @@ const MovieDetails = () => {
                 <div className="main-container">
                     <div className="container__poster">
                         {movieInfo.poster_path !== null
-                            ? <img src={`${IMG_URL}${movieInfo.poster_path}`} alt="POSTER DE LA PELI CAMBIAR ESTO "></img>
-                            : <img src={posterNotFound} className="img-not-found" alt="Gibt es kein photo"></img>
+                            ? <img src={`${IMG_URL}${movieInfo.poster_path}`} alt="Filmposter"></img>
+                            : <img src={posterNotFound} className="img-not-found" alt="Gibt es kein poster"></img>
                         }
                     </div>
                     <div className="container__info">
                         <h3>{movieInfo.title}</h3>
                         <div className="container__raiting-year">
-                            {jahre !== NaN && <p>{jahre}</p>}
+                            {!isNaN(jahre) && <p>{jahre}</p>}
                             <div className="raiting">
                                 <BsFillStarFill fontSize="22px" color="#ffd505" />
                                 <span>{movieInfo?.vote_average}</span><p>/ 10</p>
                             </div>
                         </div>
                         <div className="container__genres">
-                            <h4>Geschlecht</h4>
+                            <h4>Genre</h4>
                             <div>{movieInfo?.genres?.map(genero => (
                                 <p>{genero.name}</p>
                             ))}</div>

@@ -26,7 +26,7 @@ const MostPopularSection = () => {
         <section className="section__mostpopular sections__styles">
                 <div className="container__title-section">
                 <img src={backgroundTitleSection} alt=""></img>
-                <h2 className="title__section">Populäres</h2>
+                <h2 className="title__section">Populär</h2>
             </div>
             <div className="container__results">
                 <div className="container__movie-cards">

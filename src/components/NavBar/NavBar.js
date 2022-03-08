@@ -12,8 +12,8 @@ const NavBar = () => {
             <ul className='ul__navbar'>
                 <Link to="/"><li>Start</li></Link>
                 <Link to="/newreleases"><li>Neuer- scheinungen</li></Link>
-                <Link to="/mostpopular"><li>Populäres</li></Link>
-                <Link to="/search/"><li>Suchen</li></Link>
+                <Link to="/mostpopular"><li>Populär</li></Link>
+                <Link to="/search/"><li>Suche</li></Link>
                 <Link to="/movie/:idMovie"></Link>
             </ul>
         </nav>
