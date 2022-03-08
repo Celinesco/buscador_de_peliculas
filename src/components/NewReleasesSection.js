@@ -5,7 +5,7 @@ import posterNotFound from '../assets/posterNotFound.png'
 import ButtonPages from "./ButtonPages";
 import './SectionSearch.scss';
 import backgroundTitleSection from '../assets/backgroundTitleSection.png';
-import { API_KEY, URL_BASE, IMG_URL } from './export_files'
+import { API_KEY, URL_BASE, IMGw300_URL } from './export_files'
 
 
 const NewReleasesSection = () => {
@@ -35,7 +35,7 @@ const NewReleasesSection = () => {
                                 id={movie.id}
                                 title={movie.title}
                                 img={movie.poster_path !== null ?
-                                    `${IMG_URL}${movie.poster_path}`
+                                    `${IMGw300_URL}${movie.poster_path}`
                                     : posterNotFound}
                                 alt={movie.poster_path !== null
                                     ? `Poster from ${movie.title}`

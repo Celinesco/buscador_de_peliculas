@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { URL_BASE, API_KEY, IMG_URL } from "./export_files";
+import { URL_BASE, API_KEY, IMGw500_URL } from "./export_files";
 import './MovieDetails.scss';
 import posterNotFound from '../assets/posterNotFound.png';
 import { BsFillStarFill } from "react-icons/bs";
@@ -32,7 +32,7 @@ const MovieDetails = () => {
                 <div className="main-container">
                     <div className="container__poster">
                         {movieInfo.poster_path !== null
-                            ? <img src={`${IMG_URL}${movieInfo.poster_path}`} alt="Filmposter"></img>
+                            ? <img src={`${IMGw500_URL}${movieInfo.poster_path}`} alt="Filmposter"></img>
                             : <img src={posterNotFound} className="img-not-found" alt="Gibt es kein poster"></img>
                         }
                     </div>
@@ -41,7 +41,7 @@ const MovieDetails = () => {
                         <div className="container__raiting-year">
                             {!isNaN(jahre) && <p>{jahre}</p>}
                             <div className="raiting">
-                                <BsFillStarFill fontSize="22px" color="#ffd505" />
+                                <BsFillStarFill fontSize="22px" color="#ffd505"/>
                                 <span>{movieInfo?.vote_average}</span><p>/ 10</p>
                             </div>
                         </div>

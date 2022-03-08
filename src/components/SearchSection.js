@@ -5,7 +5,7 @@ import Card from './Card';
 import './SectionSearch.scss';
 import posterNotFound from '../assets/posterNotFound.png'
 import ButtonPages from "./ButtonPages";
-import { API_KEY, IMG_URL } from "./export_files";
+import { API_KEY, IMGw300_URL } from "./export_files";
 
 const SearchSection = () => {
     const URL = 'https://api.themoviedb.org/3/search/movie?';
@@ -50,7 +50,7 @@ const SearchSection = () => {
                             <Card
                                 title={movie.title}
                                 img={movie.poster_path !== null ?
-                                    `${IMG_URL}${movie.poster_path}`
+                                    `${IMGw300_URL}${movie.poster_path}`
                                     : posterNotFound}
                                 alt={movie.poster_path !== null
                                     ? `Poster from ${movie.title}`
