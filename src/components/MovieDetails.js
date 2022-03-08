@@ -42,7 +42,7 @@ const MovieDetails = () => {
                             {jahre !== NaN && <p>{jahre}</p>}
                             <div className="raiting">
                                 <BsFillStarFill fontSize="22px" color="#ffd505" />
-                                <span>{movieInfo.vote_average}</span><p>/ 10</p>
+                                <span>{movieInfo?.vote_average}</span><p>/ 10</p>
                             </div>
                         </div>
                         <div className="container__genres">
