@@ -1,0 +1,28 @@
+.container__item {
+    border-bottom: 1px solid lightgrey;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    align-items: center;
+
+}
+
+.container__img-title {
+    display: flex;
+    align-items: center;
+    p {
+        margin-left: 20px;
+        color: white
+    }
+}
+
+.img-container {
+    border: 3px outset rgb(136, 136, 136);
+    width: 80px;
+    height: 80px;
+    border-radius: 100%;
+    overflow: hidden;
+    img {
+        width: 100%;
+    }
+}
