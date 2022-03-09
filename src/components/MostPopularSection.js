@@ -41,6 +41,7 @@ const MostPopularSection = () => {
                                     ? `Poster from ${movie.title}`
                                     : `Poster not available`}
                                 overview={movie.overview}
+                                rating={movie.vote_average}
                             />
                         </Link>
                     )
