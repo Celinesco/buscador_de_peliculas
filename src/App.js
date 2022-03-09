@@ -6,7 +6,8 @@ import HomeSection from './components/HomeSection';
 import NewReleasesSection from './components/NewReleasesSection';
 import MostPopularSection from './components/MostPopularSection';
 import SearchSection from './components/SearchSection';
-import MovieDetails from './components/MovieDetails'
+import MovieDetails from './components/MovieDetails';
+import Error404 from './components/Error404.js';
 
 
 const App = () => {
@@ -21,6 +22,7 @@ const App = () => {
           <Route path='/search' element={<SearchSection />} />
           <Route path='/search/:results' element={<SearchSection />} />
           <Route path='/movie/:idMovie' element={<MovieDetails />} />
+          <Route path="*" element={<Error404 />} />
         </Routes>
         <Footer />
       </BrowserRouter>
