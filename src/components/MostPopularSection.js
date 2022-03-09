@@ -24,9 +24,11 @@ const MostPopularSection = () => {
 
     return (
         <section className="section__mostpopular sections__styles">
-                <div className="container__title-section">
+            <div className="container__title-background-image">
                 <img src={backgroundTitleSection} alt=""></img>
-                <h2 className="title__section">Populär</h2>
+                <div className="container__title-section">
+                    <h2>Populär</h2>
+                </div>
             </div>
             <div className="container__results">
                 <div className="container__movie-cards">
@@ -47,10 +49,10 @@ const MostPopularSection = () => {
                     )
                     )}
                 </div>
-                <ButtonPages 
-                 page={page}
-                 totalPages={500}
-                 setPage={setPage}
+                <ButtonPages
+                    page={page}
+                    totalPages={500}
+                    setPage={setPage}
                 />
             </div>
         </section>

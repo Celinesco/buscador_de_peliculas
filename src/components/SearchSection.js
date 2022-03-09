@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useSearchParams, Link } from "react-router-dom";
 import { VscSearch } from "react-icons/vsc";
 import Card from './Card';
@@ -6,6 +6,7 @@ import './SectionSearch.scss';
 import posterNotFound from '../assets/posterNotFound.png'
 import ButtonPages from "./ButtonPages";
 import { API_KEY, IMGw300_URL } from "./export_files";
+import backgroundTitleSection from '../assets/backgroundTitleSection.png';
 
 const SearchSection = () => {
     const URL = 'https://api.themoviedb.org/3/search/movie?';
@@ -15,6 +16,7 @@ const SearchSection = () => {
         title_contains: "Maus",
     });
 
+    const inputSearch = useRef()
     const [inputValue, setInputValue] = useState(searchParams.get('title_contains'));
 
     const handleOnChange = (e) => {
@@ -32,17 +34,25 @@ const SearchSection = () => {
             .then(data => {
                 setSearch(data.results ? data.results : [])
             })
+        inputSearch.current.focus()
     }, [searchParams, page])
 
+ 
 
     return (
         <section className="section__search sections__styles">
-            <h2>Search</h2>
-            <form >
-                <label htmlFor="movie-search">Search here!</label>
-                <input id="movie-search" type="text" onChange={handleOnChange} value={inputValue}></input>
-                <button type="submit" onClick={handleClick}><VscSearch /></button>
-            </form>
+            <div className="container__title-background-image">
+                <img src={backgroundTitleSection} alt=""></img>
+                <div className="container__title-section">
+                    <h2>Suche</h2>
+                    <form className="form__search-section">
+                        <input ref={inputSearch} type="text" onChange={handleOnChange} value={inputValue}></input>
+                        <button type="submit" onClick={handleClick}><VscSearch /></button>
+                    </form>
+                </div>
+
+            </div>
+
             <div className="container__results">
                 <div className="container__movie-cards">
                     {search.map((movie) => (
@@ -61,11 +71,11 @@ const SearchSection = () => {
                         </Link>
                     )
                     )}
-                   
+
                 </div>
-                <ButtonPages 
-                 page={page}
-                 setPage={setPage}
+                <ButtonPages
+                    page={page}
+                    setPage={setPage}
                 />
             </div>
 

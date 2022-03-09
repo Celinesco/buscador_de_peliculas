@@ -9,7 +9,7 @@ import { API_KEY, URL_BASE, IMGw300_URL } from './export_files';
 
 
 const NewReleasesSection = () => {
-    
+
     const [search, setSearch] = useState([])
     const [page, setPage] = useState(1);
 
@@ -23,9 +23,11 @@ const NewReleasesSection = () => {
 
     return (
         <section className="sections__styles">
-            <div className="container__title-section">
+            <div className="container__title-background-image">
                 <img src={backgroundTitleSection} alt=""></img>
-                <h2 className="title__section">Neuerscheinungen</h2>
+                <div className="container__title-section">
+                    <h2>Neuerscheinungen</h2>
+                </div>
             </div>
             <div className="container__results">
                 <div className="container__movie-cards">
@@ -47,10 +49,10 @@ const NewReleasesSection = () => {
                     )
                     )}
                 </div>
-                <ButtonPages 
-                 page={page}
-                 totalPages={500}
-                 setPage={setPage}
+                <ButtonPages
+                    page={page}
+                    totalPages={500}
+                    setPage={setPage}
                 />
             </div>
         </section>

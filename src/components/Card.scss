@@ -94,7 +94,10 @@
 }
 .sinopsis {
     overflow: scroll;
-    padding: 30px;
+    padding: 20px;
+    width: 200px;
+    font-size: 14px;
+    line-height: 1.5;
     font-weight: 400;
     color: rgb(38, 39, 37);
 }
@@ -134,5 +137,5 @@
 }
 
 .card__container:hover .face {
-    top: -450px
+    top: -420px
 }
