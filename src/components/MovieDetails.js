@@ -23,8 +23,6 @@ const MovieDetails = () => {
     const datum = new Date(movieInfo.release_date)
     const jahre = datum.getFullYear()
 
-    console.log(jahre)
-
     return (
         <section className='section__details'>
             <div className="container__background-img" style={{ backgroundImage: `url(https://image.tmdb.org/t/p/original${movieInfo.backdrop_path})` }}>

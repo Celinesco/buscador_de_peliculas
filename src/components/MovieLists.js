@@ -14,7 +14,7 @@ const MovieLists = ({ endpoint, listTitle }) => {
             .then(data => (
                 setList(data.results)
             ))
-    }, [])
+    },[])
 
     return (
         <div className="container__movie-list">
