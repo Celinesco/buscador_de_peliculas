@@ -21,14 +21,6 @@
   padding: 100px 50px;
 }
 
-.p__results {
-  width: 95%;
-  text-align: left;
-  color: white;
-  font-weight: bold;
-  font-size: 35px;
-}
-
 .container__title-background-image {
   margin-top: 150px;
   background-color: rgb(248, 225, 160);
@@ -73,4 +65,9 @@
   align-items: center;
   justify-content: center;
   width: 100%;
+}
+
+.no-results {
+  color: white;
+  font-weight: bold;
 }

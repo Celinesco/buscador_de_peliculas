@@ -37,7 +37,7 @@ const SearchSection = () => {
         inputSearch.current.focus()
     }, [searchParams, page])
 
- 
+
 
     return (
         <section className="section__search sections__styles">
@@ -54,29 +54,39 @@ const SearchSection = () => {
             </div>
 
             <div className="container__results">
-                <div className="container__movie-cards">
-                    {search.map((movie) => (
-                        <Link to={`/movie/${movie.id}`} key={movie.id}>
-                            <Card
-                                title={movie.title}
-                                img={movie.poster_path !== null ?
-                                    `${IMGw300_URL}${movie.poster_path}`
-                                    : posterNotFound}
-                                alt={movie.poster_path !== null
-                                    ? `Poster from ${movie.title}`
-                                    : `Poster not available`}
-                                overview={movie.overview}
-                                rating={movie.vote_average}
-                            />
-                        </Link>
-                    )
-                    )}
+                {search.length >= 1 ?
+                    <>
+                        <div className="container__movie-cards">
+                            {search.map((movie) => (
+                                <Link to={`/movie/${movie.id}`} key={movie.id}>
+                                    <Card
+                                        title={movie.title}
+                                        img={movie.poster_path !== null ?
+                                            `${IMGw300_URL}${movie.poster_path}`
+                                            : posterNotFound}
+                                        alt={movie.poster_path !== null
+                                            ? `Poster from ${movie.title}`
+                                            : `Poster not available`}
+                                        overview={movie.overview}
+                                        rating={movie.vote_average}
+                                    />
+                                </Link>
+                            )
+                            )}
+                        </div>
+                        <ButtonPages
+                            page={page}
+                            setPage={setPage}
+                        />
+                    </>
+                    :
+                    <>
+                        <p className="no-results">Leider ergab die Suche kein Ergebnis</p>
+                        <p className="no-results">Versuche es erneut mit einem anderen Suchbegriff.</p>
+                    </>
 
-                </div>
-                <ButtonPages
-                    page={page}
-                    setPage={setPage}
-                />
+                }
+
             </div>
 
         </section>
