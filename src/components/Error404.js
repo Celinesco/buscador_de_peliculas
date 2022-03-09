@@ -5,7 +5,7 @@ const Error404 = () => {
     return (
         <section className='section__styles'>
             <div className='container__img-404'>
-                <img src={pag404} alt="leer Kino"></img>
+                <img src={pag404} alt="leeres Kino"></img>
             </div>
 
         </section>
