@@ -4,6 +4,7 @@
   align-items: center;
 }
 
+
 .container__movie-cards {
     width: 100%;
     display: flex;
@@ -28,9 +29,9 @@
   font-size: 35px;
 }
 
-.container__title-section {
+.container__title-background-image {
   margin-top: 150px;
-  background-color: white;
+  background-color: rgb(248, 225, 160);
   position: relative;
   width: 600px;
   display: flex;
@@ -39,11 +40,37 @@
   h2 {
     font-size: 50px;
     width: 100%;
-    position: absolute;
     text-align: center;
-    color: white
+    top: 45px;
+    color: rgb(248, 225, 160);
   }
   img {
     width: 100%;
   }
+}
+
+.form__search-section {
+  display: flex;
+  align-items: center;
+  input {
+    padding: 10px;
+  }
+  svg {
+    font-size: 25px;
+    color: rgb(248, 225, 160);
+  }
+  button {
+    padding: 5px;
+    background-color: black;
+    border: 2px outset rgb(248, 225, 160);
+  }
+}
+
+.container__title-section {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
 }
