@@ -1,18 +1,18 @@
 .container__item {
-    border-bottom: 1px solid lightgrey;
+    border-bottom: 1px solid rgb(248, 225, 160);
     display: flex;
     justify-content: space-between;
     padding: 20px;
     align-items: center;
-
+    color: rgb(248, 225, 160)
 }
 
 .container__img-title {
     display: flex;
     align-items: center;
     p {
+        font-weight: bold;
         margin-left: 20px;
-        color: white
     }
 }
 
