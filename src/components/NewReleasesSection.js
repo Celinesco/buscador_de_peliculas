@@ -12,12 +12,14 @@ const NewReleasesSection = () => {
 
     const [search, setSearch] = useState([])
     const [page, setPage] = useState(1);
+    const [totalPages, setTotalPages] = useState(500)
 
     useEffect(() => {
         fetch(`${URL_BASE}now_playing?api_key=${API_KEY}&language=de-DE&page=${page}`)
             .then(res => res.json())
             .then(data => {
                 setSearch(data.results ? data.results : [])
+                data?.results?.total_pages < 500 && setTotalPages(data?.results?.total_pages)
             })
     }, [page])
 
@@ -51,7 +53,7 @@ const NewReleasesSection = () => {
                 </div>
                 <ButtonPages
                     page={page}
-                    totalPages={500}
+                    totalPages={totalPages}
                     setPage={setPage}
                 />
             </div>

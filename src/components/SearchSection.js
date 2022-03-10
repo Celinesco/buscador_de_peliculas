@@ -12,6 +12,7 @@ const SearchSection = () => {
     const URL = 'https://api.themoviedb.org/3/search/movie?';
     const [search, setSearch] = useState([])
     const [page, setPage] = useState(1);
+    const [totalPages, setTotalPages] = useState(500)
     const [searchParams, setSearchParams] = useSearchParams({
         title_contains: "Maus",
     });
@@ -31,12 +32,13 @@ const SearchSection = () => {
     useEffect(() => {
         fetch(`${URL}api_key=${API_KEY}&query=${searchParams.get('title_contains')}&language=de-DE&page=${page}`)
             .then(res => res.json())
-            .then(data => {
-                setSearch(data.results ? data.results : [])
+            .then((data) => {
+                setSearch(data?.results ? data.results : []);
+                (data?.total_pages) < 500 && setTotalPages(data?.total_pages)
             })
+        
         inputSearch.current.focus()
     }, [searchParams, page])
-
 
 
     return (
@@ -77,6 +79,7 @@ const SearchSection = () => {
                         <ButtonPages
                             page={page}
                             setPage={setPage}
+                            totalPages={totalPages}
                         />
                     </>
                     :

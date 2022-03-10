@@ -13,6 +13,7 @@ const MostPopularSection = () => {
     const [search, setSearch] = useState([])
     const [page, setPage] = useState(1);
 
+
     useEffect(() => {
         fetch(`${URL_BASE}popular?api_key=${API_KEY}&language=de-DE&page=${page}`)
             .then(res => res.json())
