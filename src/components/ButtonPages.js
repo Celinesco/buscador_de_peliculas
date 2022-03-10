@@ -45,7 +45,7 @@ const ButtonPages = ({ page, totalPages, setPage }) => {
             <form onSubmit={handleSubmit}>
                 <label htmlFor="select-page">Seitenzahl eingeben</label>
                 <input ref={selectPage} onInput={handleInput} min="1" max={totalPages} id="select-page" type="number" className=""></input>
-                {alert && <p>Bitte, geben Sie eine gültige Zahl ein, zwischen 1 und {totalPages}</p>}
+                {alert && <p>Bitte geben Sie eine gültige Zahl zwischen 1 und {totalPages} ein.</p>}
                 <button className='buttonPage' onClick={handleSelectedPage}><VscSearch/></button>
             </form>
         </div>
