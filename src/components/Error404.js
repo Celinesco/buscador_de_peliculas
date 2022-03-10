@@ -7,7 +7,6 @@ const Error404 = () => {
             <div className='container__img-404'>
                 <img src={pag404} alt="leeres Kino"></img>
             </div>
-
         </section>
     )
 }
