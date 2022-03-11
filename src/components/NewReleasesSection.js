@@ -19,7 +19,7 @@ const NewReleasesSection = () => {
             .then(res => res.json())
             .then(data => {
                 setSearch(data.results ? data.results : [])
-                data?.results?.total_pages < 500 && setTotalPages(data?.results?.total_pages)
+                data?.total_pages < 500 && setTotalPages(data?.total_pages)
             })
     }, [page])
 
