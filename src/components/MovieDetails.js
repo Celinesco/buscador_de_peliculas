@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { URL_BASE, API_KEY, IMGw500_URL } from "./export_files";
+import { URL_BASE, API_KEY, IMGw500_URL, IMGoriginal_URL } from "./export_files";
 import './MovieDetails.scss';
 import posterNotFound from '../assets/posterNotFound.png';
 import { BsFillStarFill } from "react-icons/bs";
@@ -25,7 +25,7 @@ const MovieDetails = () => {
 
     return (
         <section className='section__details'>
-            <div className="container__background-img" style={{ backgroundImage: `url(https://image.tmdb.org/t/p/original${movieInfo.backdrop_path})` }}>
+            <div className="container__background-img" style={{ backgroundImage: `url(${IMGoriginal_URL}${movieInfo.backdrop_path})` }}>
                 {movieInfo.backdrop_path === null && <p> Leider gibt es kein Foto </p>}
                 <div className="main-container">
                     <div className="container__poster">
