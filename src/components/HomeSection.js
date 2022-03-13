@@ -1,11 +1,15 @@
 import MovieLists from "./MovieLists";
 import './HomeSection.scss'
+import CarrouselContainer from "./Carrousel/CarrouselContainer";
+
 
 
 const HomeSection = () => {
     return (
-        <section className="section__home sections__styles">
-            <h2>HOME</h2>
+        <section className="section__home sections__styles ">
+      
+          <CarrouselContainer />
+
             <div className="container__movie-components">
                 <MovieLists
                     endpoint="popular"
