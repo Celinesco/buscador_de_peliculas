@@ -74,7 +74,7 @@ const Carrousel = ({ info }) => {
                             <div className='horizontal-square'></div>
                             <div className='horizontal-square'></div>
                         </div>
-                        <img src={`${IMGw300_URL}${movie.backdrop_path}`}></img>
+                        <img src={`${IMGw300_URL}${movie.backdrop_path}`} alt={`Filmposter von ${movie.title}`}></img>
                         <div className='container__horizontal-square-bottom'>
                             <div className='horizontal-square'></div>
                             <div className='horizontal-square'></div>
