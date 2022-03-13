@@ -9,7 +9,7 @@ const MovieLists = ({ endpoint, listTitle }) => {
     const [list, setList] = useState([]);
 
     useEffect(() => {
-        fetch(`${URL_BASE}${endpoint}?api_key=${API_KEY}`)
+        fetch(`${URL_BASE}${endpoint}?api_key=${API_KEY}&language=de-DE`)
             .then(res => res.json())
             .then(data => (
                 setList(data.results)
