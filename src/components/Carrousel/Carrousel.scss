@@ -78,10 +78,10 @@
     align-items: flex-start;
     flex-direction: column;
     text-align: left;
-    height: 80%;
-    width: 20%;
+    max-height: 500px ;
+    width: 450px;
     color: white;
-    overflow-y: scroll;
+    overflow-y: hidden;
     border-radius: 10px;
     background-color: rgba(0, 0, 0, 0.664);
     border: 1px solid white;
@@ -113,7 +113,6 @@
         -webkit-text-stroke: 2px black;
     } 
 }
-
 
 .small-view-slides {
     position: relative;
