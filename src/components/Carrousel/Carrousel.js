@@ -17,7 +17,7 @@ import { Link } from 'react-router-dom';
 
 
 
-const Carrousel = ({ info }) => {
+const Carrousel = ({ info, infoEnglish }) => {
     const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
     return (
@@ -37,7 +37,7 @@ const Carrousel = ({ info }) => {
                     pauseOnMouseEnter: true,
                 }}
             >
-                {info?.map((movie) =>
+                {info?.map((movie, index) =>
                     <SwiperSlide className='big-view-slides' key={movie.id} style={{ backgroundImage: `url(${IMGoriginal_URL}${movie.backdrop_path})` }}>
                         <div className='overview-slides'>
                             {movie.overview
