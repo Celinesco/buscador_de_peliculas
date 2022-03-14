@@ -1,6 +1,6 @@
 
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay, Navigation, A11y, Thumbs, FreeMode, EffectFade } from 'swiper';
+import { Autoplay, Navigation, A11y, Thumbs, FreeMode } from 'swiper';
 import { IMGoriginal_URL, IMGw300_URL } from '../../components/export_files';
 import { useState } from 'react';
 import { RiInformationLine } from "react-icons/ri";
@@ -17,19 +17,18 @@ import { Link } from 'react-router-dom';
 
 
 
-const Carrousel = ({ info, infoEnglish }) => {
+const Carrousel = ({ info }) => {
     const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
     return (
         <>
             <Swiper
-                modules={[Navigation, A11y, Thumbs, FreeMode, Autoplay, EffectFade]}
+                modules={[Navigation, A11y, Thumbs, FreeMode, Autoplay]}
                 thumbs={{ swiper: thumbsSwiper }}
                 spaceBetween={10}
-                effect={'fade'}
-                speed={1000}
                 navigation
                 loop={true}
+                onSlideChange={() => console.log('slide change')}
                 onSwiper={(swiper) => console.log(swiper)}
                 className="mySwiper2"
                 autoplay={{
@@ -38,7 +37,7 @@ const Carrousel = ({ info, infoEnglish }) => {
                     pauseOnMouseEnter: true,
                 }}
             >
-                {info?.map((movie, index) =>
+                {info?.map((movie) =>
                     <SwiperSlide className='big-view-slides' key={movie.id} style={{ backgroundImage: `url(${IMGoriginal_URL}${movie.backdrop_path})` }}>
                         <div className='overview-slides'>
                             {movie.overview
@@ -59,12 +58,12 @@ const Carrousel = ({ info, infoEnglish }) => {
                 spaceBetween={10}
                 slidesPerView={7}
                 freeMode={true}
-                speed={900}
                 watchSlidesProgress={true}
                 modules={[FreeMode, Navigation, Thumbs]}
                 className="mySwiper"
             >
                 {info?.map((movie) =>
+
                     <SwiperSlide className="small-view-slides" key={movie.id}>
                         <div className='container__horizontal-square'>
                             <div className='horizontal-square'></div>
