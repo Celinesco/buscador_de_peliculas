@@ -39,15 +39,15 @@ const Carrousel = ({ info, infoEnglish }) => {
             >
                 {info?.map((movie, index) =>
                     <SwiperSlide className='big-view-slides' key={movie.id} style={{ backgroundImage: `url(${IMGoriginal_URL}${movie.backdrop_path})` }}>
+                        <div className='title-slides'>
+                            <h3>{movie.title}</h3>
+                        </div>
                         <div className='overview-slides'>
                             {movie.overview
                                 ? <p>{movie.overview}</p>
                                 : <p lang="en">{infoEnglish[index]?.overview}</p>
                             }
                             <Link to={`/movie/${movie.id}`} className="link__carrousel"> <RiInformationLine /> Mehr...</Link>
-                        </div>
-                        <div className='title-slides'>
-                            <h3>{movie.title}</h3>
                         </div>
                     </SwiperSlide>)}
 
