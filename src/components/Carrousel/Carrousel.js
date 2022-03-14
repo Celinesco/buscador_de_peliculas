@@ -3,6 +3,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Navigation, A11y, Thumbs, FreeMode } from 'swiper';
 import { IMGoriginal_URL, IMGw300_URL } from '../../components/export_files';
 import { useState } from 'react';
+import { RiInformationLine } from "react-icons/ri";
 
 // Import Swiper styles
 import './Carrousel.scss';
@@ -11,6 +12,8 @@ import 'swiper/scss/navigation';
 import 'swiper/scss/a11y';
 import 'swiper/scss/thumbs';
 import "swiper/scss/free-mode";
+import "swiper/scss/effect-fade";
+import { Link } from 'react-router-dom';
 
 
 
@@ -37,11 +40,14 @@ const Carrousel = ({ info }) => {
                 {info?.map((movie) =>
                     <SwiperSlide className='big-view-slides' key={movie.id} style={{ backgroundImage: `url(${IMGoriginal_URL}${movie.backdrop_path})` }}>
                         <div className='overview-slides'>
-                            <h3>{movie.title}</h3>
-                            <p>{movie.overview}</p>
+                            {movie.overview
+                                ? <p>{movie.overview}</p>
+                                : <p lang="en">{infoEnglish[index]?.overview}</p>
+                            }
+                            <Link to={`/movie/${movie.id}`} className="link__carrousel"> <RiInformationLine /> Mehr...</Link>
                         </div>
                         <div className='title-slides'>
-                            <p>{movie.title}</p>
+                            <h3>{movie.title}</h3>
                         </div>
                     </SwiperSlide>)}
 
