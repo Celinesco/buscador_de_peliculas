@@ -17,7 +17,7 @@ I implemented this libraries:
 - [sass](https://sass-lang.com/) 
 - [react router dom](https://reactrouter.com/)
 - [react icons](https://react-icons.github.io/react-icons/)
-- [and this amazing code](https://github.com/wrongakram/sass-mediaqueries/blob/master/src/breakpoints/breakpoints.scss) for the brealpoints
+- and [this amazing code](https://github.com/wrongakram/sass-mediaqueries/blob/master/src/breakpoints/breakpoints.scss) for the breakpoints
 
 And [The Movie Data Base API](https://www.themoviedb.org/?language=es)
 
@@ -29,8 +29,9 @@ Check the [site here](https://infokleinkino.netlify.app/)
 #### To run the project
 
 1. Create a new folder and clone the repo inside of it tiping: git clone https://github.com/Celinesco/buscador_de_peliculas
-2. run npm start
-3. Enjoy!
+2. npm install
+3. npm start
+4. Enjoy!
 
 
 ![Gif Goodbye](https://media.giphy.com/media/82ozVGY6TnFCBmSpLt/giphy.gif)
