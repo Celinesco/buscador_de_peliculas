@@ -7,3 +7,5 @@ export const IMGw500_URL = 'https://image.tmdb.org/t/p/w500';
 export const IMGw300_URL = 'https://image.tmdb.org/t/p/w300';
 
 export const IMGoriginal_URL = 'https://image.tmdb.org/t/p/original';
+
+export const URL_Search = 'https://api.themoviedb.org/3/search/movie?';

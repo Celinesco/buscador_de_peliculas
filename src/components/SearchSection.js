@@ -5,14 +5,14 @@ import Card from './Card';
 import './SectionSearch.scss';
 import posterNotFound from '../assets/posterNotFound.png'
 import ButtonPages from "./ButtonPages";
-import { API_KEY, IMGw300_URL } from "./export_files";
+import { API_KEY, IMGw300_URL, URL_Search } from "./export_files";
 import backgroundTitleSection from '../assets/backgroundTitleSection.png';
 
 const SearchSection = () => {
-    const URL = 'https://api.themoviedb.org/3/search/movie?';
     const [search, setSearch] = useState([])
     const [page, setPage] = useState(1);
     const [totalPages, setTotalPages] = useState(500)
+    const [infoEnglish, setInfoEnglish] = useState([])
     const [searchParams, setSearchParams] = useSearchParams({
         title_contains: "Mickey",
     });
@@ -30,13 +30,17 @@ const SearchSection = () => {
         })
     }
     useEffect(() => {
-        fetch(`${URL}api_key=${API_KEY}&query=${searchParams.get('title_contains')}&language=de-DE&page=${page}`)
+        fetch(`${URL_Search}api_key=${API_KEY}&query=${searchParams.get('title_contains')}&language=de-DE&page=${page}`)
             .then(res => res.json())
             .then((data) => {
                 setSearch(data?.results ? data.results : []);
                 (data?.total_pages) < 500 && setTotalPages(data?.total_pages)
             })
-        
+        fetch(`${URL_Search}api_key=${API_KEY}&query=${searchParams.get('title_contains')}&page=${page}`)
+            .then(res => res.json())
+            .then(data => {
+                setInfoEnglish(data?.results ? data.results : []);
+            })
         inputSearch.current.focus()
     }, [searchParams, page])
 
@@ -59,7 +63,7 @@ const SearchSection = () => {
                 {search.length >= 1 ?
                     <>
                         <div className="container__movie-cards">
-                            {search.map((movie) => (
+                            {search.map((movie, index) => (
                                 <Link to={`/movie/${movie.id}`} key={movie.id}>
                                     <Card
                                         title={movie.title}
@@ -69,7 +73,8 @@ const SearchSection = () => {
                                         alt={movie.poster_path !== null
                                             ? `Poster from ${movie.title}`
                                             : `Poster not available`}
-                                        overview={movie.overview}
+                                        overview={movie.overview ? movie.overview : infoEnglish?.[index]?.overview}
+                                        lang={!movie.overview && "en"}
                                         rating={movie.vote_average}
                                     />
                                 </Link>
