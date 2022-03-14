@@ -17,6 +17,7 @@ I implemented this libraries:
 - [sass](https://sass-lang.com/) 
 - [react router dom](https://reactrouter.com/)
 - [react icons](https://react-icons.github.io/react-icons/)
+- [and this amazing code](https://github.com/wrongakram/sass-mediaqueries/blob/master/src/breakpoints/breakpoints.scss) for the brealpoints
 
 And [The Movie Data Base API](https://www.themoviedb.org/?language=es)
 
