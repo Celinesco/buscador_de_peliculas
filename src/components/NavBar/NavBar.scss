@@ -1,3 +1,6 @@
+
+@import '../../styles/breakpoints';
+
 .navbar {
     background: rgb(0,0,0);
     background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(57,59,61,1) 67%, rgba(93,96,99,1) 100%);
@@ -18,6 +21,9 @@
         margin: 0px 10px;
         color: white;
         font-weight: bold;
+    }
+    @include media('<=tablet') {
+       display:none
     }
 }
 
