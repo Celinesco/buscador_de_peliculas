@@ -1,3 +1,4 @@
+@import '../../styles/breakpoints';
 
 .swiper {
   width: 100%;
@@ -46,6 +47,9 @@
 .mySwiper {
   height: 20%;
   box-sizing: border-box;
+  @include media('<=tablet') {
+    display: none;
+  }
 }
 
 .mySwiper .swiper-slide {
@@ -86,7 +90,6 @@
     background-color: rgba(0, 0, 0, 0.664);
     border: 1px solid white;
     padding: 30px;
-   
     P {
         margin-top: 20px;
         line-height: 1.5;
