@@ -14,5 +14,6 @@
     @include media('<=tablet') {
         flex-direction: column;
         max-width: 600px;
+        margin: 120px 0
     }
 }

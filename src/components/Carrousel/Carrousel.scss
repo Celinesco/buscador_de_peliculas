@@ -4,6 +4,8 @@
   width: 100%;
   height: 100%;
   background-color: black;
+
+
 }
 
 .swiper-slide {
@@ -20,7 +22,9 @@
   -webkit-box-align: center;
   -ms-flex-align: center;
   -webkit-align-items: center;
-  align-items:center;  
+  align-items:flex-start;  
+  
+
 }
 
 .swiper-slide img {
@@ -32,11 +36,13 @@
 .swiper {
   width: 100%;
   height: 300px;
+
 }
 
 .swiper-slide {
   background-size: cover;
   background-position:top;
+ 
 }
 
 .mySwiper2 {
@@ -50,6 +56,7 @@
   @include media('<=tablet') {
     display: none;
   }
+
 }
 
 .mySwiper .swiper-slide {
@@ -72,9 +79,14 @@
 
 .big-view-slides {
     display: flex;
-    flex-direction: column-reverse;
+    flex-direction: column;
     align-items: flex-start;
+    justify-content: center !important;
     padding: 50px 200px;
+    @include media ('<=tablet') {
+      padding: 40px;
+      border-bottom: 2px solid white;
+    }
 }
 
 .overview-slides {
@@ -89,6 +101,11 @@
     background-color: rgba(0, 0, 0, 0.664);
     border: 1px solid white;
     padding: 30px;
+    @include media('<=tablet') {
+      max-width: 350px;
+      max-height: 300px;
+      padding: 20px;
+    }
     P {
       overflow-y:scroll;
         margin-top: 20px;
@@ -100,17 +117,22 @@
   }
 }
 
-
-
 .title-slides {
   margin: 100px 0 20px 0;
   color: white;
   font-weight: 900;
-  font-size: 70px;
+  @include media('<=tablet') {
+    margin: 0
+  }
     h3 {
+        font-size: 70px;
         text-align: left;
         font-family: 'Bungee', cursive;
         -webkit-text-stroke: 2px black;
+        @include media ('<=tablet') {
+          font-size: 50px;
+          margin-bottom: 25px;
+        }
     } 
 }
 
@@ -139,5 +161,10 @@
   font-weight: 400;
   border-radius: 5px;
   margin-top: 50px;
+  @include media ('<=tablet') {
+    font-size: 20px;
+    width: 120px;
+    margin-top: 20px;
+  }
   
 }
