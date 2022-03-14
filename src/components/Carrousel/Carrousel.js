@@ -3,6 +3,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Navigation, A11y, Thumbs, FreeMode, EffectFade } from 'swiper';
 import { IMGoriginal_URL, IMGw300_URL } from '../../components/export_files';
 import { useState } from 'react';
+import { RiInformationLine } from "react-icons/ri";
 
 // Import Swiper styles
 import './Carrousel.scss';
@@ -12,32 +13,12 @@ import 'swiper/scss/a11y';
 import 'swiper/scss/thumbs';
 import "swiper/scss/free-mode";
 import "swiper/scss/effect-fade";
+import { Link } from 'react-router-dom';
 
 
 
 const Carrousel = ({ info, infoEnglish }) => {
     const [thumbsSwiper, setThumbsSwiper] = useState(null);
-
-    // const handlungLeer = info?.filter (film => {
-    //     return !film.overview
-    // })
-
-    // console.log(handlungLeer)
-    // const idPeliculasVacias = handlungLeer.map(movie => {
-    //     return movie.id
-    // })
-    // console.log(idPeliculasVacias)
-
-    // const overviewEnglish = idPeliculasVacias.map(id => {
-    //     for (let i = 0; i < infoEnglish.length; i++) {
-    //         if (id === infoEnglish[i].id) {
-    //             return infoEnglish[i].overview
-    //         }
-    //     } 
-    // })
-    
-
-    // console.log(overviewEnglish)
 
     return (
         <>
@@ -61,15 +42,14 @@ const Carrousel = ({ info, infoEnglish }) => {
                     <SwiperSlide className='big-view-slides' key={movie.id} style={{ backgroundImage: `url(${IMGoriginal_URL}${movie.backdrop_path})` }}>
                         <div className='overview-slides'>
                             <h3>{movie.title}</h3>
-                            {movie.overview 
-                            ? <p>{movie.overview}</p>
-                            :   <p lang="en">{infoEnglish[index]?.overview}</p>
-                        }
-                            
-
+                            {movie.overview
+                                ? <p>{movie.overview}</p>
+                                : <p lang="en">{infoEnglish[index]?.overview}</p>
+                            }
                         </div>
                         <div className='title-slides'>
                             <p>{movie.title}</p>
+                            <Link to={`/movie/${movie.id}`} className="link__carrousel"> <RiInformationLine /> Mehr...</Link>
                         </div>
                     </SwiperSlide>)}
 
