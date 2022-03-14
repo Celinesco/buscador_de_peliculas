@@ -1,7 +1,7 @@
 import './Card.scss'
 import { BsFillStarFill } from "react-icons/bs";
 
-const Card = ({ img, title, overview, rating }) => {
+const Card = ({ img, title, overview, rating, lang }) => {
     return (
 
         <article className="card__container">
@@ -53,7 +53,7 @@ const Card = ({ img, title, overview, rating }) => {
                         <div className="square"></div>
                     </div>
                     <h4>Handlung</h4>
-                    <p className="sinopsis">{overview}</p>
+                    <p className="sinopsis" lang={lang}>{overview}</p>
                 </div>
             </div>
             <div className="container-movie-title">

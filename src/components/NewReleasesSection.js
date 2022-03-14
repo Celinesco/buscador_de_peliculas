@@ -13,6 +13,7 @@ const NewReleasesSection = () => {
     const [search, setSearch] = useState([])
     const [page, setPage] = useState(1);
     const [totalPages, setTotalPages] = useState(500)
+    const [infoEnglish, setInfoEnglish] = useState([])
 
     useEffect(() => {
         fetch(`${URL_BASE}now_playing?api_key=${API_KEY}&language=de-DE&page=${page}`)
@@ -21,6 +22,12 @@ const NewReleasesSection = () => {
                 setSearch(data.results ? data.results : [])
                 data?.total_pages < 500 && setTotalPages(data?.total_pages)
             })
+        fetch(`${URL_BASE}now_playing?api_key=${API_KEY}&page=${page}`)
+            .then(res => res.json())
+            .then(data => {
+                setInfoEnglish(data.results ? data.results : [])
+            })
+
     }, [page])
 
     return (
@@ -33,7 +40,7 @@ const NewReleasesSection = () => {
             </div>
             <div className="container__results">
                 <div className="container__movie-cards">
-                    {search.map((movie) => (
+                    {search.map((movie, index) => (
                         <Link to={`/movie/${movie.id}`} key={movie.id}>
                             <Card
                                 id={movie.id}
@@ -44,7 +51,8 @@ const NewReleasesSection = () => {
                                 alt={movie.poster_path !== null
                                     ? `Poster from ${movie.title}`
                                     : `Poster not available`}
-                                overview={movie.overview}
+                                overview={movie.overview ? movie.overview : infoEnglish?.[index]?.overview}
+                                lang={!movie.overview && "en"}
                                 rating={movie.vote_average}
                             />
                         </Link>

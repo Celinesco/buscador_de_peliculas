@@ -15,9 +15,29 @@ import "swiper/scss/effect-fade";
 
 
 
-const Carrousel = ({ info }) => {
+const Carrousel = ({ info, infoEnglish }) => {
     const [thumbsSwiper, setThumbsSwiper] = useState(null);
- 
+
+    // const handlungLeer = info?.filter (film => {
+    //     return !film.overview
+    // })
+
+    // console.log(handlungLeer)
+    // const idPeliculasVacias = handlungLeer.map(movie => {
+    //     return movie.id
+    // })
+    // console.log(idPeliculasVacias)
+
+    // const overviewEnglish = idPeliculasVacias.map(id => {
+    //     for (let i = 0; i < infoEnglish.length; i++) {
+    //         if (id === infoEnglish[i].id) {
+    //             return infoEnglish[i].overview
+    //         }
+    //     } 
+    // })
+    
+
+    // console.log(overviewEnglish)
 
     return (
         <>
@@ -29,7 +49,6 @@ const Carrousel = ({ info }) => {
                 speed={1000}
                 navigation
                 loop={true}
-                onSlideChange={() => console.log('slide change')}
                 onSwiper={(swiper) => console.log(swiper)}
                 className="mySwiper2"
                 autoplay={{
@@ -38,11 +57,16 @@ const Carrousel = ({ info }) => {
                     pauseOnMouseEnter: true,
                 }}
             >
-                {info?.map((movie) =>
+                {info?.map((movie, index) =>
                     <SwiperSlide className='big-view-slides' key={movie.id} style={{ backgroundImage: `url(${IMGoriginal_URL}${movie.backdrop_path})` }}>
                         <div className='overview-slides'>
                             <h3>{movie.title}</h3>
-                            <p>{movie.overview}</p>
+                            {movie.overview 
+                            ? <p>{movie.overview}</p>
+                            :   <p lang="en">{infoEnglish[index]?.overview}</p>
+                        }
+                            
+
                         </div>
                         <div className='title-slides'>
                             <p>{movie.title}</p>
@@ -62,7 +86,6 @@ const Carrousel = ({ info }) => {
                 className="mySwiper"
             >
                 {info?.map((movie) =>
-
                     <SwiperSlide className="small-view-slides" key={movie.id}>
                         <div className='container__horizontal-square'>
                             <div className='horizontal-square'></div>
