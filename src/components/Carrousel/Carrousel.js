@@ -1,6 +1,6 @@
 
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay, Navigation, A11y, Thumbs, FreeMode } from 'swiper';
+import { Autoplay, Navigation, A11y, Thumbs, FreeMode, EffectFade } from 'swiper';
 import { IMGoriginal_URL, IMGw300_URL } from '../../components/export_files';
 import { useState } from 'react';
 
@@ -11,18 +11,22 @@ import 'swiper/scss/navigation';
 import 'swiper/scss/a11y';
 import 'swiper/scss/thumbs';
 import "swiper/scss/free-mode";
+import "swiper/scss/effect-fade";
 
 
 
 const Carrousel = ({ info }) => {
     const [thumbsSwiper, setThumbsSwiper] = useState(null);
+ 
 
     return (
         <>
             <Swiper
-                modules={[Navigation, A11y, Thumbs, FreeMode, Autoplay]}
+                modules={[Navigation, A11y, Thumbs, FreeMode, Autoplay, EffectFade]}
                 thumbs={{ swiper: thumbsSwiper }}
                 spaceBetween={10}
+                effect={'fade'}
+                speed={1000}
                 navigation
                 loop={true}
                 onSlideChange={() => console.log('slide change')}
@@ -52,6 +56,7 @@ const Carrousel = ({ info }) => {
                 spaceBetween={10}
                 slidesPerView={7}
                 freeMode={true}
+                speed={900}
                 watchSlidesProgress={true}
                 modules={[FreeMode, Navigation, Thumbs]}
                 className="mySwiper"
