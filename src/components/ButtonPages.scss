@@ -1,10 +1,25 @@
 @import '../styles/variables';
+@import '../styles/breakpoints';
 
 .pagination-controls {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    .buttonPage {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 15px;
+        width: 60px;
+        height: 60px;
+        border-radius: 100%;
+        margin: 0 10px;
+        font-size: 20px;
+        background-color: rgb(0, 0, 0);
+        border: 4px solid $main-color;
+        color: $main-color;
+    }
     form {
         display: flex;
         flex-direction: column;
@@ -25,27 +40,20 @@
         background-color: $main-color;
     }
     color: rgb(0, 0, 0);
-}
-.container__button-pages {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    margin-top: 100px;
-    margin-bottom: 25px;
-    
+
+    .container__button-pages {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin-top: 100px;
+        margin-bottom: 25px; 
+    }
+    @include media('<=phone') {
+        .buttonPage {
+            width: 40px;
+            height: 40px;
+        
+        }
+    }
 }
 
-.buttonPage {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 15px;
-    width: 60px;
-    height: 60px;
-    border-radius: 100%;
-    margin: 0 10px;
-    font-size: 20px;
-    background-color: rgb(0, 0, 0);
-    border: 4px solid $main-color;
-    color: $main-color;
-}

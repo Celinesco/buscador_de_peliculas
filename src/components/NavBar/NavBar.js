@@ -11,6 +11,10 @@ const NavBar = () => {
         setMenuHamburguesa(true)
     }
 
+    const handleClickCerrar = () => {
+        setMenuHamburguesa(false)
+    }
+
     return (
         <nav className='navbar'>
             <div className='container__img-icon'>
@@ -31,6 +35,18 @@ const NavBar = () => {
                     <p className="text-action-button">Aktion!</p>
                 </div>
             </button>
+           
+                <div className={'container__navmenu ' + `${menuHamburguesa && 'dropdown'}`}>
+                    <button onClick={handleClickCerrar}>X</button>
+                    <ul className='ul__navbar-menu'>
+                        <Link onClick={handleClickCerrar} to="/"><li>START</li></Link>
+                        <Link onClick={handleClickCerrar} to="/newreleases"><li>NEU!</li></Link>
+                        <Link onClick={handleClickCerrar} to="/mostpopular"><li>POPULÄR</li></Link>
+                        <Link onClick={handleClickCerrar} to="/search/"><li>SUCHE</li></Link>
+                        <Link onClick={handleClickCerrar} to="/movie/:idMovie"></Link>
+                    </ul>
+                </div>
+            
         </nav>
     )
 }
