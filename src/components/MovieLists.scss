@@ -1,4 +1,5 @@
 @import '../styles/breakpoints';
+@import '../styles/variables';
 
 .container__movie-list {
     position: relative;
@@ -7,6 +8,9 @@
     border-radius: 10px;
     overflow-y: scroll;
     overflow-x: hidden;
+    box-shadow: 
+    6px 4px 5px 1px rgba(0, 0, 0, 0.486),
+        0px 0px 0px 2px rgba(255, 119, 5, 0.6);
     background-color: rgb(0, 0, 0);
     margin: 90px;
     @include media ('>1080px') {
@@ -40,7 +44,7 @@
         text-align: center;
         line-height: .9;
         justify-content: center;
-        background-color: rgb(248, 225, 160);
+        background-color: white;
         height: 100px;
     }
 }
@@ -65,13 +69,13 @@
 .container__movie-list::-webkit-scrollbar {
     width: 8px;  
     border-radius: 5px;
-    background-color: rgb(248, 225, 160);
+    background-color: black;
 }
 
 .container__movie-list::-webkit-scrollbar-thumb {
     background-color: rgb(0, 0, 0);
     border-radius: 5px;
-    border: 1px solid rgb(248, 225, 160) ;
+    border: 1px solid $main-color ;
 }
 
 .container__movie-list::-webkit-scrollbar:hover {
@@ -79,20 +83,15 @@
 }
 
 .container__movie-list::-webkit-scrollbar-thumb:hover {
-    background:rgb(248, 225, 160);
+    background: $main-color;
    
 }
 
 .container__movie-list::-webkit-scrollbar-thumb:active {
-    background-color: #999999;
+    background-color: #ffffff;
 }
 
 .container::-webkit-scrollbar-track {
-    background: #e1e1e1;
+    background: #ffffff;
     border-radius: 4px;
-}
-
-.container::-webkit-scrollbar-track:hover,
-.container::-webkit-scrollbar-track:active {
-  background: #d4d4d4;
 }
