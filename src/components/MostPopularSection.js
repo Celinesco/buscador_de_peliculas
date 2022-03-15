@@ -21,7 +21,7 @@ const MostPopularSection = () => {
             .then(data => {
                 setSearch(data.results ? data.results : [])
             })
-        fetch(`${URL_BASE}now_playing?api_key=${API_KEY}&page=${page}`)
+        fetch(`${URL_BASE}popular?api_key=${API_KEY}&page=${page}`)
             .then(res => res.json())
             .then(data => {
                 setInfoEnglish(data.results ? data.results : [])
