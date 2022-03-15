@@ -1,4 +1,5 @@
 @import '../../styles/breakpoints';
+@import '../../styles/variables';
 
 .swiper {
   width: 100%;
@@ -22,8 +23,6 @@
   -ms-flex-align: center;
   -webkit-align-items: center;
   align-items:flex-start;  
-
-
 }
 
 .swiper-slide {
@@ -99,7 +98,7 @@
     overflow-y: hidden;
     border-radius: 10px;
     background-color: rgba(0, 0, 0, 0.664);
-    border: 1px solid white;
+    border: 2px solid $main-color;
     padding: 30px;
     @include media('<=tablet') {
       max-width: 350px;
