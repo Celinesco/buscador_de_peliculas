@@ -67,16 +67,35 @@
       .container__overview {
         line-height: 1.5;
     }
-    @include media ('<=tablet') {
-        max-width: 430px;
+
+    @include media ('>tablet', '<1080px') {
+        max-width: 500px;
         flex-wrap: wrap;
-        margin: 50px 0;
-        h3 {
-            font-size: calc(2rem - 1vw);
-        }
+        margin: 90px 0;
+        .container__genres {
+            div {
+                flex-wrap: wrap;
+                p {
+                    font-size: calc(1.5rem - 1vw);
+                }
+            }
+          }
         .container__poster {
             border-right: none;
             border-bottom: 10px solid rgb(0, 0, 0);
+        }
+        .container__raiting-year {
+            p {
+                font-size: calc(2.3rem - 1vw);
+            }
+        }
+    }
+
+    @include media ('<=tablet') {
+        max-width: 430px;
+        margin: 50px 0;
+        h3 {
+            font-size: calc(2rem - 1vw);
         }
         .container__raiting-year {
             p {
@@ -85,7 +104,6 @@
         }
         .container__genres {
             div {
-                flex-wrap: wrap;
                 p {
                     font-size: calc(1rem - 1vw);
                 }
@@ -94,20 +112,8 @@
     }
     @include media('<=450px') {
         max-width: 340px;
-        h3 {
-            font-size: calc(2rem - 1vw);
-        }
-        .container__poster {
-            border-right: none;
-            border-bottom: 10px solid rgb(0, 0, 0);
-        }
         .container__info {
             max-width: 340px;       
-        }
-        .container__raiting-year {
-            p {
-                font-size: calc(1.5rem - 1vw);
-            }
         }
         .container__overview {
             max-width: 290px;
