@@ -21,6 +21,7 @@
 
 .main-container {
     display: flex;
+    flex-wrap: wrap;
     max-width: 2000px;
     border: 10px solid rgb(0, 0, 0);
     border-radius: 10px;
@@ -70,7 +71,6 @@
 
     @include media ('>tablet', '<1080px') {
         max-width: 500px;
-        flex-wrap: wrap;
         margin: 90px 0;
         .container__genres {
             div {
@@ -97,6 +97,10 @@
         h3 {
             font-size: calc(2rem - 1vw);
         }
+        .container__poster {
+            border-right: none;
+            border-bottom: 10px solid rgb(0, 0, 0);
+        }
         .container__raiting-year {
             p {
                 font-size: calc(1.5rem - 1vw);
@@ -118,6 +122,18 @@
         .container__overview {
             max-width: 290px;
         }
+    }
+    @include media('<=phone') {
+        max-width: 280px;
+        .container__info {
+            max-width: 280px;       
+        }
+        .container__overview {
+            max-width: 270px;
+        }
+    }
+    video {
+        display: none;
     }
 }
 
