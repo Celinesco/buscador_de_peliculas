@@ -1,3 +1,5 @@
+@import '../styles/breakpoints';
+
 .section__details {
     p, h3, h4, div {
         color: white;
@@ -23,37 +25,82 @@
     border: 10px solid rgb(0, 0, 0);
     border-radius: 10px;
     background-color: rgba(0, 0, 0, 0.712);
-}
-
-.container__poster {
-    width: 500px;
-    overflow: hidden;
-    border-right: 10px solid rgb(0, 0, 0);
-    img {
-        width: 100%;
-        height: 100%;
-    }
-}
-
-.container__info {
-    max-width: 500px;
-    padding: 25px;
     h3 {
         font-size: calc(3.5rem - 1vw);
     }
-}
-
-.container__raiting-year {
-    display: flex;
-    width: 90%;
-    justify-content: space-between;
-    margin: 15px 0;
-    p {
-
-        font-style: italic;
-        font-size: calc(2.8rem - 1vw);
+    .container__poster {
+        width: 500px;
+        overflow: hidden;
+        border-right: 10px solid rgb(0, 0, 0);
+        img {
+            width: 100%;
+            height: 100%;
+        }
+    }
+    .container__info {
+        max-width: 500px;
+        padding: 25px;
+        display: flex;
+        flex-direction: column;
+    }
+    .container__raiting-year {
+        display: flex;
+        width: 90%;
+        justify-content: space-between;
+        margin: 15px 0;
+        p {
+            font-style: italic;
+            font-size: calc(2.8rem - 1vw);
+        }
+    }
+    .container__genres {
+        margin: 15px 0;
+        div {
+            display: flex;
+            p {
+                font-style: italic;
+                margin-right: 15px;
+                font-size: calc(2.5rem - 1vw);
+            }
+        }
+      }
+      .container__overview {
+        line-height: 1.5;
+    }
+    @include media('<=phone') {
+        max-width: 340px;
+        flex-wrap: wrap;
+        margin: 50px 0;
+        h3 {
+            font-size: calc(2rem - 1vw);
+        }
+        .container__poster {
+            border-right: none;
+            border-bottom: 10px solid rgb(0, 0, 0);
+        }
+        .container__info {
+            padding: 30px 15px;
+            max-width: 340px;       
+        }
+        .container__raiting-year {
+            p {
+                font-size: calc(1.5rem - 1vw);
+            }
+        }
+        .container__genres {
+            div {
+                p {
+                    font-size: calc(1rem - 1vw);
+                }
+            }
+          }
+        .container__overview {
+            max-width: 290px;
+        }
     }
 }
+
+
 
 .raiting {
     display: flex;
@@ -70,18 +117,5 @@
     }
 }
 
-.container__genres {
-  margin: 15px 0;
-  div {
-      display: flex;
-      p {
-          font-style: italic;
-          margin-right: 15px;
-          font-size: calc(2.5rem - 1vw);
-      }
-  }
-}
 
-.container__overview {
-    line-height: 1.5;
-}
+
