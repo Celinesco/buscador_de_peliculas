@@ -1,3 +1,5 @@
+@import '../styles/variables';
+
 .section__search {
   display: flex;
   flex-direction: column;
@@ -23,7 +25,7 @@
 
 .container__title-background-image {
   margin-top: 150px;
-  background-color: rgb(248, 225, 160);
+  background-color: rgb(94,94,94);
   position: relative;
   width: 600px;
   display: flex;
@@ -34,7 +36,7 @@
     width: 100%;
     text-align: center;
     top: 45px;
-    color: rgb(248, 225, 160);
+    color: $main-color;
   }
   img {
     width: 100%;
