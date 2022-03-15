@@ -1,25 +1,29 @@
 
 @import '../../styles/breakpoints';
+@import '../../styles/variables';
 
 .navbar {
     background: rgb(0,0,0);
-    background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(57,59,61,1) 67%, rgba(93,96,99,1) 100%);
     height: 120px;
     padding: 20px;
     display: flex;
     flex-grow: 1;
     align-items: center;
-    border-bottom: 2px solid white;
+    border-bottom: 2px solid $main-color;
+    justify-content: space-between;
 }
 
 .ul__navbar {
+    width: 450px;
     display: flex;
     align-items: center;
+    justify-content: space-between;
     li {
+        display: flex;
+        justify-content: center;
         text-align: center;
         width: 100px;
-        margin: 0px 10px;
-        color: white;
+        color: $main-color;
         font-weight: bold;
     }
     @include media('<=tablet') {
