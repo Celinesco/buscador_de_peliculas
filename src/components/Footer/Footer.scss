@@ -1,15 +1,16 @@
+@import '../../styles/variables';
+
 .footer {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    border-top: 2px solid white;
+    border-top: 4px solid $main-color;
     height: 200px;
     padding: 40px;
-    background: rgb(93,96,99);
-    background: linear-gradient(90deg, rgba(93,96,99,1) 0%, rgba(57,59,61,1) 22%, rgba(0,0,0,1) 100%);
+    background: rgb(0, 0, 0);
     p {
-        color: white;
+        color: $main-color;
         font-size: 20px;
         margin: 20px 0;
     }
@@ -23,6 +24,6 @@
 }
 
 .icons-footer {
-    color: white;
+    color: $main-color;
     font-size: 30px;
 }
