@@ -1,4 +1,5 @@
 @import '../styles/variables';
+@import '../styles/breakpoints';
 
 .section__search {
   display: flex;
@@ -21,6 +22,9 @@
   flex-direction: column;
   align-items: center;
   padding: 100px 50px;
+  @include media('<tablet') {
+    padding: 100px 20px;
+  }
 }
 
 .container__title-background-image {
@@ -40,6 +44,12 @@
   }
   img {
     width: 100%;
+  }
+  @include media ('<=tablet') {
+    max-width: 330px;
+    h2 {
+      font-size: 30px
+    }
   }
 }
 
