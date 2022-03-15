@@ -11,6 +11,7 @@ const MovieDetails = () => {
     const selectedMovie = useParams();
     const [movieInfo, setMovieInfo] = useState({});
     const [infoEnglish, setInfoEnglish] = useState([]);
+    window.scrollTo(0, 0);
 
     useEffect(() => {
         fetch(`${URL_BASE}${selectedMovie.idMovie}?api_key=${API_KEY}&language=de-DE`)

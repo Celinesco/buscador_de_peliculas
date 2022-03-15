@@ -1,6 +1,9 @@
 .container__img-404 {
     background-color: black;
     width: 100vw ;
+    display: flex;
+    align-items: center;
+    min-height: 80vh;
     
     img {
         width:100%;
