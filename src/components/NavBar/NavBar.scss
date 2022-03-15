@@ -37,3 +37,78 @@
         width: 100%;
     }
 }
+
+.clappboard {
+    position: relative;
+    background-color: black;
+    margin-right: 30px;
+    border: none;
+    @include media('>tablet') {
+        display: none;
+    }
+}
+
+.square-clappboard {
+    width: 80px;
+    height: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 2px solid rgb(255, 123, 0);
+}
+
+.upper-part-box {
+    position: absolute;
+    top:0;
+    width: 80px;
+    height: 2px;
+    background-color: rgb(255, 123, 0);
+    border:3px solid rgb(255, 123, 0);
+    transform-origin: left top; 
+    transform: rotateZ(-15deg);
+ 
+}
+
+.punto {
+    position: absolute;
+    z-index: 10;
+    left: 2px;
+    top: 2px;
+    width: 7px;
+    height: 7px;
+    border-radius: 100%;
+    border: 0.5px solid white;
+    background-color: rgb(255, 255, 255);
+}
+
+.sub-square {
+    width: 100%;
+    height: 10px;
+    border-bottom: 5px solid rgb(255, 123, 0);
+}
+
+.text-action-button {
+    color: white; 
+    font-size: 18px;
+    font-weight: bold;
+    transform: rotateZ(-15deg) translateY(5px);
+}
+
+.clap-clap {
+    animation-name: claqueta;
+    animation-duration: 1s;
+    animation-iteration-count: 2;
+    animation-direction: alternate-reverse;
+    animation-iteration-count: 1s;
+}
+
+@keyframes claqueta {
+    from {
+        transform: rotateZ(-0deg);
+    }
+    to {
+        transform: rotateZ(-15deg);
+       
+    }
+    
+}
