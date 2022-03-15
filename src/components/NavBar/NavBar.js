@@ -27,7 +27,7 @@ const NavBar = () => {
                 <Link to="/search/"><li>SUCHE</li></Link>
                 <Link to="/movie/:idMovie"></Link>
             </ul>
-            <button onClick={handleClick} className='clappboard' >
+            <button aria-label='Menü öffnen' onClick={handleClick} className='clappboard' >
                 <div className="punto"></div>
                 <div className={"upper-part-box " + `${menuHamburguesa && 'clap-clap'}`}></div>
                 <div className="square-clappboard">
@@ -37,7 +37,7 @@ const NavBar = () => {
             </button>
            
                 <div className={'container__navmenu ' + `${menuHamburguesa && 'dropdown'}`}>
-                    <button onClick={handleClickCerrar}>X</button>
+                    <button aria-label='Menü schließen' onClick={handleClickCerrar}>X</button>
                     <ul className='ul__navbar-menu'>
                         <Link onClick={handleClickCerrar} to="/"><li>START</li></Link>
                         <Link onClick={handleClickCerrar} to="/newreleases"><li>NEU!</li></Link>

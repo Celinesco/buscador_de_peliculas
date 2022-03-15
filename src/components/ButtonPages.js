@@ -1,8 +1,8 @@
-import { AiOutlineLeft } from "react-icons/ai";
-import { AiOutlineRight } from "react-icons/ai";
-import { useRef, useState } from "react";
+import { AiOutlineLeft } from 'react-icons/ai';
+import { AiOutlineRight } from 'react-icons/ai';
+import { useRef, useState } from 'react';
 import './ButtonPages.scss';
-import { VscSearch } from "react-icons/vsc";
+import { VscSearch } from 'react-icons/vsc';
 
 const ButtonPages = ({ page, totalPages, setPage }) => {
 
@@ -34,17 +34,17 @@ const ButtonPages = ({ page, totalPages, setPage }) => {
     }
 
     return (
-        <div className="pagination-controls">
-            <div className="container__button-pages">
-                <button className='buttonPage' onClick={firstPage}>1</button>
-                <button className='buttonPage' onClick={previousPage}><AiOutlineLeft /></button>
+        <div className='pagination-controls'>
+            <div className='container__button-pages'>
+                <button aria-label='erste Seite' className='buttonPage' onClick={firstPage}>1</button>
+                <button aria-label='vorherige Seite' className='buttonPage' onClick={previousPage}><AiOutlineLeft /></button>
                 <div className='buttonPage'>{page}</div>
-                <button className='buttonPage' onClick={nextPage}><AiOutlineRight /></button>
-                <button className='buttonPage' onClick={lastPage}>{totalPages}</button>
+                <button aria-label='nächste Seite' className='buttonPage' onClick={nextPage}><AiOutlineRight /></button>
+                <button aria-label='letzte Seite' className='buttonPage' onClick={lastPage}>{totalPages}</button>
             </div>
             <form onSubmit={handleSubmit}>
                 <label htmlFor="select-page">Seitenzahl eingeben</label>
-                <input ref={selectPage} onInput={handleInput} min="1" max={totalPages} id="select-page" type="number" className=""></input>
+                <input ref={selectPage} onInput={handleInput} min="1" max={totalPages} id='select-page' type='number' className=""></input>
                 {alert && <p>Bitte geben Sie eine gültige Zahl zwischen 1 und {totalPages} ein.</p>}
                 <button className='buttonPage' onClick={handleSelectedPage}><VscSearch/></button>
             </form>

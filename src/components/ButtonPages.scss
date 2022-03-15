@@ -25,10 +25,16 @@
         flex-direction: column;
         align-items: center;
         p {
-            margin-top: 15px;
+            margin: 15px 0;
+            text-align: center;
+            color: white;
         }
         button {
             margin-top: 20px;
+        }
+        label {
+            font-weight: bold;
+            color: white;
         }
     }
     input {
@@ -39,7 +45,6 @@
         height: 30px;
         background-color: $main-color;
     }
-    color: rgb(0, 0, 0);
 
     .container__button-pages {
         width: 100%;
@@ -50,9 +55,14 @@
     }
     @include media('<=phone') {
         .buttonPage {
-            width: 40px;
-            height: 40px;
-        
+            font-size: 18px;
+            width: 45px;
+            height: 45px;
+            padding: 3px;
+            border: 1px solid $main-color
+        }
+        input {
+            margin-bottom: 20px;
         }
     }
 }

@@ -53,7 +53,7 @@ const SearchSection = () => {
                     <h2>Suche</h2>
                     <form className="form__search-section">
                         <input ref={inputSearch} type="text" onChange={handleOnChange} value={inputValue}></input>
-                        <button type="submit" onClick={handleClick}><VscSearch /></button>
+                        <button aria-label='suchen' type="submit" onClick={handleClick}><VscSearch /></button>
                     </form>
                 </div>
 
