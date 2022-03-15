@@ -61,12 +61,24 @@
   }
   svg {
     font-size: 25px;
-    color: rgb(248, 225, 160);
+    color: $main-color;
   }
   button {
     padding: 5px;
     background-color: black;
-    border: 2px outset rgb(248, 225, 160);
+    border: 2px outset $main-color;
+  }
+  @include media('<=phone') {
+    input {
+      padding: 10px;
+      height: 15px;
+    }
+  }
+  button {
+    padding: 2px;
+    background-color: black;
+    border: 2px outset $main-color;
+    font-size: 1px;
   }
 }
 
