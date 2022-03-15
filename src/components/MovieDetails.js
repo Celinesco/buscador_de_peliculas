@@ -21,7 +21,7 @@ const MovieDetails = () => {
         fetch(`${URL_BASE}${selectedMovie.idMovie}?api_key=${API_KEY}`)
             .then(res => res.json())
             .then(data => {
-                setInfoEnglish(data)
+                setInfoEnglish(data?.overview)
             })
     }, [selectedMovie.idMovie])
 
@@ -59,7 +59,7 @@ const MovieDetails = () => {
                             <h4>Handlung:</h4>
                             {movieInfo.overview 
                             ? <p>{movieInfo.overview}</p>
-                            : <p lang="en">{infoEnglish.overview}</p>
+                            : <p lang="en">{infoEnglish}</p>
                             }
                             
                         </div>

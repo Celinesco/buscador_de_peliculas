@@ -12,6 +12,7 @@ const MostPopularSection = () => {
 
     const [search, setSearch] = useState([])
     const [page, setPage] = useState(1);
+    const [infoEnglish, setInfoEnglish] = useState([])
 
 
     useEffect(() => {
@@ -19,6 +20,11 @@ const MostPopularSection = () => {
             .then(res => res.json())
             .then(data => {
                 setSearch(data.results ? data.results : [])
+            })
+        fetch(`${URL_BASE}now_playing?api_key=${API_KEY}&page=${page}`)
+            .then(res => res.json())
+            .then(data => {
+                setInfoEnglish(data.results ? data.results : [])
             })
     }, [page])
 
@@ -33,7 +39,7 @@ const MostPopularSection = () => {
             </div>
             <div className="container__results">
                 <div className="container__movie-cards">
-                    {search.map((movie) => (
+                    {search.map((movie, index) => (
                         <Link to={`/movie/${movie.id}`} key={movie.id}>
                             <Card
                                 title={movie.title}
@@ -43,8 +49,9 @@ const MostPopularSection = () => {
                                 alt={movie.poster_path !== null
                                     ? `Poster from ${movie.title}`
                                     : `Poster not available`}
-                                overview={movie.overview}
                                 rating={movie.vote_average}
+                                overview={movie.overview ? movie.overview : infoEnglish?.[index]?.overview}
+                                lang={!movie.overview && "en"}
                             />
                         </Link>
                     )
