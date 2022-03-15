@@ -10,12 +10,18 @@ const MovieDetails = () => {
 
     const selectedMovie = useParams();
     const [movieInfo, setMovieInfo] = useState({});
+    const [infoEnglish, setInfoEnglish] = useState([]);
 
     useEffect(() => {
         fetch(`${URL_BASE}${selectedMovie.idMovie}?api_key=${API_KEY}&language=de-DE`)
             .then(res => res.json())
             .then(data => {
                 setMovieInfo(data)
+            })
+        fetch(`${URL_BASE}${selectedMovie.idMovie}?api_key=${API_KEY}`)
+            .then(res => res.json())
+            .then(data => {
+                setInfoEnglish(data)
             })
     }, [selectedMovie.idMovie])
 
@@ -39,7 +45,7 @@ const MovieDetails = () => {
                         <div className="container__raiting-year">
                             {!isNaN(jahre) && <p>{jahre}</p>}
                             <div className="raiting">
-                                <BsFillStarFill fontSize="22px" color="#ffd505"/>
+                                <BsFillStarFill fontSize="22px" color="#ffd505" />
                                 <span>{movieInfo?.vote_average}</span><p>/ 10</p>
                             </div>
                         </div>
@@ -51,7 +57,11 @@ const MovieDetails = () => {
                         </div>
                         <div className="container__overview">
                             <h4>Handlung:</h4>
-                            <p>{movieInfo.overview}</p>
+                            {movieInfo.overview 
+                            ? <p>{movieInfo.overview}</p>
+                            : <p lang="en">{infoEnglish.overview}</p>
+                            }
+                            
                         </div>
                         <div className="container-video">
                             <video></video>
