@@ -2,16 +2,30 @@
 
 .container__movie-list {
     position: relative;
-    max-width: 500px;
-    border: 5px solid black;
     height: 800px;
+    max-width: 500px;
     border-radius: 10px;
     overflow-y: scroll;
     overflow-x: hidden;
     background-color: rgb(0, 0, 0);
     margin: 90px;
-    @include media('<=tablet') {
-        margin: 20px
+    @include media ('>1080px') {
+        width: 500px;
+    }
+    @include media ('>tablet', '<1080px') {
+        margin: 90px 15px;
+    }
+
+    @include media ('<=tablet') {
+       width: 95%;
+    }
+
+    @include media('<=450px') {
+        max-width: 400px;
+    }
+    @include media('<=phone') {
+        margin: 20px;
+        max-width:280px;
     }
 }
 
@@ -23,6 +37,8 @@
         font-size: 30px;
         display: flex;
         align-items: center;
+        text-align: center;
+        line-height: .9;
         justify-content: center;
         background-color: rgb(248, 225, 160);
         height: 100px;

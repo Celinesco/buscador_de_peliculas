@@ -11,9 +11,21 @@
 
 .container__movie-components {
     display: flex;
+    align-items: center;
+    justify-content: center;
+    @include media ('>1080px') {
+        width: 100%;
+    }
+    @include media ('>tablet', '<1080px') {
+        max-width: 900px;
+    }
+
     @include media('<=tablet') {
+        max-width: 450px;
         flex-direction: column;
-        max-width: 600px;
         margin: 120px 0
+    }
+    @include media('<=450px') {
+        width:100%;
     }
 }

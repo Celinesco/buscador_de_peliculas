@@ -1,32 +1,48 @@
+@import '../styles/breakpoints';
+
 .container__item {
     border-bottom: 1px solid rgb(248, 225, 160);
     display: flex;
     justify-content: space-between;
     padding: 20px;
     align-items: center;
-    color: rgb(248, 225, 160)
-}
-
-.container__img-title {
-    display: flex;
-    align-items: center;
-    p {
-        max-width: 200px;
-        white-space: nowrap;
+    color: rgb(248, 225, 160);
+    .container__img-title {
+        display: flex;
+        align-items: center;
+        p {
+            max-width: 200px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            font-weight: bold;
+            margin-left: 20px;
+        }
+    }
+    .img-container {
+        border: 3px outset rgb(136, 136, 136);
+        width: 80px;
+        height: 80px;
+        border-radius: 100%;
         overflow: hidden;
-        text-overflow: ellipsis;
-        font-weight: bold;
-        margin-left: 20px;
+        img {
+            width: 100%;
+        }
+    }
+
+
+    @include media('<=phone') {
+        width: 100%;
+        justify-content: center;
+        svg {
+            display: none;
+        }
+        .container__img-title {
+            flex-direction: column;
+            p {
+                margin: 10px 0 0 0
+            }
+        }
     }
 }
 
-.img-container {
-    border: 3px outset rgb(136, 136, 136);
-    width: 80px;
-    height: 80px;
-    border-radius: 100%;
-    overflow: hidden;
-    img {
-        width: 100%;
-    }
-}
