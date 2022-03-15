@@ -52,7 +52,7 @@
         margin-top: 100px;
         margin-bottom: 25px; 
     }
-    @include media('<=phone') {
+    @include media('<=tablet') {
         .buttonPage {
             font-size: 18px;
             width: 45px;
