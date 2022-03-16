@@ -22,8 +22,8 @@ const NavBar = () => {
             </div>
             <ul className='ul__navbar'>
                 <Link to="/"><li>START</li></Link>
-                <Link to="/newreleases"><li>NEU!</li></Link>
-                <Link to="/mostpopular"><li>POPULÄR</li></Link>
+                <Link to="/newreleases/"><li>NEU!</li></Link>
+                <Link to="/mostpopular/"><li>POPULÄR</li></Link>
                 <Link to="/search/"><li>SUCHE</li></Link>
                 <Link to="/movie/:idMovie"></Link>
             </ul>
@@ -40,8 +40,8 @@ const NavBar = () => {
                     <button aria-label='Menü schließen' onClick={handleClickCerrar}>X</button>
                     <ul className='ul__navbar-menu'>
                         <Link onClick={handleClickCerrar} to="/"><li>START</li></Link>
-                        <Link onClick={handleClickCerrar} to="/newreleases"><li>NEU!</li></Link>
-                        <Link onClick={handleClickCerrar} to="/mostpopular"><li>POPULÄR</li></Link>
+                        <Link onClick={handleClickCerrar} to="/newreleases/"><li>NEU!</li></Link>
+                        <Link onClick={handleClickCerrar} to="/mostpopular/"><li>POPULÄR</li></Link>
                         <Link onClick={handleClickCerrar} to="/search/"><li>SUCHE</li></Link>
                         <Link onClick={handleClickCerrar} to="/movie/:idMovie"></Link>
                     </ul>
