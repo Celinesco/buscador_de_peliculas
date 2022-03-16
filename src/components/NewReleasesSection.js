@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import Card from './Card';
 import posterNotFound from '../assets/posterNotFound.png'
 import ButtonPages from "./ButtonPages";
@@ -10,17 +10,23 @@ import { API_KEY, URL_BASE, IMGw300_URL } from './export_files';
 
 const NewReleasesSection = () => {
 
-    const [search, setSearch] = useState([])
-    const [page, setPage] = useState(1);
-    const [totalPages, setTotalPages] = useState(500)
-    const [infoEnglish, setInfoEnglish] = useState([])
+    const [search, setSearch] = useState([]);
+    const [totalPages, setTotalPages] = useState(500);
+    const [infoEnglish, setInfoEnglish] = useState([]);
+    const [pageNumber, setPageNumber] = useSearchParams({
+        current_page: 1,
+    })
+    const [page, setPage] = useState(Number(pageNumber.get('current_page')));
 
     useEffect(() => {
-        fetch(`${URL_BASE}now_playing?api_key=${API_KEY}&language=de-DE&page=${page}`)
+        fetch(`${URL_BASE}now_playing?api_key=${API_KEY}&language=de-DE&page=${pageNumber.get('current_page')}`)
             .then(res => res.json())
             .then(data => {
                 setSearch(data.results ? data.results : [])
                 data?.total_pages < 500 && setTotalPages(data?.total_pages)
+                setPageNumber({
+                    current_page: page
+                })
             })
         fetch(`${URL_BASE}now_playing?api_key=${API_KEY}&page=${page}`)
             .then(res => res.json())
@@ -28,7 +34,7 @@ const NewReleasesSection = () => {
                 setInfoEnglish(data.results ? data.results : [])
             })
 
-    }, [page])
+    }, [pageNumber, page])
 
     return (
         <section className="sections__styles">
