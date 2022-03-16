@@ -52,7 +52,7 @@ const NewReleasesSection = () => {
                                     ? `Poster from ${movie.title}`
                                     : `Poster not available`}
                                 overview={movie.overview ? movie.overview : infoEnglish?.[index]?.overview}
-                                lang={!movie.overview && "en"}
+                                lang={!movie.overview ? 'en' : 'de'}
                                 rating={movie.vote_average}
                             />
                         </Link>

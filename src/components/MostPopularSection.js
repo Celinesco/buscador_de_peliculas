@@ -51,7 +51,7 @@ const MostPopularSection = () => {
                                     : `Poster not available`}
                                 rating={movie.vote_average}
                                 overview={movie.overview ? movie.overview : infoEnglish?.[index]?.overview}
-                                lang={!movie.overview && "en"}
+                                lang={!movie.overview ? 'en' : 'de'}
                             />
                         </Link>
                     )
