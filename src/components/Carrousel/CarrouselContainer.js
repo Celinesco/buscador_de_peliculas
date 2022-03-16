@@ -9,12 +9,12 @@ const CarrouselContainer = () => {
     const [infoEnglish, setInfoEnglish] = useState([]);
 
     useEffect(() => {
-        fetch(`${URL_BASE}now_playing?api_key=${API_KEY}&language=de-DE`)
+        fetch(`${URL_BASE}movie/now_playing?api_key=${API_KEY}&language=de-DE`)
             .then(res => res.json())
             .then(data => (
                 setCarrouselInfo(data.results)
             ))
-        fetch(`${URL_BASE}now_playing?api_key=${API_KEY}`)
+        fetch(`${URL_BASE}movie/now_playing?api_key=${API_KEY}`)
         .then(res => res.json())
         .then(data => (
             setInfoEnglish(data.results)

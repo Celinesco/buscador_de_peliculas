@@ -14,12 +14,12 @@ const MovieDetails = () => {
     window.scrollTo(0, 0);
 
     useEffect(() => {
-        fetch(`${URL_BASE}${selectedMovie.idMovie}?api_key=${API_KEY}&language=de-DE`)
+        fetch(`${URL_BASE}movie/${selectedMovie.idMovie}?api_key=${API_KEY}&language=de-DE`)
             .then(res => res.json())
             .then(data => {
                 setMovieInfo(data)
             })
-        fetch(`${URL_BASE}${selectedMovie.idMovie}?api_key=${API_KEY}`)
+        fetch(`${URL_BASE}movie/${selectedMovie.idMovie}?api_key=${API_KEY}`)
             .then(res => res.json())
             .then(data => {
                 setInfoEnglish(data?.overview)

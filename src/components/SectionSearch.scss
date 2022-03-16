@@ -95,3 +95,22 @@
   color: white;
   font-weight: bold;
 }
+
+.container__forms {
+  display: flex;
+  button {
+    background-color: $main-color;
+    padding: 5px;
+    color: black;
+    font-weight: bold;
+    font-size: 18px;
+    svg {
+      color: black;
+    }
+  }
+
+ .column__form-button {
+   display: flex;
+   flex-direction: column;
+ }
+}

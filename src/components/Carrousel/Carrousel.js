@@ -28,8 +28,6 @@ const Carrousel = ({ info, infoEnglish }) => {
                 spaceBetween={10}
                 navigation
                 loop={true}
-                onSlideChange={() => console.log('slide change')}
-                onSwiper={(swiper) => console.log(swiper)}
                 className="mySwiper2"
                 autoplay={{
                     delay: 4000,
