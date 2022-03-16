@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import Card from './Card';
 import posterNotFound from '../assets/posterNotFound.png'
 import ButtonPages from "./ButtonPages";
@@ -11,22 +11,27 @@ import { API_KEY, URL_BASE, IMGw300_URL } from './export_files';
 const MostPopularSection = () => {
 
     const [search, setSearch] = useState([])
-    const [page, setPage] = useState(1);
     const [infoEnglish, setInfoEnglish] = useState([])
-
+    const [pageNumber, setPageNumber] = useSearchParams({
+        current_page: 1,
+    })
+    const [page, setPage] = useState(Number(pageNumber.get('current_page')));
 
     useEffect(() => {
         fetch(`${URL_BASE}popular?api_key=${API_KEY}&language=de-DE&page=${page}`)
             .then(res => res.json())
             .then(data => {
                 setSearch(data.results ? data.results : [])
+                setPageNumber({
+                    current_page: page
+                })//no estoy muy segura de que tiene que actualizarse aca
             })
         fetch(`${URL_BASE}popular?api_key=${API_KEY}&page=${page}`)
             .then(res => res.json())
             .then(data => {
                 setInfoEnglish(data.results ? data.results : [])
             })
-    }, [page])
+    }, [pageNumber, page])
 
 
     return (
