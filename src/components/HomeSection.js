@@ -7,9 +7,7 @@ import CarrouselContainer from "./Carrousel/CarrouselContainer";
 const HomeSection = () => {
     return (
         <section className="section__home sections__styles ">
-      
-          <CarrouselContainer />
-
+            <CarrouselContainer />
             <div className="container__movie-components">
                 <MovieLists
                     endpoint="popular"
@@ -18,8 +16,6 @@ const HomeSection = () => {
                     endpoint="top_rated"
                     listTitle="Gute Bewertungen" />
             </div>
-
-
         </section>
     )
 }
