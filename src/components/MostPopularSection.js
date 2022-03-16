@@ -24,14 +24,14 @@ const MostPopularSection = () => {
                 setSearch(data.results ? data.results : [])
                 setPageNumber({
                     current_page: page
-                })//no estoy muy segura de que tiene que actualizarse aca
+                })//no estoy muy segura de que tiene que actualizarse justo aca
             })
         fetch(`${URL_BASE}popular?api_key=${API_KEY}&page=${page}`)
             .then(res => res.json())
             .then(data => {
                 setInfoEnglish(data.results ? data.results : [])
             })
-    }, [pageNumber, page])
+    }, [page])
 
 
     return (

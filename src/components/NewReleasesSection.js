@@ -34,7 +34,7 @@ const NewReleasesSection = () => {
                 setInfoEnglish(data.results ? data.results : [])
             })
 
-    }, [pageNumber, page])
+    }, [page])
 
     return (
         <section className="sections__styles">
