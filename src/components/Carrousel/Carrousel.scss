@@ -146,14 +146,18 @@
         font-family: 'Bungee', cursive;
         -webkit-text-stroke: 2px black;
         @include media ('<=tablet') {
-          font-size: 50px;
-          margin-bottom: 25px;
+            margin-bottom: 25px;
         }
     } 
     @include media('<=tablet') {
       margin: 0;
       h3 {
-        font-size: 40px;
+        max-width: 340px;
+        font-size: 35px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+
+        margin-bottom: 20px;
       }
     }
 }
