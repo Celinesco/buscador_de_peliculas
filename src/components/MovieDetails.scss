@@ -109,6 +109,7 @@
         }
         .container__genres {
             div {
+                flex-wrap: wrap;
                 p {
                     font-size: calc(1rem - 1vw);
                 }
