@@ -13,32 +13,31 @@
     border-bottom: 5px solid $main-color;
     justify-content: space-between;
     z-index: 100;
-}
-
-.ul__navbar {
-    width: 450px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    li {
+    .container__img-icon {
+        width: 90px;
+        img {
+            width: 100%;
+        }
+    }
+    .ul__navbar {
+        width: 450px;
         display: flex;
-        justify-content: center;
-        text-align: center;
-        width: 100px;
-        color: $main-color;
-        font-weight: bold;
-    }
-    @include media('<=tablet') {
-       display:none
+        align-items: center;
+        justify-content: space-between;
+        li {
+            display: flex;
+            justify-content: center;
+            text-align: center;
+            width: 100px;
+            color: $main-color;
+            font-weight: bold;
+        }
+        @include media('<=tablet') {
+           display:none
+        }
     }
 }
 
-.container__img-icon {
-    width: 90px;
-    img {
-        width: 100%;
-    }
-}
 
 .clappboard {
     position: relative;
@@ -48,60 +47,54 @@
     @include media('>tablet') {
         display: none;
     }
+    .punto {
+        position: absolute;
+        z-index: 5;
+        left: 2px;
+        top: 2px;
+        width: 7px;
+        height: 7px;
+        border-radius: 100%;
+        border: 0.5px solid white;
+        background-color: rgb(255, 255, 255);
+    }
+    .upper-part-box {
+        position: absolute;
+        top:0;
+        width: 80px;
+        height: 2px;
+        background-color: rgb(255, 123, 0);
+        border:3px solid rgb(255, 123, 0);
+        transform-origin: left top; 
+        transform: rotateZ(-15deg);
+    }
+    .clap-clap {
+        animation-name: claqueta;
+        animation-duration: 0.6s;
+        animation-iteration-count: 2;
+        animation-direction: alternate-reverse;
+    }    
+    .square-clappboard {
+        width: 80px;
+        height: 50px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border: 2px solid rgb(255, 123, 0);
+        .sub-square {
+            width: 100%;
+            height: 10px;
+            border-bottom: 5px solid rgb(255, 123, 0);
+        }
+        .content-logo-hamburger-menu{
+            color: white; 
+            font-size: 18px;
+            font-weight: bold;
+            transform: rotateZ(-15deg) translateY(5px);
+        }        
+    }
 }
 
-.square-clappboard {
-    width: 80px;
-    height: 50px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border: 2px solid rgb(255, 123, 0);
-}
-
-.upper-part-box {
-    position: absolute;
-    top:0;
-    width: 80px;
-    height: 2px;
-    background-color: rgb(255, 123, 0);
-    border:3px solid rgb(255, 123, 0);
-    transform-origin: left top; 
-    transform: rotateZ(-15deg);
- 
-}
-
-.punto {
-    position: absolute;
-    z-index: 5;
-    left: 2px;
-    top: 2px;
-    width: 7px;
-    height: 7px;
-    border-radius: 100%;
-    border: 0.5px solid white;
-    background-color: rgb(255, 255, 255);
-}
-
-.sub-square {
-    width: 100%;
-    height: 10px;
-    border-bottom: 5px solid rgb(255, 123, 0);
-}
-
-.text-action-button {
-    color: white; 
-    font-size: 18px;
-    font-weight: bold;
-    transform: rotateZ(-15deg) translateY(5px);
-}
-
-.clap-clap {
-    animation-name: claqueta;
-    animation-duration: 0.6s;
-    animation-iteration-count: 2;
-    animation-direction: alternate-reverse;
-}
 
 @keyframes claqueta {
     from {
@@ -112,6 +105,8 @@
     }
     
 }
+
+//* menu-hamburger *//
 
 .container__navmenu {
     position: fixed;

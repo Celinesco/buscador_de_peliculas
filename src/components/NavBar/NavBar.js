@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import './NavBar.scss';
 import popCorn from '../../assets/popCorn.png';
 import { useState } from 'react';
+import NavBarMenu from './NavBarMenu';
 
 const NavBar = () => {
     const [menuHamburguesa, setMenuHamburguesa] = useState(false)
@@ -11,14 +12,12 @@ const NavBar = () => {
         setMenuHamburguesa(true)
     }
 
-    const handleClickCerrar = () => {
-        setMenuHamburguesa(false)
-    }
+  
 
     return (
         <nav className='navbar'>
             <div className='container__img-icon'>
-                <img src={popCorn} alt="popcorn, cotufas, palomitas de maiz, pororo, pururu"></img>
+                <img src={popCorn} alt="popcorn"></img>
             </div>
             <ul className='ul__navbar'>
                 <Link to="/"><li>START</li></Link>
@@ -29,24 +28,15 @@ const NavBar = () => {
             </ul>
             <button aria-label='Menü öffnen' onClick={handleClick} className='clappboard' >
                 <div className="punto"></div>
-                <div className={"upper-part-box " + `${menuHamburguesa && 'clap-clap'}`}></div>
+                <div className={menuHamburguesa ? 'upper-part-box clap-clap' : 'upper-part-box'}></div>
                 <div className="square-clappboard">
                     <div className="sub-square"></div>
-                    <p className="text-action-button">Aktion!</p>
+                    <p className="content-logo-hamburger-menu">Aktion!</p>
                 </div>
             </button>
-           
-                <div className={'container__navmenu ' + `${menuHamburguesa && 'dropdown'}`}>
-                    <button aria-label='Menü schließen' onClick={handleClickCerrar}>X</button>
-                    <ul className='ul__navbar-menu'>
-                        <Link onClick={handleClickCerrar} to="/"><li>START</li></Link>
-                        <Link onClick={handleClickCerrar} to="/newreleases/"><li>NEU!</li></Link>
-                        <Link onClick={handleClickCerrar} to="/mostpopular/"><li>POPULÄR</li></Link>
-                        <Link onClick={handleClickCerrar} to="/search/"><li>SUCHE</li></Link>
-                        <Link onClick={handleClickCerrar} to="/movie/:idMovie"></Link>
-                    </ul>
-                </div>
-            
+            <NavBarMenu
+            menuHamburguesa={menuHamburguesa}
+            setMenuHamburguesa={setMenuHamburguesa} />
         </nav>
     )
 }
