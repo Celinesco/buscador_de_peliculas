@@ -1,26 +1,13 @@
-import {  useEffect, useState } from 'react';
-import { URL_BASE, API_KEY } from '../../components/export_files';
+import useFetch  from '../../hooks/useFetch'
 import Carrousel from "./Carrousel.js";
 
 
 const CarrouselContainer = () => {
 
-    const [carrouselInfo, setCarrouselInfo] = useState([]);
-    const [infoEnglish, setInfoEnglish] = useState([]);
+    const [carrouselInfo] = useFetch('now_playing', 'de');
+    const [infoEnglish] = useFetch('now_playing', '');
 
-    useEffect(() => {
-        fetch(`${URL_BASE}movie/now_playing?api_key=${API_KEY}&language=de-DE`)
-            .then(res => res.json())
-            .then(data => (
-                setCarrouselInfo(data.results)
-            ))
-        fetch(`${URL_BASE}movie/now_playing?api_key=${API_KEY}`)
-        .then(res => res.json())
-        .then(data => (
-            setInfoEnglish(data.results)
-        ))
-    },[])
-
+  
     return (
         <div className="container__carrousel">
         <Carrousel info={carrouselInfo}

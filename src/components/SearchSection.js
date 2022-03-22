@@ -37,7 +37,7 @@ const SearchSection = () => {
 
     useEffect(() => {
         if (optionInput) {
-            fetch(`${URL_Search}api_key=${API_KEY}&query=${searchParams.get('title_contains')}&language=de&page=${page}`)
+            fetch(`${URL_Search}${API_KEY}&query=${searchParams.get('title_contains')}&language=de&page=${page}`)
                 .then(res => res.json())
                 .then((data) => {
                     setSearch(data?.results ? data.results : []);
@@ -50,7 +50,7 @@ const SearchSection = () => {
                 })
         }
         if (optionGenre) {
-            fetch(`${URL_BASE}discover/movie?api_key=${API_KEY}&language=de-DE&page=${page}&with_genres=${selectValue}`)
+            fetch(`${URL_BASE}discover/movie${API_KEY}&language=de-DE&page=${page}&with_genres=${selectValue}`)
                 .then(res => res.json())
                 .then(data => {
                     data?.results ? setSearch(data.results) : setSearch([])

@@ -18,7 +18,7 @@ const MostPopularSection = () => {
     const [page, setPage] = useState(Number(pageNumber.get('current_page')));
 
     useEffect(() => {
-        fetch(`${URL_BASE}movie/popular?api_key=${API_KEY}&language=de&page=${page}`)
+        fetch(`${URL_BASE}movie/popular${API_KEY}&language=de&page=${page}`)
             .then(res => res.json())
             .then(data => {
                 setSearch(data.results ? data.results : [])
@@ -26,7 +26,7 @@ const MostPopularSection = () => {
                     current_page: page
                 })
             })
-        fetch(`${URL_BASE}movie/popular?api_key=${API_KEY}&page=${page}`)
+        fetch(`${URL_BASE}movie/popular${API_KEY}&page=${page}`)
             .then(res => res.json())
             .then(data => {
                 setInfoEnglish(data.results ? data.results : [])
