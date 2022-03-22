@@ -1,20 +1,12 @@
 import './MovieLists.scss';
-import { useEffect, useState } from 'react';
-import { URL_BASE, API_KEY, IMGw300_URL } from './export_files';
+import useFetch  from '../hooks/useFetch';
+import { IMGw300_URL } from './export_files';
 import ItemMovieList from './ItemMovieList';
 
 
 const MovieLists = ({ endpoint, listTitle }) => {
 
-    const [list, setList] = useState([]);
-
-    useEffect(() => {
-        fetch(`${URL_BASE}movie/${endpoint}?api_key=${API_KEY}&language=de-DE`)
-            .then(res => res.json())
-            .then(data => (
-                setList(data.results)
-            ))
-    },[endpoint])
+   const [list, loadingSign] = useFetch(endpoint,'de');
 
     return (
         <div className="container__movie-list">
