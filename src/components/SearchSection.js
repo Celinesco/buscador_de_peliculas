@@ -5,7 +5,7 @@ import Card from './Card';
 import './SectionSearch.scss';
 import posterNotFound from '../assets/posterNotFound.png'
 import ButtonPages from "./ButtonPages";
-import { API_KEY, IMGw300_URL, URL_Search, URL_BASE } from "./export_files";
+import { API_KEY, IMGw300_URL, URL_Search, URL_BASE, QUERY_LANGUAGE } from "./export_files";
 import backgroundTitleSection from '../assets/backgroundTitleSection.png';
 
 const SearchSection = () => {
@@ -37,7 +37,7 @@ const SearchSection = () => {
 
     useEffect(() => {
         if (optionInput) {
-            fetch(`${URL_Search}${API_KEY}&query=${searchParams.get('title_contains')}&language=de&page=${page}`)
+            fetch(`${URL_Search}${API_KEY}&query=${searchParams.get('title_contains')}${QUERY_LANGUAGE}de&page=${page}`)
                 .then(res => res.json())
                 .then((data) => {
                     setSearch(data?.results ? data.results : []);
@@ -50,7 +50,7 @@ const SearchSection = () => {
                 })
         }
         if (optionGenre) {
-            fetch(`${URL_BASE}discover/movie${API_KEY}&language=de-DE&page=${page}&with_genres=${selectValue}`)
+            fetch(`${URL_BASE}discover/movie${API_KEY}${QUERY_LANGUAGE}de-DE&page=${page}&with_genres=${selectValue}`)
                 .then(res => res.json())
                 .then(data => {
                     data?.results ? setSearch(data.results) : setSearch([])
@@ -61,7 +61,7 @@ const SearchSection = () => {
     }, [searchParams, page, optionGenre, optionInput, selectValue, totalPages])
 
     useEffect(() => {
-        fetch(`https://api.themoviedb.org/3/genre/movie/list?api_key=${API_KEY}&language=de`)
+        fetch(`https://api.themoviedb.org/3/genre/movie/list${API_KEY}${QUERY_LANGUAGE}de`)
             .then(res => res.json())
             .then(data => {
                 setGenresList(data?.genres)
