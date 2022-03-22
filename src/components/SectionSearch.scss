@@ -7,7 +7,6 @@
   align-items: center;
 }
 
-
 .container__movie-cards {
     width: 100%;
     display: flex;
@@ -56,6 +55,7 @@
 .form__search-section {
   display: flex;
   align-items: center;
+  margin-bottom: 20px;
   input {
     padding: 10px;
   }
@@ -98,6 +98,14 @@
 
 .container__forms {
   display: flex;
+  align-items: center;
+  margin-top: 20px;
+  p {
+    margin: 0 10px;
+    color: white;
+    font-weight: bold;
+  }
+
   button {
     background-color: $main-color;
     padding: 5px;
@@ -112,5 +120,14 @@
  .column__form-button {
    display: flex;
    flex-direction: column;
+   select {
+     padding: 10px;
+   }
  }
+ @include media ('<=tablet') {
+    flex-direction: column;
+  }
+  p {
+    margin: 10px 0
+  }
 }
