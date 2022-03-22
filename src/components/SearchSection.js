@@ -43,7 +43,7 @@ const SearchSection = () => {
                     setSearch(data?.results ? data.results : []);
                     data?.total_pages < 500 ? setTotalPages(data.total_pages) : setTotalPages(500)
                 })
-            fetch(`${URL_Search}api_key=${API_KEY}&query=${searchParams.get('title_contains')}&page=${page}`)
+            fetch(`${URL_Search}${API_KEY}&query=${searchParams.get('title_contains')}&page=${page}`)
                 .then(res => res.json())
                 .then(data => {
                     setInfoEnglish(data?.results ? data.results : []);
@@ -89,14 +89,15 @@ const SearchSection = () => {
             </div>
             <div className="container__forms">
                 <div className="column__form-button">
-                    <button onClick={handleNameSearch}>nach Namen suchen</button>
+                    <button onClick={handleNameSearch}>Nach Namen suchen</button>
                     {optionInput &&   <form className="form__search-section">
                         <input ref={inputSearch} type="text" ></input>
                         <button aria-label='nach Namen suchen' type="submit" onClick={handleClick}><VscSearch /></button>
                     </form>}
                 </div>
+                <p>OR</p> 
                 <div className="column__form-button">
-                    <button onClick={handleGenreSearch}>nach Genre suchen </button>
+                    <button onClick={handleGenreSearch}>Nach Genre suchen </button>
                     {optionGenre && <form className="form__search-section">
                         <select name='genre' onChange={handleChange}>
                             <option value="" >Wähle ein Genre</option>
