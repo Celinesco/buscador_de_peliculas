@@ -1,4 +1,5 @@
 @import '../styles/variables';
+@import '../styles/breakpoints';
 
 .card__container {
     display: flex;
@@ -15,6 +16,10 @@
         0px 0px 0px 2px $main-color;
         
     overflow: hidden;
+
+    @include media ('<=phone','>280px') {
+        width: 260px;
+    }
 }
 
 
@@ -132,15 +137,24 @@
     bottom: 0;
     height: 100px;
     width: 100%;
+    padding: 0 5px;
     background-color: black;
+    .title__card {
+        text-align: center;
+        color: white;
+    }
+    @include media ('<=phone','>=280px') {
+        padding: 0 10px;
+        .title__card {
+            font-size: 15px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    }
+  
 }
-.title__card {
-    text-align: center;
-    display: flex;
-    align-items: center;
-    background-color: black;
-    color: white;
-}
+
 
 .card__container:hover .face {
     top: -420px
