@@ -24,6 +24,9 @@
   @include media('<tablet') {
     padding: 100px 20px;
   }
+  @include media('<=phone') {
+    padding: 100px 0;
+  }
 }
 
 .container__title-background-image {
@@ -50,12 +53,15 @@
       font-size: 30px
     }
   }
+  @include media('<=phone') {
+    max-width: 280px;
+  }
 }
 
 .form__search-section {
   display: flex;
   align-items: center;
-  margin-bottom: 20px;
+ 
   input {
     padding: 10px;
   }
@@ -101,11 +107,10 @@
   align-items: center;
   margin-top: 20px;
   p {
-    margin: 0 10px;
+    margin: 0 20px;
     color: white;
     font-weight: bold;
   }
-
   button {
     background-color: $main-color;
     padding: 5px;
@@ -126,8 +131,9 @@
  }
  @include media ('<=tablet') {
     flex-direction: column;
+    p {
+      margin: 10px 0
+    }
   }
-  p {
-    margin: 10px 0
-  }
+ 
 }
