@@ -1,4 +1,5 @@
 import { useState,useEffect } from "react";
+import { useSearchParams } from 'react-router-dom'
 import { QUERY_LANGUAGE, URL_BASE, API_KEY } from "../components/export_files";
 
 
@@ -6,9 +7,14 @@ import { QUERY_LANGUAGE, URL_BASE, API_KEY } from "../components/export_files";
 
 const useFetch = (endpoint, language) => {
     
-    let page = 1;
-    const [info, setInfo] = useState([])
-    const [isLoading, setIsLoading] = useState([false])
+    const [info, setInfo] = useState([]);
+    const [isLoading, setIsLoading] = useState([false]);
+    const [totalPages, setTotalPages] = useState(500);
+    const [pageNumber, setPageNumber] = useSearchParams({
+        current_page: 1,
+    })
+    const [page, setPage] = useState(Number(pageNumber.get('current_page')));
+
 
     useEffect(() => {
         setIsLoading(true)
@@ -17,17 +23,17 @@ const useFetch = (endpoint, language) => {
             .then(res => res.json())
             .then(data => {
                 setInfo(data.results ? data.results : [])
-                setIsLoading(false)
-                // data?.total_pages < 500 && setTotalPages(data?.total_pages)
-                // setPageNumber({
-                //     current_page: page
-                // })
+                data?.total_pages < 500 && setTotalPages(data?.total_pages)
+                setIsLoading(false) 
+                setPageNumber({
+                    current_page: page
+                })
             })
 
-    }, [])
+    }, [page])
 
 
-    return ([info, isLoading])
+    return ([info, isLoading, totalPages, page, setPage])
 }
 
 export default useFetch;

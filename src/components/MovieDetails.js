@@ -14,12 +14,12 @@ const MovieDetails = () => {
     window.scrollTo(0, 0);
 
     useEffect(() => {
-        fetch(`${URL_BASE}movie/${selectedMovie.idMovie}?api_key=${API_KEY}&language=de-DE`)
+        fetch(`${URL_BASE}movie/${selectedMovie.idMovie}${API_KEY}&language=de-DE`)
             .then(res => res.json())
             .then(data => {
                 setMovieInfo(data)
             })
-        fetch(`${URL_BASE}movie/${selectedMovie.idMovie}?api_key=${API_KEY}`)
+        fetch(`${URL_BASE}movie/${selectedMovie.idMovie}${API_KEY}`)
             .then(res => res.json())
             .then(data => {
                 setInfoEnglish(data?.overview)
@@ -33,7 +33,7 @@ const MovieDetails = () => {
     return (
         <section className='section__details'>
             <div className="container__background-img" style={{ backgroundImage: `url(${IMGoriginal_URL}${movieInfo.backdrop_path})` }}>
-                {movieInfo.backdrop_path === null && <p> Leider gibt es kein Foto </p>}
+                {/* {movieInfo.backdrop_path === null && <p> Leider gibt es kein Foto </p>} */}
                 <div className="main-container">
                     <div className="container__poster">
                         {movieInfo.poster_path !== null

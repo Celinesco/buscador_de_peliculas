@@ -1,38 +1,17 @@
-import { useEffect, useState } from "react";
-import { Link, useSearchParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Card from './Card';
 import posterNotFound from '../assets/posterNotFound.png'
 import ButtonPages from "./ButtonPages";
 import './SectionSearch.scss';
 import backgroundTitleSection from '../assets/backgroundTitleSection.png';
-import { API_KEY, URL_BASE, IMGw300_URL } from './export_files';
+import {  IMGw300_URL } from './export_files';
+import useFetch from "../hooks/useFetch";
 
 
 const MostPopularSection = () => {
 
-    const [search, setSearch] = useState([])
-    const [infoEnglish, setInfoEnglish] = useState([])
-    const [pageNumber, setPageNumber] = useSearchParams({
-        current_page: 1,
-    })
-    const [page, setPage] = useState(Number(pageNumber.get('current_page')));
-
-    useEffect(() => {
-        fetch(`${URL_BASE}movie/popular${API_KEY}&language=de&page=${page}`)
-            .then(res => res.json())
-            .then(data => {
-                setSearch(data.results ? data.results : [])
-                setPageNumber({
-                    current_page: page
-                })
-            })
-        fetch(`${URL_BASE}movie/popular${API_KEY}&page=${page}`)
-            .then(res => res.json())
-            .then(data => {
-                setInfoEnglish(data.results ? data.results : [])
-            })
-    }, [page])
-
+    const [popularDE, loadingSign, , page, setPage] = useFetch('popular', 'de');
+    const [popularUS] = useFetch('popular','');
 
     return (
         <section className="section__mostpopular sections__styles">
@@ -44,7 +23,7 @@ const MostPopularSection = () => {
             </div>
             <div className="container__results">
                 <div className="container__movie-cards">
-                    {search.map((movie, index) => (
+                    {popularDE.map((movie, index) => (
                         <Link to={`/movie/${movie.id}`} key={movie.id}>
                             <Card
                                 title={movie.title}
@@ -55,7 +34,7 @@ const MostPopularSection = () => {
                                     ? `Poster from ${movie.title}`
                                     : `Poster not available`}
                                 rating={movie.vote_average}
-                                overview={movie.overview ? movie.overview : infoEnglish?.[index]?.overview}
+                                overview={movie.overview ? movie.overview : popularUS[index]?.overview}
                                 lang={!movie.overview ? 'en' : 'de'}
                             />
                         </Link>

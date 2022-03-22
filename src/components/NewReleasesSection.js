@@ -1,6 +1,6 @@
 
 import useFetch  from '../hooks/useFetch';
-import { Link, useSearchParams } from "react-router-dom";
+import { Link } from 'react-router-dom';
 import Card from './Card';
 import posterNotFound from '../assets/posterNotFound.png'
 import ButtonPages from "./ButtonPages";
@@ -11,14 +11,8 @@ import { IMGw300_URL } from './export_files';
 
 const NewReleasesSection = () => {
 
-    const [newReleasesDE, loadingSign] = useFetch('now_playing', 'de');
+    const [newReleasesDE, loadingSign, totalPages, page, setPage] = useFetch('now_playing', 'de');
     const [newReleasesUS] = useFetch('now_playing','');
-
-    // const [pageNumber, setPageNumber] = useSearchParams({
-    //     current_page: 1,
-    // })
-    // const [page, setPage] = useState(Number(pageNumber.get('current_page')));
-
 
 
     return (
@@ -50,11 +44,11 @@ const NewReleasesSection = () => {
                     )
                     )}
                 </div>
-                {/* <ButtonPages
+                <ButtonPages
                     page={page}
                     totalPages={totalPages}
                     setPage={setPage}
-                /> */}
+                />
             </div>
         </section>
     )
