@@ -37,7 +37,7 @@ const SearchSection = () => {
 
     useEffect(() => {
         if (optionInput) {
-            fetch(`${URL_Search}api_key=${API_KEY}&query=${searchParams.get('title_contains')}&language=de-DE&page=${page}`)
+            fetch(`${URL_Search}api_key=${API_KEY}&query=${searchParams.get('title_contains')}&language=de&page=${page}`)
                 .then(res => res.json())
                 .then((data) => {
                     setSearch(data?.results ? data.results : []);
@@ -61,7 +61,7 @@ const SearchSection = () => {
     }, [searchParams, page, optionGenre, optionInput, selectValue, totalPages])
 
     useEffect(() => {
-        fetch(`https://api.themoviedb.org/3/genre/movie/list?api_key=${API_KEY}&language=de-DE`)
+        fetch(`https://api.themoviedb.org/3/genre/movie/list?api_key=${API_KEY}&language=de`)
             .then(res => res.json())
             .then(data => {
                 setGenresList(data?.genres)

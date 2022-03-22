@@ -19,7 +19,7 @@ const NewReleasesSection = () => {
     const [page, setPage] = useState(Number(pageNumber.get('current_page')));
 
     useEffect(() => {
-        fetch(`${URL_BASE}movie/now_playing?api_key=${API_KEY}&language=de-DE&page=${page}`)
+        fetch(`${URL_BASE}movie/now_playing?api_key=${API_KEY}&language=de&page=${page}`)
             .then(res => res.json())
             .then(data => {
                 setSearch(data.results ? data.results : [])
