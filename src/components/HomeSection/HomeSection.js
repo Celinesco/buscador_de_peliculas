@@ -1,6 +1,6 @@
-import MovieLists from "./MovieLists";
+import MovieLists from "../MovieLists/MovieLists";
 import './HomeSection.scss'
-import CarrouselContainer from "./Carrousel/CarrouselContainer";
+import CarrouselContainer from "../Carrousel/CarrouselContainer";
 
 
 

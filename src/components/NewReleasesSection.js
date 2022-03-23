@@ -3,7 +3,7 @@ import useFetchDefaultLists  from '../hooks/useFetchDefaultLists';
 import { Link } from 'react-router-dom';
 import Card from './Card';
 import posterNotFound from '../assets/posterNotFound.png'
-import ButtonPages from "./ButtonPages";
+import ButtonPages from "./ButtonPages/ButtonPages";
 import './SectionSearch.scss';
 import backgroundTitleSection from '../assets/backgroundTitleSection.png';
 import { IMGw300_URL } from './export_files';

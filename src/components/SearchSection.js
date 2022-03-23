@@ -4,7 +4,7 @@ import { VscSearch } from "react-icons/vsc";
 import Card from './Card';
 import './SectionSearch.scss';
 import posterNotFound from '../assets/posterNotFound.png'
-import ButtonPages from "./ButtonPages";
+import ButtonPages from "./ButtonPages/ButtonPages";
 import { API_KEY, IMGw300_URL, URL_BASE, QUERY_LANGUAGE } from "./export_files";
 import backgroundTitleSection from '../assets/backgroundTitleSection.png';
 
