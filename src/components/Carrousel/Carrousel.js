@@ -1,9 +1,11 @@
 
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay, Navigation, A11y, Thumbs, FreeMode } from 'swiper';
+import { Autoplay, Navigation, A11y, Thumbs, FreeMode, EffectFade } from 'swiper';
 import { IMGoriginal_URL, IMGw300_URL } from '../../components/export_files';
 import { useState } from 'react';
 import { RiInformationLine } from "react-icons/ri";
+import { Link } from 'react-router-dom';
+
 
 // Import Swiper styles
 import './Carrousel.scss';
@@ -13,7 +15,6 @@ import 'swiper/scss/a11y';
 import 'swiper/scss/thumbs';
 import "swiper/scss/free-mode";
 import "swiper/scss/effect-fade";
-import { Link } from 'react-router-dom';
 
 
 
@@ -23,14 +24,16 @@ const Carrousel = ({ info, infoEnglish }) => {
     return (
         <>
             <Swiper
-                modules={[Navigation, A11y, Thumbs, FreeMode, Autoplay]}
+                modules={[EffectFade, Navigation, A11y, Thumbs, FreeMode, Autoplay]}
                 thumbs={{ swiper: thumbsSwiper }}
                 spaceBetween={10}
+                effect={"fade"}
                 navigation
+                speed={900}
                 loop={true}
                 className="mySwiper2"
                 autoplay={{
-                    delay: 4000,
+                    delay: 3000,
                     disableOnInteraction: false,
                     pauseOnMouseEnter: true,
                 }}

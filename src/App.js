@@ -2,12 +2,12 @@ import './App.scss';
 import NavBar from './components/NavBar/NavBar';
 import Footer from './components/Footer/Footer'
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import HomeSection from './components/HomeSection';
+import HomeSection from './components/HomeSection/HomeSection';
 import NewReleasesSection from './components/NewReleasesSection';
 import MostPopularSection from './components/MostPopularSection';
 import SearchSection from './components/SearchSection';
 import MovieDetails from './components/MovieDetails';
-import Error404 from './components/Error404.js';
+import Error404 from './components/ButtonPages/ButtonPages';
 
 
 const App = () => {
