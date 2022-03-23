@@ -1,11 +1,11 @@
-import useFetch  from '../../hooks/useFetch'
+import useFetchDefaultLists  from '../../hooks/useFetchDefaultLists'
 import Carrousel from "./Carrousel.js";
 
 
 const CarrouselContainer = () => {
 
-    const [carrouselInfo] = useFetch('now_playing', 'de');
-    const [infoEnglish] = useFetch('now_playing', '');
+    const [carrouselInfo] = useFetchDefaultLists('now_playing', 'de');
+    const [infoEnglish] = useFetchDefaultLists('now_playing', '');
 
   
     return (

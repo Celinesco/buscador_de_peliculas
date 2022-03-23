@@ -1,0 +1,4 @@
+Componente hooks:
+
+En el hook useFetchDefaultLists: Cada vez que cambio la pagina, solo se hace un fetch.
+Entiendo por que pasa (creo), pero no se como solucionarlo. 

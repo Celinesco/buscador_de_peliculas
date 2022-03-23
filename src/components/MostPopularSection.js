@@ -5,13 +5,13 @@ import ButtonPages from "./ButtonPages";
 import './SectionSearch.scss';
 import backgroundTitleSection from '../assets/backgroundTitleSection.png';
 import {  IMGw300_URL } from './export_files';
-import useFetch from "../hooks/useFetch";
+import useFetchDefaultLists from "../hooks/useFetchDefaultLists";
 
 
 const MostPopularSection = () => {
 
-    const [popularDE, loadingSign, , page, setPage] = useFetch('popular', 'de');
-    const [popularUS] = useFetch('popular','');
+    const [popularDE, loadingSign, , page, setPage] = useFetchDefaultLists('popular', 'de');
+    const [popularUS] = useFetchDefaultLists('popular','');
 
     return (
         <section className="section__mostpopular sections__styles">

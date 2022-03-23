@@ -1,7 +1,5 @@
 export const URL_BASE = "https://api.themoviedb.org/3/";
 
-export const URL_Search = 'https://api.themoviedb.org/3/search/movie';
-
 export const API_KEY = "?api_key=65039781e8b8e09c46c6da646de7be01";
 
 export const QUERY_LANGUAGE = '&language=';

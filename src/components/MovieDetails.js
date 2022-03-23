@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { URL_BASE, API_KEY, IMGw500_URL, IMGoriginal_URL } from "./export_files";
 import './MovieDetails.scss';
 import posterNotFound from '../assets/posterNotFound.png';
@@ -53,7 +53,7 @@ const MovieDetails = () => {
                         <div className="container__genres">
                             <h4>Genre</h4>
                             <div>{movieInfo?.genres?.map(genero => (
-                                <p>{genero.name}</p>
+                                <Link to={`/search/${genero.name}`} key={genero.id}><p>{genero.name}</p></Link>
                             ))}</div>
                         </div>
                         <div className="container__overview">

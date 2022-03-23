@@ -1,5 +1,5 @@
 
-import useFetch  from '../hooks/useFetch';
+import useFetchDefaultLists  from '../hooks/useFetchDefaultLists';
 import { Link } from 'react-router-dom';
 import Card from './Card';
 import posterNotFound from '../assets/posterNotFound.png'
@@ -11,8 +11,8 @@ import { IMGw300_URL } from './export_files';
 
 const NewReleasesSection = () => {
 
-    const [newReleasesDE, loadingSign, totalPages, page, setPage] = useFetch('now_playing', 'de');
-    const [newReleasesUS] = useFetch('now_playing','');
+    const [newReleasesDE, loadingSign, totalPages, page, setPage] = useFetchDefaultLists('now_playing', 'de');
+    const [newReleasesUS] = useFetchDefaultLists('now_playing','');
 
 
     return (

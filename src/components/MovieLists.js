@@ -1,12 +1,12 @@
 import './MovieLists.scss';
-import useFetch  from '../hooks/useFetch';
+import useFetchDefaultLists  from '../hooks/useFetchDefaultLists';
 import { IMGw300_URL } from './export_files';
 import ItemMovieList from './ItemMovieList';
 
 
 const MovieLists = ({ endpoint, listTitle }) => {
 
-   const [list, loadingSign] = useFetch(endpoint,'de');
+   const [list, loadingSign] = useFetchDefaultLists(endpoint,'de');
 
     return (
         <div className="container__movie-list">

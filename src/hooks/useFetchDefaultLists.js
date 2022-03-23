@@ -5,7 +5,7 @@ import { QUERY_LANGUAGE, URL_BASE, API_KEY } from "../components/export_files";
 
 
 
-const useFetch = (endpoint, language) => {
+const useFetchDefaultLists = (endpoint, language) => {
     
     const [info, setInfo] = useState([]);
     const [isLoading, setIsLoading] = useState([false]);
@@ -36,4 +36,4 @@ const useFetch = (endpoint, language) => {
     return ([info, isLoading, totalPages, page, setPage])
 }
 
-export default useFetch;
+export default useFetchDefaultLists;
