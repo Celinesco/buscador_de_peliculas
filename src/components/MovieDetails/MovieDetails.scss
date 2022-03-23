@@ -1,4 +1,4 @@
-@import '../styles/breakpoints';
+@import '../../styles/breakpoints';
 
 .section__details {
     margin-top: 120px ;
@@ -20,7 +20,7 @@
     background-size: cover;
 }
 
-.main-container {
+.main__container {
     display: flex;
     flex-wrap: wrap;
     max-width: 2000px;
@@ -158,3 +158,12 @@
 
 
 
+.container__video {
+    min-height: 300px;
+    margin: 30px 0;
+    iframe {
+        height: 100%;
+        width: 100%;
+    }
+
+}

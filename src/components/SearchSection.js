@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import { useSearchParams, Link } from "react-router-dom";
 import { VscSearch } from "react-icons/vsc";
-import Card from './Card';
+import Card from './Cards/Card';
 import './SectionSearch.scss';
 import posterNotFound from '../assets/posterNotFound.png'
 import ButtonPages from "./ButtonPages/ButtonPages";

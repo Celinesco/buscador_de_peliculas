@@ -1,7 +1,7 @@
 import './MovieLists.scss';
 import useFetchDefaultLists  from '../../hooks/useFetchDefaultLists';
 import { IMGw300_URL } from '../export_files';
-import ItemMovieList from '../ItemMovieList';
+import ItemMovieList from '../ItemMovieList/ItemMovieList';
 
 
 const MovieLists = ({ endpoint, listTitle }) => {
