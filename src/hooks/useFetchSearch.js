@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useSearchParams, useParams } from 'react-router-dom'
 import { QUERY_LANGUAGE, URL_BASE, API_KEY } from "../components/export_files";
 
-const useFectchSearch = (option, lang, inputValue ) => {
+const useFectchSearch = (option, lang ) => {
     const selectedGenre = useParams();
     const [info, setInfo] = useState([]);
     const [totalPages, setTotalPages] = useState(500);
@@ -22,13 +22,6 @@ const useFectchSearch = (option, lang, inputValue ) => {
         parametro = `&with_genres=${searchParams.get('genre')}`
     }
 
-    const handleClick = () => {
-        setPage(1)
-       
-        setSearchParams({
-            title_contains: inputValue
-        })
-    }
 
 
     useEffect(() => {
@@ -41,7 +34,7 @@ const useFectchSearch = (option, lang, inputValue ) => {
             })
 
 
-    }, [page, totalPages, searchParams.genre, inputValue])
+    }, [searchParams.title_contains, page, totalPages, searchParams.genre])
 
     return ([info, totalPages, page, setPage])
 

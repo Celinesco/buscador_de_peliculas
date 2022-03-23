@@ -5,21 +5,26 @@ import Card from './Card';
 import './SectionSearch.scss';
 import posterNotFound from '../assets/posterNotFound.png'
 import ButtonPages from "./ButtonPages";
-import { API_KEY, IMGw300_URL, URL_Search, URL_BASE, QUERY_LANGUAGE } from "./export_files";
+import { API_KEY, IMGw300_URL, URL_BASE, QUERY_LANGUAGE } from "./export_files";
 import backgroundTitleSection from '../assets/backgroundTitleSection.png';
 
 const SearchSection = () => {
-    const [search, setSearch] = useState([])
+    const [search, setSearch] = useState([]);
+    const [infoEnglish, setInfoEnglish] = useState([]);
+
     const [page, setPage] = useState(1);
     const [totalPages, setTotalPages] = useState(500);
+    
     const [optionGenre, setOptionGenre] = useState(false);
-    const [optionInput, setOptionInput] = useState(true);
-    const [infoEnglish, setInfoEnglish] = useState([]);
+    const [optionInput, setOptionInput] = useState(false);
+  
     const [genresList, setGenresList] = useState([]);
     const [selectValue, setSelectValue] = useState([]);
     const [searchParams, setSearchParams] = useSearchParams({
-        title_contains: "Mickey",
+        title_contains: '',
+        genre: '',
     });
+
 
     const inputSearch = useRef()
 
@@ -32,33 +37,47 @@ const SearchSection = () => {
     }
     const handleChange = (e) => {
         setPage(1)
-        setSelectValue(e.target.value)
+        setSearchParams({
+            genre: e.target.value
+        })
     }
 
     useEffect(() => {
-        if (optionInput) {
-            fetch(`${URL_Search}${API_KEY}&query=${searchParams.get('title_contains')}${QUERY_LANGUAGE}de&page=${page}`)
-                .then(res => res.json())
-                .then((data) => {
-                    setSearch(data?.results ? data.results : []);
-                    data?.total_pages < 500 ? setTotalPages(data.total_pages) : setTotalPages(500)
-                })
-            fetch(`${URL_Search}${API_KEY}&query=${searchParams.get('title_contains')}&page=${page}`)
-                .then(res => res.json())
-                .then(data => {
-                    setInfoEnglish(data?.results ? data.results : []);
-                })
+
+        let optionGenre2 = false
+        let optionInput2 = false
+
+        if (searchParams.get('title_contains')) {
+           optionInput2 = true;
         }
-        if (optionGenre) {
-            fetch(`${URL_BASE}discover/movie${API_KEY}${QUERY_LANGUAGE}de-DE&page=${page}&with_genres=${selectValue}`)
-                .then(res => res.json())
-                .then(data => {
-                    data?.results ? setSearch(data.results) : setSearch([])
-                    data?.total_pages < 500 ? setTotalPages(data.total_pages) : setTotalPages(500)
-                })
+        else {
+            optionGenre2 = true
         }
 
-    }, [searchParams, page, optionGenre, optionInput, selectValue, totalPages])
+        let endpoint;
+        let parametro;
+        if (optionInput2) {
+            endpoint = 'search/movie'
+            parametro = `&query=${searchParams.get('title_contains')}`
+        }
+        if (optionGenre2) {
+            endpoint = 'discover/movie'
+            parametro = `&with_genres=${searchParams.get('genre')}`
+        }
+
+        fetch(`${URL_BASE}${endpoint}${API_KEY}${parametro}${QUERY_LANGUAGE}de&page=${page}`)
+            .then(res => res.json())
+            .then((data) => {
+                setSearch(data?.results ? data.results : []);
+                data?.total_pages < 500 ? setTotalPages(data.total_pages) : setTotalPages(500)
+            })
+        fetch(`${URL_BASE}${endpoint}${API_KEY}${parametro}&page=${page}`)
+            .then(res => res.json())
+            .then(data => {
+                setInfoEnglish(data?.results ? data.results : []);
+            })
+
+    }, [searchParams, page, selectValue, totalPages])
 
     useEffect(() => {
         fetch(`https://api.themoviedb.org/3/genre/movie/list${API_KEY}${QUERY_LANGUAGE}de`)
@@ -90,12 +109,12 @@ const SearchSection = () => {
             <div className="container__forms">
                 <div className="column__form-button">
                     <button onClick={handleNameSearch}>Nach Namen suchen</button>
-                    {optionInput &&   <form className="form__search-section">
+                    {optionInput && <form className="form__search-section">
                         <input ref={inputSearch} type="text" ></input>
                         <button aria-label='nach Namen suchen' type="submit" onClick={handleClick}><VscSearch /></button>
                     </form>}
                 </div>
-                <p>OR</p> 
+                <p>OR</p>
                 <div className="column__form-button">
                     <button onClick={handleGenreSearch}>Nach Genre suchen </button>
                     {optionGenre && <form className="form__search-section">
@@ -110,44 +129,44 @@ const SearchSection = () => {
 
 
 
-                </div>
-                <div className="container__results">
-                    {search.length >= 1 ?
-                        <>
-                            <div className="container__movie-cards">
-                                {search.map((movie, index) => (
-                                    <Link to={`/movie/${movie.id}`} key={movie.id}>
-                                        <Card
-                                            title={movie.title}
-                                            img={movie.poster_path !== null ?
-                                                `${IMGw300_URL}${movie.poster_path}`
-                                                : posterNotFound}
-                                            alt={movie.poster_path !== null
-                                                ? `Poster from ${movie.title}`
-                                                : `Poster not available`}
-                                            overview={movie.overview ? movie.overview : infoEnglish?.[index]?.overview}
-                                            lang={!movie.overview ? 'en' : 'de'}
-                                            rating={movie.vote_average}
-                                        />
-                                    </Link>
-                                )
-                                )}
-                            </div>
-                            <ButtonPages
-                                page={page}
-                                setPage={setPage}
-                                totalPages={totalPages}
-                            />
-                        </>
-                        :
-                        <>
-                            <p className="no-results">Leider ergab die Suche kein Ergebnis</p>
-                            <p className="no-results">Versuche es erneut mit einem anderen Suchbegriff.</p>
-                        </>
+            </div>
+            <div className="container__results">
+                {search.length >= 1 ?
+                    <>
+                        <div className="container__movie-cards">
+                            {search.map((movie, index) => (
+                                <Link to={`/movie/${movie.id}`} key={movie.id}>
+                                    <Card
+                                        title={movie.title}
+                                        img={movie.poster_path !== null ?
+                                            `${IMGw300_URL}${movie.poster_path}`
+                                            : posterNotFound}
+                                        alt={movie.poster_path !== null
+                                            ? `Poster from ${movie.title}`
+                                            : `Poster not available`}
+                                        overview={movie.overview ? movie.overview : infoEnglish[index]?.overview}
+                                        lang={!movie.overview ? 'en' : 'de'}
+                                        rating={movie.vote_average}
+                                    />
+                                </Link>
+                            )
+                            )}
+                        </div>
+                        <ButtonPages
+                            page={page}
+                            setPage={setPage}
+                            totalPages={totalPages}
+                        />
+                    </>
+                    :
+                    <>
+                        <p className="no-results">Leider ergab die Suche kein Ergebnis</p>
+                        <p className="no-results">Versuche es erneut mit einem anderen Suchbegriff.</p>
+                    </>
 
-                    }
+                }
 
-                </div>
+            </div>
 
         </section>
     )
