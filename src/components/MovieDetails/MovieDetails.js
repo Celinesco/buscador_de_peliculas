@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
-import { URL_BASE, API_KEY, IMGw500_URL, IMGoriginal_URL } from "./export_files";
+import { URL_BASE, API_KEY, IMGw500_URL, IMGoriginal_URL, QUERY_LANGUAGE, URL_VIDEO } from "../export_files";
 import './MovieDetails.scss';
-import posterNotFound from '../assets/posterNotFound.png';
+import posterNotFound from '../../assets/posterNotFound.png';
 import { BsFillStarFill } from "react-icons/bs";
 
 
@@ -11,10 +11,11 @@ const MovieDetails = () => {
     const selectedMovie = useParams();
     const [movieInfo, setMovieInfo] = useState({});
     const [infoEnglish, setInfoEnglish] = useState([]);
+    const [video, setVideo] = useState([])
     window.scrollTo(0, 0);
 
     useEffect(() => {
-        fetch(`${URL_BASE}movie/${selectedMovie.idMovie}${API_KEY}&language=de-DE`)
+        fetch(`${URL_BASE}movie/${selectedMovie.idMovie}${API_KEY}${QUERY_LANGUAGE}de`)
             .then(res => res.json())
             .then(data => {
                 setMovieInfo(data)
@@ -24,7 +25,18 @@ const MovieDetails = () => {
             .then(data => {
                 setInfoEnglish(data?.overview)
             })
+        fetch(`${URL_BASE}movie/${selectedMovie.idMovie}/videos${API_KEY}${QUERY_LANGUAGE}de`)
+            .then(res => res.json())
+            .then(data => {
+                setVideo(data.results)
+            })
     }, [selectedMovie.idMovie])
+
+
+    const filtrarTrailer = video?.find((categoria => (
+        categoria.type === 'Trailer'
+    )))
+
 
 
     const datum = new Date(movieInfo.release_date)
@@ -34,7 +46,7 @@ const MovieDetails = () => {
         <section className='section__details'>
             <div className="container__background-img" style={{ backgroundImage: `url(${IMGoriginal_URL}${movieInfo.backdrop_path})` }}>
                 {/* {movieInfo.backdrop_path === null && <p> Leider gibt es kein Foto </p>} */}
-                <div className="main-container">
+                <div className="main__container">
                     <div className="container__poster">
                         {movieInfo.poster_path !== null
                             ? <img src={`${IMGw500_URL}${movieInfo.poster_path}`} alt="Filmposter"></img>
@@ -58,15 +70,23 @@ const MovieDetails = () => {
                         </div>
                         <div className="container__overview">
                             <h4>Handlung:</h4>
-                            {movieInfo.overview 
-                            ? <p>{movieInfo.overview}</p>
-                            : <p lang="en">{infoEnglish}</p>
+                            {movieInfo.overview
+                                ? <p>{movieInfo.overview}</p>
+                                : <p lang="en">{infoEnglish}</p>
                             }
-                            
+
                         </div>
-                        <div className="container-video">
-                            <video></video>
-                        </div>
+                        {filtrarTrailer &&
+                            <div className="container__video">
+                                <iframe 
+                                title={`YouTube video player. Trailer von ${movieInfo.title}`} 
+                                gyroscope 
+                                encrypted-media 
+                                frameborder='0' 
+                                src={`${URL_VIDEO}${filtrarTrailer.key}`} 
+                                allowFullScreen />
+                            </div>}
+
                     </div>
                 </div>
             </div>

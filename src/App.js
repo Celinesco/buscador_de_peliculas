@@ -6,7 +6,7 @@ import HomeSection from './components/HomeSection/HomeSection';
 import NewReleasesSection from './components/NewReleasesSection';
 import MostPopularSection from './components/MostPopularSection';
 import SearchSection from './components/SearchSection';
-import MovieDetails from './components/MovieDetails';
+import MovieDetails from './components/MovieDetails/MovieDetails';
 import Error404 from './components/ButtonPages/ButtonPages';
 
 

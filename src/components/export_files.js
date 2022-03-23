@@ -10,6 +10,7 @@ export const IMGw300_URL = 'https://image.tmdb.org/t/p/w300';
 
 export const IMGoriginal_URL = 'https://image.tmdb.org/t/p/original';
 
+export const URL_VIDEO = 'https://www.youtube.com/embed/'
 
 
 
