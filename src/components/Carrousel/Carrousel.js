@@ -15,11 +15,39 @@ import 'swiper/scss/a11y';
 import 'swiper/scss/thumbs';
 import "swiper/scss/free-mode";
 import "swiper/scss/effect-fade";
+import DecorativeSquares from '../DecorativeSquares/DecorativeSquares';
 
 
 
 const Carrousel = ({ info, infoEnglish }) => {
     const [thumbsSwiper, setThumbsSwiper] = useState(null);
+
+    let arrayDecorativeSquares = [];
+    let numberOfDecorativeSquares = 4;
+
+    if (window.innerWidth >= 900) {
+        numberOfDecorativeSquares = 5
+    }
+   
+    if (window.innerWidth >= 1300) {
+        numberOfDecorativeSquares = 7
+    }
+    if (window.innerWidth >= 1700) {
+        numberOfDecorativeSquares = 9
+    }
+    if (window.innerWidth >= 2200) {
+        numberOfDecorativeSquares = 12
+    }
+    if (window.innerWidth >= 2500) {
+        numberOfDecorativeSquares = 14
+    }
+
+    for (let i = 0; i < numberOfDecorativeSquares; i++) {
+        arrayDecorativeSquares.push(1)
+    }
+
+
+    console.log(numberOfDecorativeSquares)
 
     return (
         <>
@@ -60,42 +88,25 @@ const Carrousel = ({ info, infoEnglish }) => {
                 slidesPerView={7}
                 freeMode={true}
                 watchSlidesProgress={true}
-                modules={[FreeMode, Navigation, Thumbs]}
+                modules={[FreeMode, Navigation, FreeMode, Thumbs]}
                 className="mySwiper"
             >
                 {info?.map((movie) =>
 
                     <SwiperSlide className="small-view-slides" key={movie.id}>
                         <div className='container__horizontal-square'>
-                            <div className='horizontal-square'></div>
-                            <div className='horizontal-square'></div>
-                            <div className='horizontal-square'></div>
-                            <div className='horizontal-square'></div>
-                            <div className='horizontal-square'></div>
-                            <div className='horizontal-square'></div>
-                            <div className='horizontal-square'></div>
-                            <div className='horizontal-square'></div>
-                            <div className='horizontal-square'></div>
-                            <div className='horizontal-square'></div>
-                            <div className='horizontal-square'></div>
-                            <div className='horizontal-square'></div>
-                            <div className='horizontal-square'></div>
+                            {arrayDecorativeSquares.map(current => (
+                                <DecorativeSquares />
+                            ))}
+
+
                         </div>
                         <img src={`${IMGw300_URL}${movie.backdrop_path}`} alt={`Filmposter von ${movie.title}`}></img>
                         <div className='container__horizontal-square-bottom'>
-                            <div className='horizontal-square'></div>
-                            <div className='horizontal-square'></div>
-                            <div className='horizontal-square'></div>
-                            <div className='horizontal-square'></div>
-                            <div className='horizontal-square'></div>
-                            <div className='horizontal-square'></div>
-                            <div className='horizontal-square'></div>
-                            <div className='horizontal-square'></div>
-                            <div className='horizontal-square'></div>
-                            <div className='horizontal-square'></div>
-                            <div className='horizontal-square'></div>
-                            <div className='horizontal-square'></div>
-                            <div className='horizontal-square'></div>
+                            {arrayDecorativeSquares.map(current => (
+                                <DecorativeSquares />
+                            ))}
+
                         </div>
                     </SwiperSlide>)}
             </Swiper>
