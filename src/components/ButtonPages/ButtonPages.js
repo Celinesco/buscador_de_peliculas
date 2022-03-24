@@ -8,11 +8,6 @@ const ButtonPages = ({ page, totalPages, setPage }) => {
 
     const [alert, setAlert] = useState(false)
     const selectPage = useRef()
-    const firstPage = () => page !== 1 && setPage(1);
-    const previousPage = () => page !== 1 && setPage(page - 1);
-    const nextPage = () => page !== totalPages && setPage(page + 1);
-    const lastPage = () => page !== totalPages && setPage(totalPages);
-
 
     const handleInput = () => {
         if (Number(selectPage.current.value) > totalPages || Number(selectPage.current.value) < 0) {
@@ -36,11 +31,11 @@ const ButtonPages = ({ page, totalPages, setPage }) => {
     return (
         <div className='pagination-controls'>
             <div className='container__button-pages'>
-                <button aria-label='erste Seite' className='buttonPage' onClick={firstPage}>1</button>
-                <button aria-label='vorherige Seite' className='buttonPage' onClick={previousPage}><AiOutlineLeft /></button>
+                <button aria-label='erste Seite' className='buttonPage' onClick={()=>setPage(1)}>1</button>
+                <button aria-label='vorherige Seite' className='buttonPage' disabled={page === 1} onClick={()=>setPage(page - 1)}><AiOutlineLeft /></button>
                 <div className='buttonPage'>{page}</div>
-                <button aria-label='nächste Seite' className='buttonPage' onClick={nextPage}><AiOutlineRight /></button>
-                <button aria-label='letzte Seite' className='buttonPage' onClick={lastPage}>{totalPages}</button>
+                <button aria-label='nächste Seite' className='buttonPage' disabled={page === totalPages} onClick={()=>setPage(page + 1)}><AiOutlineRight /></button>
+                <button aria-label='letzte Seite' className='buttonPage' onClick={()=>setPage(totalPages)}>{totalPages}</button>
             </div>
             <form onSubmit={handleSubmit}>
                 <label htmlFor="select-page">Seitenzahl eingeben</label>

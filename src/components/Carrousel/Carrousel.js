@@ -5,6 +5,7 @@ import { IMGoriginal_URL, IMGw300_URL } from '../../components/export_files';
 import { useState } from 'react';
 import { RiInformationLine } from "react-icons/ri";
 import { Link } from 'react-router-dom';
+import nextId from 'react-id-generator';
 
 
 // Import Swiper styles
@@ -96,7 +97,7 @@ const Carrousel = ({ info, infoEnglish }) => {
                     <SwiperSlide className="small-view-slides" key={movie.id}>
                         <div className='container__horizontal-square'>
                             {arrayDecorativeSquares.map(current => (
-                                <DecorativeSquares />
+                                <DecorativeSquares key={nextId()}/>
                             ))}
 
 
@@ -104,7 +105,7 @@ const Carrousel = ({ info, infoEnglish }) => {
                         <img src={`${IMGw300_URL}${movie.backdrop_path}`} alt={`Filmposter von ${movie.title}`}></img>
                         <div className='container__horizontal-square-bottom'>
                             {arrayDecorativeSquares.map(current => (
-                                <DecorativeSquares />
+                                <DecorativeSquares key={nextId()}/>
                             ))}
 
                         </div>

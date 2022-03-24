@@ -32,6 +32,7 @@ const useFetchDefaultLists = (endpoint, language) => {
 
     }, [page])
 
+    console.log(page, language)
 
     return ([info, isLoading, totalPages, page, setPage])
 }
