@@ -7,12 +7,18 @@ import backgroundTitleSection from '../assets/backgroundTitleSection.png';
 import { IMGw300_URL } from './export_files';
 import useFetchDefaultLists from "../hooks/useFetchDefaultLists";
 import Loader from "./Loader/Loader";
+import { useSearchParams } from 'react-router-dom';
+import { useState } from 'react';
+
 
 
 const MostPopularSection = () => {
-
-    const [popularDE, loadingPopular, , page, setPage] = useFetchDefaultLists('popular', 'de');
-    const [popularUS] = useFetchDefaultLists('popular', '');
+    const [pageNumber, setPageNumber] = useSearchParams({
+        current_page: 1,
+      });
+    const [page, setPage] = useState(Number(pageNumber.get("current_page")));
+    const [popularDE, loadingPopular] = useFetchDefaultLists('popular', 'de', page);
+    const [popularUS] = useFetchDefaultLists('popular', '', page);
 
     return (
 
@@ -47,6 +53,7 @@ const MostPopularSection = () => {
                             )}
                         </div>
                         <ButtonPages
+                            setPageNumber={setPageNumber}
                             page={page}
                             totalPages={500}
                             setPage={setPage}

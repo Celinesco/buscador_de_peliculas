@@ -8,12 +8,17 @@ import './SectionSearch.scss';
 import backgroundTitleSection from '../assets/backgroundTitleSection.png';
 import { IMGw300_URL } from './export_files';
 import Loader from './Loader/Loader';
+import { useSearchParams } from 'react-router-dom';
+import { useState } from 'react';
 
 
 const NewReleasesSection = () => {
-
-    const [newReleasesDE, loadingNewReleases, totalPages, page, setPage] = useFetchDefaultLists('now_playing', 'de');
-    const [newReleasesUS] = useFetchDefaultLists('now_playing', '');
+    const [pageNumber, setPageNumber] = useSearchParams({
+        current_page: 1,
+      });
+    const [page, setPage] = useState(Number(pageNumber.get("current_page")));
+    const [newReleasesDE, loadingNewReleases, totalPages] = useFetchDefaultLists('now_playing', 'de',page);
+    const [newReleasesUS] = useFetchDefaultLists('now_playing', '', page);
 
 
     return (
@@ -51,6 +56,7 @@ const NewReleasesSection = () => {
                         </div>
                         <ButtonPages
                             page={page}
+                            setPageNumber={setPageNumber}
                             totalPages={totalPages}
                             setPage={setPage}
                         />
