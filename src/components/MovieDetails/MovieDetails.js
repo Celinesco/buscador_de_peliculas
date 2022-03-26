@@ -44,8 +44,7 @@ const MovieDetails = () => {
 
     return (
         <section className='section__details'>
-            <div className="container__background-img" style={{ backgroundImage: `url(${IMGoriginal_URL}${movieInfo.backdrop_path})` }}>
-                {/* {movieInfo.backdrop_path === null && <p> Leider gibt es kein Foto </p>} */}
+            <div className="container__background-img" style={{ backgroundImage: `url(${IMGoriginal_URL}${movieInfo.backdrop_path})`}}>
                 <div className="main__container">
                     <div className="container__poster">
                         {movieInfo.poster_path !== null
@@ -65,7 +64,7 @@ const MovieDetails = () => {
                         <div className="container__genres">
                             <h4>Genre</h4>
                             <div>{movieInfo?.genres?.map(genero => (
-                                <Link to={`/search/${genero.name}`} key={genero.id}><p>{genero.name}</p></Link>
+                                <Link to={`/search/genre/${genero.id}/1`} key={genero.id}><p>{genero.name}</p></Link>
                             ))}</div>
                         </div>
                         <div className="container__overview">
@@ -80,9 +79,9 @@ const MovieDetails = () => {
                             <div className="container__video">
                                 <iframe 
                                 title={`YouTube video player. Trailer von ${movieInfo.title}`} 
-                                gyroscope 
-                                encrypted-media 
-                                frameborder='0' 
+                                gyroscope="true" 
+                                encrypted-media='true'
+                                frameBorder='0' 
                                 src={`${URL_VIDEO}${filtrarTrailer.key}`} 
                                 allowFullScreen />
                             </div>}

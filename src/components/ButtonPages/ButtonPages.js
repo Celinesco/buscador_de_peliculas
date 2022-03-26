@@ -4,7 +4,8 @@ import { useRef, useState } from 'react';
 import './ButtonPages.scss';
 import { VscSearch } from 'react-icons/vsc';
 
-const ButtonPages = ({ page, totalPages, setPage, setPageNumber }) => {
+const ButtonPages = ({ page, totalPages, setPage, setSearchParams
+ }) => {
 
     const [alert, setAlert] = useState(false)
     const selectPage = useRef()
@@ -22,14 +23,16 @@ const ButtonPages = ({ page, totalPages, setPage, setPageNumber }) => {
     const handleSubmit = (e) => {
         e.preventDefault()
         setPage(Number(selectPage.current.value));
-        setPageNumber({
+        setSearchParams
+        ({
             current_page: page,
           });
     }
 
     const handleSelectedPage = () => {
         setPage(Number(selectPage.current.value))
-        setPageNumber({
+        setSearchParams
+        ({
             current_page: page,
           });
     }
@@ -42,18 +45,20 @@ const ButtonPages = ({ page, totalPages, setPage, setPageNumber }) => {
                 className='buttonPage' 
                 onClick={()=> {
                     setPage(1);  
-                    setPageNumber({
-                    current_page: 1,
-                  });
+                //     setSearchParams
+                //     ({
+                //     current_page: 1,
+                //   });
                 }}>1</button>
 
                 <button aria-label='vorherige Seite' 
                 className='buttonPage' disabled={page === 1} 
                 onClick={()=> {
                     setPage(page - 1);  
-                    setPageNumber({
-                    current_page: page + 1,
-                  });
+                //     setSearchParams
+                //     ({
+                //     current_page: page - 1,
+                //   });
                 }}><AiOutlineLeft /></button>
 
                 <div className='buttonPage'>{page}</div>
@@ -63,18 +68,20 @@ const ButtonPages = ({ page, totalPages, setPage, setPageNumber }) => {
                 disabled={page === totalPages} 
                 onClick={()=> {
                     setPage(page + 1);  
-                    setPageNumber({
-                    current_page: page + 1,
-                  });
+                //     setSearchParams
+                //     ({
+                //     current_page: page + 1,
+                //   });
                 }}><AiOutlineRight /></button>
 
                 <button aria-label='letzte Seite' 
                 className='buttonPage' 
                 onClick={()=> {
-                    setPage(page - 1);  
-                    setPageNumber({
-                    current_page: totalPages,
-                  });
+                    setPage(totalPages);  
+                //     setSearchParams
+                //     ({
+                //     current_page: totalPages,
+                //   });
                 }}>{totalPages}</button>
             </div>
             <form onSubmit={handleSubmit}>

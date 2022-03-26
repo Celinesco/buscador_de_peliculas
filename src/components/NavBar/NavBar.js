@@ -21,8 +21,8 @@ const NavBar = () => {
             </div>
             <ul className='ul__navbar'>
                 <Link to="/"><li>START</li></Link>
-                <Link to="/newreleases/"><li>NEU!</li></Link>
-                <Link to="/mostpopular/"><li>POPULÄR</li></Link>
+                <Link to="/now_playing/:page"><li>NEU!</li></Link>
+                <Link to="/popular/:page"><li>POPULÄR</li></Link>
                 <Link to="/search/"><li>SUCHE</li></Link>
                 <Link to="/movie/:idMovie"></Link>
             </ul>

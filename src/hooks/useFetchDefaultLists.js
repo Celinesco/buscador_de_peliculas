@@ -3,13 +3,11 @@ import { QUERY_LANGUAGE, URL_BASE, API_KEY } from "../components/export_files";
 
 
 
-
 const useFetchDefaultLists = (endpoint, language, page) => {
     
     const [info, setInfo] = useState([]);
     const [isLoading, setIsLoading] = useState([false]);
     const [totalPages, setTotalPages] = useState(500);
-
 
     useEffect(() => {
         setIsLoading(true)
@@ -22,7 +20,8 @@ const useFetchDefaultLists = (endpoint, language, page) => {
                 setIsLoading(false) 
             })
 
-    }, [page, endpoint, language])
+
+    }, [page, language])
 
 
     return ([info, isLoading, totalPages])

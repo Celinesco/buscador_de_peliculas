@@ -1,17 +1,22 @@
 import { useState, useEffect } from "react";
-import { useSearchParams, useParams } from 'react-router-dom'
-import { QUERY_LANGUAGE, URL_BASE, API_KEY } from "../components/export_files";
+import { useParams } from 'react-router-dom'
+import { QUERY_LANGUAGE, URL_BASE, API_KEY, QUERY_LANGUAGE } from "../components/export_files";
 
-const useFectchSearch = (option, lang ) => {
+const useFectchSearch = (inputValue, genre, urlParams) => {
+
+    //este componente va a leer una url, recibe tambien como prop el input del usuario y el select. Y :
+    //siempre va a devolver info, totalPages y Page
+    //la info la va a construir depende si:
+    // Existe una URL o no. Si no, recibe por default la palabra adaptation
+    //Si esa URL es de genero o de busqueda por nombre
+
+
+ 
     const selectedGenre = useParams();
     const [info, setInfo] = useState([]);
+
     const [totalPages, setTotalPages] = useState(500);
-    const [searchParams, setSearchParams] = useSearchParams({
-        title_contains: 'Mickey',
-        genre: 80,
-        current_page: 1,
-    })
-    const [page, setPage] = useState(Number(searchParams.get('current_page')));
+    const [page, setPage] = useState(1);
 
     let parametro;
 
@@ -34,7 +39,7 @@ const useFectchSearch = (option, lang ) => {
             })
 
 
-    }, [searchParams.title_contains, page, totalPages, searchParams.genre])
+    }, [page, inputValue, genre])
 
     return ([info, totalPages, page, setPage])
 

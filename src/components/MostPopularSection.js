@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import Card from './Cards/Card';
 import posterNotFound from '../assets/posterNotFound.png'
 import ButtonPages from "./ButtonPages/ButtonPages";
@@ -7,19 +7,28 @@ import backgroundTitleSection from '../assets/backgroundTitleSection.png';
 import { IMGw300_URL } from './export_files';
 import useFetchDefaultLists from "../hooks/useFetchDefaultLists";
 import Loader from "./Loader/Loader";
-import { useSearchParams } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 
 
 const MostPopularSection = () => {
-    const [pageNumber, setPageNumber] = useSearchParams({
-        current_page: 1,
-      });
-    const [page, setPage] = useState(Number(pageNumber.get("current_page")));
+    const navigate = useNavigate()
+    const urlParams = useParams()
+    
+
+    let initialPage = urlParams.page
+    if( isNaN(initialPage) ) {
+         initialPage = 1
+    }
+  
+    const [page, setPage] = useState(initialPage);
     const [popularDE, loadingPopular] = useFetchDefaultLists('popular', 'de', page);
     const [popularUS] = useFetchDefaultLists('popular', '', page);
 
+    useEffect(()=> {
+        navigate(`/popular/${page}`)
+    }, [urlParams.page, page])
+    
     return (
 
         <section className="section__mostpopular sections__styles">
@@ -53,7 +62,6 @@ const MostPopularSection = () => {
                             )}
                         </div>
                         <ButtonPages
-                            setPageNumber={setPageNumber}
                             page={page}
                             totalPages={500}
                             setPage={setPage}

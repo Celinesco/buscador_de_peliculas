@@ -17,10 +17,10 @@ const App = () => {
         <NavBar />
         <Routes>
           <Route path='/' element={<HomeSection />} />
-          <Route path='/newreleases/' element={<NewReleasesSection />} />
-          <Route path='/mostpopular/' element={<MostPopularSection />} />
-          <Route path='/search' element={<SearchSection />} />
-          <Route path='/search/:results' element={<SearchSection />} />
+          <Route path='/now_playing/:page' element={<NewReleasesSection />} />
+          <Route path='/popular/:page' element={<MostPopularSection />} />
+          <Route path='/search/' element={<SearchSection />} />
+          <Route path='/search/:type/:value/:page' element={<SearchSection />} />
           <Route path='/movie/:idMovie' element={<MovieDetails />} />
           <Route path="*" element={<Error404 />} />
         </Routes>

@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from "react";
-import { useSearchParams, Link } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { VscSearch } from "react-icons/vsc";
 import Card from './Cards/Card';
 import './SectionSearch.scss';
@@ -9,75 +9,75 @@ import { API_KEY, IMGw300_URL, URL_BASE, QUERY_LANGUAGE } from "./export_files";
 import backgroundTitleSection from '../assets/backgroundTitleSection.png';
 
 const SearchSection = () => {
-    const [search, setSearch] = useState([]);
+    const [info, setInfo] = useState([]);
     const [infoEnglish, setInfoEnglish] = useState([]);
+    const [genresList, setGenresList] = useState([])
 
-    const [page, setPage] = useState(1);
-    const [totalPages, setTotalPages] = useState(500);
+    const navigate = useNavigate()
+    const urlParams = useParams()
+
+    let initialPage = urlParams.page
+    if( isNaN(initialPage) ) {
+         initialPage = 1
+    }
+    let initialType = urlParams.type 
+    if( initialType !== 'contains' || initialType !== 'genre') {
+        initialType = 'contains'
+    };
+
     
-    const [optionGenre, setOptionGenre] = useState(false);
-    const [optionInput, setOptionInput] = useState(false);
-  
-    const [genresList, setGenresList] = useState([]);
-    const [selectValue, setSelectValue] = useState([]);
-    const [searchParams, setSearchParams] = useSearchParams({
-        title_contains: '',
-        genre: '',
-    });
+    const [page, setPage] = useState(Number(initialPage));
+    const [totalPages, setTotalPages] = useState(500);
 
-
+    const [inputValue, setInputValue] = useState( urlParams.value ? urlParams.value : 'adaptation')
     const inputSearch = useRef()
 
+    const [ optionInput, setOptionInput] = useState(true)
+  
+
+
+
+    
     const handleClick = (e) => {
         setPage(1)
+        setInputValue(inputSearch.current.value)
         e.preventDefault()
-        setSearchParams({
-            title_contains: inputSearch.current.value
-        })
+        navigate(`/search/contains/${inputValue}/1`)
     }
     const handleChange = (e) => {
         setPage(1)
-        setSearchParams({
-            genre: e.target.value
-        })
     }
 
     useEffect(() => {
 
-        let optionGenre2 = false
-        let optionInput2 = false
-
-        if (searchParams.get('title_contains')) {
-           optionInput2 = true;
-        }
-        else {
-            optionGenre2 = true
-        }
-
-        let endpoint;
-        let parametro;
-        if (optionInput2) {
-            endpoint = 'search/movie'
-            parametro = `&query=${searchParams.get('title_contains')}`
-        }
-        if (optionGenre2) {
-            endpoint = 'discover/movie'
-            parametro = `&with_genres=${searchParams.get('genre')}`
-        }
-
-        fetch(`${URL_BASE}${endpoint}${API_KEY}${parametro}${QUERY_LANGUAGE}de&page=${page}`)
+         fetch(`${URL_BASE}search/movie${API_KEY}&query=${urlParams.value}${QUERY_LANGUAGE}de&page=${page}`)
             .then(res => res.json())
             .then((data) => {
-                setSearch(data?.results ? data.results : []);
+                setInfo(data?.results ? data.results : []);
                 data?.total_pages < 500 ? setTotalPages(data.total_pages) : setTotalPages(500)
+                navigate(`/search/contains/${inputValue}/${page}`)
             })
-        fetch(`${URL_BASE}${endpoint}${API_KEY}${parametro}&page=${page}`)
+              fetch(`${URL_BASE}search/movie${API_KEY}&query=${urlParams.value}&page=${page}`)
             .then(res => res.json())
             .then(data => {
                 setInfoEnglish(data?.results ? data.results : []);
             })
 
-    }, [searchParams, page, selectValue, totalPages])
+
+
+        // fetch(`${URL_BASE}${endpoint}${API_KEY}${parametro}${QUERY_LANGUAGE}de&page=${page}`)
+        //     .then(res => res.json())
+        //     .then((data) => {
+        //         setSearch(data?.results ? data.results : []);
+        //         data?.total_pages < 500 ? setTotalPages(data.total_pages) : setTotalPages(500)
+        //     })
+        // fetch(`${URL_BASE}${endpoint}${API_KEY}${parametro}&page=${page}`)
+        //     .then(res => res.json())
+        //     .then(data => {
+        //         setInfoEnglish(data?.results ? data.results : []);
+        //     })
+
+    }, [urlParams.value, page, inputValue])
 
     useEffect(() => {
         fetch(`https://api.themoviedb.org/3/genre/movie/list${API_KEY}${QUERY_LANGUAGE}de`)
@@ -88,15 +88,6 @@ const SearchSection = () => {
     }, [])
 
 
-    const handleNameSearch = () => {
-        setOptionGenre(false)
-        setOptionInput(true)
-    }
-
-    const handleGenreSearch = () => {
-        setOptionInput(false)
-        setOptionGenre(true)
-    }
 
     return (
         <section className="section__search sections__styles">
@@ -108,16 +99,17 @@ const SearchSection = () => {
             </div>
             <div className="container__forms">
                 <div className="column__form-button">
-                    <button onClick={handleNameSearch}>Nach Namen suchen</button>
-                    {optionInput && <form className="form__search-section">
-                        <input ref={inputSearch} type="text" ></input>
-                        <button aria-label='nach Namen suchen' type="submit" onClick={handleClick}><VscSearch /></button>
-                    </form>}
+                    <button>Nach Namen suchen</button>
+                  {optionInput && 
+                  <form className="form__search-section">
+                  <input ref={inputSearch} type="text" ></input>
+                  <button aria-label='nach Namen suchen' type="submit" onClick={handleClick}><VscSearch /></button>
+              </form>}   
                 </div>
                 <p>OR</p>
                 <div className="column__form-button">
-                    <button onClick={handleGenreSearch}>Nach Genre suchen </button>
-                    {optionGenre && <form className="form__search-section">
+                    <button>Nach Genre suchen </button>
+                     {!optionInput && <form className="form__search-section">
                         <select name='genre' onChange={handleChange}>
                             <option value="" >Wähle ein Genre</option>
                             {genresList.map(genre => (
@@ -131,10 +123,10 @@ const SearchSection = () => {
 
             </div>
             <div className="container__results">
-                {search.length >= 1 ?
+                {info.length >= 1 ?
                     <>
                         <div className="container__movie-cards">
-                            {search.map((movie, index) => (
+                            {info.map((movie, index) => (
                                 <Link to={`/movie/${movie.id}`} key={movie.id}>
                                     <Card
                                         title={movie.title}
@@ -156,6 +148,7 @@ const SearchSection = () => {
                             page={page}
                             setPage={setPage}
                             totalPages={totalPages}
+                            // setSearchParams={setSearchParams}
                         />
                     </>
                     :

@@ -48,8 +48,6 @@ const Carrousel = ({ info, infoEnglish }) => {
     }
 
 
-    console.log(numberOfDecorativeSquares)
-
     return (
         <>
             <Swiper
