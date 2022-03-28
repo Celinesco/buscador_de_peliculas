@@ -41,6 +41,8 @@
     }
     .container__info {
         max-width: 500px;
+        height: 730px;
+        overflow-y: scroll;
         padding: 25px;
         display: flex;
         flex-direction: column;
