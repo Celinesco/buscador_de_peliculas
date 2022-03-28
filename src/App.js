@@ -3,9 +3,9 @@ import NavBar from './components/NavBar/NavBar';
 import Footer from './components/Footer/Footer'
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HomeSection from './components/HomeSection/HomeSection';
-import NewReleasesSection from './components/NewReleasesSection';
-import MostPopularSection from './components/MostPopularSection';
-import SearchSection from './components/SearchSection';
+import NewReleasesSection from './components/Sections/NewReleasesSection';
+import MostPopularSection from './components/Sections/MostPopularSection';
+import SearchSection from './components/Sections/SearchSection';
 import MovieDetails from './components/MovieDetails/MovieDetails';
 import Error404 from './components/ButtonPages/ButtonPages';
 

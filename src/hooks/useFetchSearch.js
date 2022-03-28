@@ -17,24 +17,24 @@ const useFetchSearch =  (searchType, searchValue, lang, page) => {
    };
 
  
-   
+   const [isLoading, setIsLoading] = useState(false);
     const [info, setInfo] = useState([]);
-
     const [totalPages, setTotalPages] = useState(500);
 
 
     useEffect(() => {
-
+        setIsLoading(true)
         fetch(`${URL_BASE}${option}/movie${API_KEY}${parametro}${QUERY_LANGUAGE}${lang}&page=${page}`)
             .then(res => res.json())
             .then((data) => {
                 setInfo(data?.results ? data.results : []);
                 data?.total_pages < 500 ? setTotalPages(data.total_pages) : setTotalPages(500)
+                setIsLoading(false)
             })
 
     }, [page, searchValue])
 
-    return ([info, totalPages])
+    return ([info, totalPages, isLoading])
 
 }
 

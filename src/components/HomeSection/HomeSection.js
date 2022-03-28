@@ -3,7 +3,6 @@ import './HomeSection.scss'
 import CarrouselContainer from "../Carrousel/CarrouselContainer";
 
 
-
 const HomeSection = () => {
     return (
         <section className="section__home sections__styles ">

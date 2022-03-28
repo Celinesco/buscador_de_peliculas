@@ -1,13 +1,14 @@
 import { useEffect, useState, useRef } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { VscSearch } from "react-icons/vsc";
-import Card from './Cards/Card';
+import Card from '../Cards/Card';
 import './SectionSearch.scss';
-import posterNotFound from '../assets/posterNotFound.png'
-import ButtonPages from "./ButtonPages/ButtonPages";
-import { API_KEY, IMGw300_URL, QUERY_LANGUAGE } from "./export_files";
-import backgroundTitleSection from '../assets/backgroundTitleSection.png';
-import useFetchSearch from '../hooks/useFetchSearch';
+import posterNotFound from '../../assets/posterNotFound.png'
+import ButtonPages from "../ButtonPages/ButtonPages";
+import { API_KEY, IMGw300_URL, QUERY_LANGUAGE } from "../export_files";
+import backgroundTitleSection from '../../assets/backgroundTitleSection.png';
+import useFetchSearch from '../../hooks/useFetchSearch';
+import Loader from "../Loader/Loader";
 
 const SearchSection = () => {
 
@@ -28,11 +29,11 @@ const SearchSection = () => {
 
     const [page, setPage] = useState(Number(initialPage));
     const [searchType, setSearchType] = useState(initialType);
-    const [searchValue, setSearchValue] = useState(urlParams.value ? urlParams.value : 'adaptation');
+    const [searchValue, setSearchValue] = useState(urlParams.value ? urlParams.value : 'Tom y Jerry');
     const [optionInput, setOptionInput] = useState(initialOption);
     const inputSearch = useRef();
 
-    const [info, totalPages] = useFetchSearch(searchType, searchValue, 'de', page);
+    const [info, totalPages, loadingResults] = useFetchSearch(searchType, searchValue, 'de', page);
     const [infoEN] = useFetchSearch(searchType, searchValue, 'en', page);
     const [genresList, setGenresList] = useState([]);
 
@@ -99,37 +100,43 @@ const SearchSection = () => {
                 </div>
             </div>
             <div className="container__results">
-                {info.length >= 1 ?
-                    <>
-                        <div className="container__movie-cards">
-                            {info.map((movie, index) => (
-                                <Link to={`/movie/${movie.id}`} key={movie.id}>
-                                    <Card
-                                        title={movie.title}
-                                        img={movie.poster_path !== null ?
-                                            `${IMGw300_URL}${movie.poster_path}`
-                                            : posterNotFound}
-                                        alt={movie.poster_path !== null
-                                            ? `Poster from ${movie.title}`
-                                            : `Poster not available`}
-                                        overview={movie.overview ? movie.overview : infoEN[index]?.overview}
-                                        lang={!movie.overview ? 'en' : 'de'}
-                                        rating={movie.vote_average}
-                                    />
-                                </Link>
-                            ))}
-                        </div>
-                        <ButtonPages
-                            page={page}
-                            setPage={setPage}
-                            totalPages={totalPages} />
-                    </>
-                    :
-                    <>
-                        <p className="no-results">Leider ergab die Suche kein Ergebnis</p>
-                        <p className="no-results">Versuche es erneut mit einem anderen Suchbegriff.</p>
+                {loadingResults ? <Loader />
+                    : <>
+                        {info.length >= 1 ?
+                            <>
+                                <h3 className="title__search-results">{`Ergebnisse für: ${isNaN(searchValue) ? searchValue : 'Genre'}`}</h3>
+                                <div className="container__movie-cards">
+                                    {info.map((movie, index) => (
+                                        <Link to={`/movie/${movie.id}`} key={movie.id}>
+                                            <Card
+                                                title={movie.title}
+                                                img={movie.poster_path !== null ?
+                                                    `${IMGw300_URL}${movie.poster_path}`
+                                                    : posterNotFound}
+                                                alt={movie.poster_path !== null
+                                                    ? `Poster from ${movie.title}`
+                                                    : `Poster not available`}
+                                                overview={movie.overview ? movie.overview : infoEN[index]?.overview}
+                                                lang={!movie.overview ? 'en' : 'de'}
+                                                rating={movie.vote_average}
+                                            />
+                                        </Link>
+                                    ))}
+                                </div>
+                                <ButtonPages
+                                    page={page}
+                                    setPage={setPage}
+                                    totalPages={totalPages} />
+                            </>
+                            :
+                            <>
+                                <p className="no-results">Leider ergab die Suche kein Ergebnis</p>
+                                <p className="no-results">Versuche es erneut mit einem anderen Suchbegriff.</p>
+                            </>
+                        }
                     </>
                 }
+
             </div>
         </section>
     )

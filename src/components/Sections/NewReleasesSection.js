@@ -1,20 +1,20 @@
-import { Link, useParams, useNavigate } from "react-router-dom";
-import Card from './Cards/Card';
-import posterNotFound from '../assets/posterNotFound.png'
-import ButtonPages from "./ButtonPages/ButtonPages";
+
+import useFetchDefaultLists from '../../hooks/useFetchDefaultLists';
+import { Link, useParams, useNavigate } from 'react-router-dom';
+import Card from '../Cards/Card';
+import posterNotFound from '../../assets/posterNotFound.png'
+import ButtonPages from "../ButtonPages/ButtonPages";
 import './SectionSearch.scss';
-import backgroundTitleSection from '../assets/backgroundTitleSection.png';
-import { IMGw300_URL } from './export_files';
-import useFetchDefaultLists from "../hooks/useFetchDefaultLists";
-import Loader from "./Loader/Loader";
-import { useEffect, useState } from 'react';
+import backgroundTitleSection from '../../assets/backgroundTitleSection.png';
+import { IMGw300_URL } from '../export_files';
+import Loader from '../Loader/Loader';
+import { useState, useEffect } from 'react';
 
 
+const NewReleasesSection = () => {
 
-const MostPopularSection = () => {
     const navigate = useNavigate()
     const urlParams = useParams()
-    
 
     let initialPage = urlParams.page
     if( isNaN(initialPage) ) {
@@ -22,30 +22,33 @@ const MostPopularSection = () => {
     }
   
     const [page, setPage] = useState(initialPage);
-    const [popularDE, loadingPopular] = useFetchDefaultLists('popular', 'de', `&page=${page}`);
-    const [popularUS] = useFetchDefaultLists('popular', '', page);
+    const [newReleasesDE, loadingNewReleases, totalPages] = useFetchDefaultLists('now_playing', 'de',`&page=${page}`);
+    const [newReleasesUS] = useFetchDefaultLists('now_playing', '', page);
+
+  
 
     useEffect(()=> {
-        navigate(`/popular/${page}`)
+        navigate(`/now_playing/${page}`)
     }, [urlParams.page, page])
-    
-    return (
 
-        <section className="section__mostpopular sections__styles">
+    return (
+        <section className="sections__styles">
             <div className="container__title-background-image">
                 <img src={backgroundTitleSection} alt=""></img>
                 <div className="container__title-section">
-                    <h2>Populär</h2>
+                    <h2>Neuerscheinungen</h2>
                 </div>
             </div>
             <div className="container__results">
-                {loadingPopular
+
+                {loadingNewReleases
                     ? <Loader />
                     : <>
                         <div className="container__movie-cards">
-                            {popularDE.map((movie, index) => (
+                            {newReleasesDE.map((movie, index) => (
                                 <Link to={`/movie/${movie.id}`} key={movie.id}>
                                     <Card
+                                        id={movie.id}
                                         title={movie.title}
                                         img={movie.poster_path !== null ?
                                             `${IMGw300_URL}${movie.poster_path}`
@@ -53,9 +56,9 @@ const MostPopularSection = () => {
                                         alt={movie.poster_path !== null
                                             ? `Poster from ${movie.title}`
                                             : `Poster not available`}
-                                        rating={movie.vote_average}
-                                        overview={movie.overview ? movie.overview : popularUS[index]?.overview}
+                                        overview={movie.overview ? movie.overview : newReleasesUS[index]?.overview}
                                         lang={!movie.overview ? 'en' : 'de'}
+                                        rating={movie.vote_average}
                                     />
                                 </Link>
                             )
@@ -63,14 +66,17 @@ const MostPopularSection = () => {
                         </div>
                         <ButtonPages
                             page={page}
-                            totalPages={500}
+                            totalPages={totalPages}
                             setPage={setPage}
                         />
                     </>}
+
             </div>
         </section>
     )
-
 }
 
-export default MostPopularSection;
+
+
+
+export default NewReleasesSection;
