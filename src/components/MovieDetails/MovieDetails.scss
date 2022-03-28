@@ -104,6 +104,7 @@
         margin: 15px 0;
         div {
             display: flex;
+            flex-wrap: wrap;
             p {
                 font-style: italic;
                 margin-right: 15px;
@@ -127,7 +128,6 @@
     @include media ('>1700px') {
         .container__genres {
             div {
-                flex-wrap: wrap;
                 p {
                     font-size: calc(2.3rem - 1vw);
                 }
