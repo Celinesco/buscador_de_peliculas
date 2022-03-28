@@ -13,7 +13,7 @@ const HomeSection = () => {
                     listTitle="Populär" />
                 <MovieLists
                     endpoint="top_rated"
-                    listTitle="Gute Bewertungen" />
+                    listTitle="Am besten bewertet" />
             </div>
         </section>
     )

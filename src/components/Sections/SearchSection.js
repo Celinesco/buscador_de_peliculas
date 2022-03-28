@@ -85,7 +85,7 @@ const SearchSection = () => {
                             <button aria-label='nach Namen suchen' type="submit" onClick={handleClick}><VscSearch /></button>
                         </form>}
                 </div>
-                <p>OR</p>
+                <p>Oder</p>
                 <div className="column__form-button">
                     <button onClick={handleClickOption}>Nach Genre suchen </button>
                     {!optionInput && <form className="form__search-section" onSubmit={handleSubmit}>
