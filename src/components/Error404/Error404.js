@@ -1,4 +1,4 @@
-import pag404 from '../assets/pag404.jpg';
+import pag404 from '../../assets/pag404.jpg';
 import './Error404.scss';
 
 const Error404 = () => {
