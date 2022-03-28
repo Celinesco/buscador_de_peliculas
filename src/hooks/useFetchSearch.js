@@ -1,23 +1,23 @@
 import { useState, useEffect } from "react";
 import { QUERY_LANGUAGE, URL_BASE, API_KEY } from "../components/export_files";
 
-const useFetchSearch =  (searchType, searchValue, lang, page) => {
+const useFetchSearch = (searchType, searchValue, lang, page) => {
 
 
     let option;
     let parametro;
 
-   if (searchType === 'contains') {
-       option = 'search';
-       parametro = `&query=${searchValue}`;
-   };
-   if (searchType === 'genre') {
-       option = 'discover';
-       parametro = `&with_genres=${searchValue}`;
-   };
+    if (searchType === 'contains') {
+        option = 'search';
+        parametro = `&query=${searchValue}`;
+    };
+    if (searchType === 'genre') {
+        option = 'discover';
+        parametro = `&with_genres=${searchValue}`;
+    };
 
- 
-   const [isLoading, setIsLoading] = useState(false);
+
+    const [isLoading, setIsLoading] = useState(false);
     const [info, setInfo] = useState([]);
     const [totalPages, setTotalPages] = useState(500);
 

@@ -7,7 +7,7 @@ import NewReleasesSection from './components/Sections/NewReleasesSection';
 import MostPopularSection from './components/Sections/MostPopularSection';
 import SearchSection from './components/Sections/SearchSection';
 import MovieDetails from './components/MovieDetails/MovieDetails';
-import Error404 from './components/ButtonPages/ButtonPages';
+import Error404 from './components/Error404/Error404';
 
 
 const App = () => {
