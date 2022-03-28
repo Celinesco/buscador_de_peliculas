@@ -1,9 +1,14 @@
 import './DecorativeSquares.scss';
 
 
-const DecorativeSquares = (numberOfSquares) => {
+const DecorativeSquares = ({squareOrientation}) => {
+    let horizontal = false;
+    if (squareOrientation === 'horizontal') {
+        horizontal = true
+    } 
+
     return (
-        <div className='horizontal-square'></div>
+        <div className={horizontal ? 'horizontal-square' : 'square'}></div>
     )
 }
 

@@ -1,8 +1,24 @@
-.container__horizontal-square {
+
+.square__container {
     position: absolute;
-    top: 0;
-    background-color: white;
+    top:0;
+    display: flex;
+    flex-direction: column;
 }
-.container__horizontal-square-bottom {
- background-color: white;
+.square__container-right {
+    right: 0;
+}
+.square__container-left {
+    left: 0;
+}
+.square {
+    border: 6px solid black;
+    width: 30px;
+    height: 26px;
+}
+
+.horizontal-square {
+    border: 6px solid black;
+    width: 25px;
+    height: 20px;
 }

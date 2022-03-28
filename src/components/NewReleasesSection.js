@@ -22,7 +22,7 @@ const NewReleasesSection = () => {
     }
   
     const [page, setPage] = useState(initialPage);
-    const [newReleasesDE, loadingNewReleases, totalPages] = useFetchDefaultLists('now_playing', 'de',page);
+    const [newReleasesDE, loadingNewReleases, totalPages] = useFetchDefaultLists('now_playing', 'de',`&page=${page}`);
     const [newReleasesUS] = useFetchDefaultLists('now_playing', '', page);
 
   

@@ -12,8 +12,6 @@ const NavBar = () => {
         setMenuHamburguesa(true)
     }
 
-  
-
     return (
         <nav className='navbar'>
             <div className='container__img-icon'>
@@ -35,8 +33,8 @@ const NavBar = () => {
                 </div>
             </button>
             <NavBarMenu
-            menuHamburguesa={menuHamburguesa}
-            setMenuHamburguesa={setMenuHamburguesa} />
+                menuHamburguesa={menuHamburguesa}
+                setMenuHamburguesa={setMenuHamburguesa} />
         </nav>
     )
 }

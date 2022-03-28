@@ -29,7 +29,6 @@ const Carrousel = ({ info, infoEnglish }) => {
     if (window.innerWidth >= 900) {
         numberOfDecorativeSquares = 5
     }
-   
     if (window.innerWidth >= 1300) {
         numberOfDecorativeSquares = 7
     }
@@ -42,7 +41,7 @@ const Carrousel = ({ info, infoEnglish }) => {
     if (window.innerWidth >= 2500) {
         numberOfDecorativeSquares = 14
     }
-
+    // (todos estos if Male.. seguro hay una forma mas inteligente de escribirlo)
     for (let i = 0; i < numberOfDecorativeSquares; i++) {
         arrayDecorativeSquares.push(1)
     }
@@ -63,8 +62,7 @@ const Carrousel = ({ info, infoEnglish }) => {
                     delay: 3000,
                     disableOnInteraction: false,
                     pauseOnMouseEnter: true,
-                }}
-            >
+                }}>
                 {info?.map((movie, index) =>
                     <SwiperSlide className='big-view-slides' key={movie.id} style={{ backgroundImage: `url(${IMGoriginal_URL}${movie.backdrop_path})` }}>
                         <div className='title-slides'>
@@ -78,7 +76,6 @@ const Carrousel = ({ info, infoEnglish }) => {
                             <Link to={`/movie/${movie.id}`} className="link__carrousel"> <RiInformationLine /> Mehr...</Link>
                         </div>
                     </SwiperSlide>)}
-
             </Swiper>
             <Swiper
                 onSwiper={setThumbsSwiper}
@@ -88,28 +85,25 @@ const Carrousel = ({ info, infoEnglish }) => {
                 freeMode={true}
                 watchSlidesProgress={true}
                 modules={[FreeMode, Navigation, FreeMode, Thumbs]}
-                className="mySwiper"
-            >
-                {info?.map((movie) =>
+                className="mySwiper">
 
+                {info?.map((movie) =>
                     <SwiperSlide className="small-view-slides" key={movie.id}>
                         <div className='container__horizontal-square'>
                             {arrayDecorativeSquares.map(current => (
-                                <DecorativeSquares key={nextId()}/>
-                            ))}
-
-
+                                <DecorativeSquares
+                                    key={nextId()}
+                                    squareOrientation='horizontal' />))}
                         </div>
                         <img src={`${IMGw300_URL}${movie.backdrop_path}`} alt={`Filmposter von ${movie.title}`}></img>
                         <div className='container__horizontal-square-bottom'>
                             {arrayDecorativeSquares.map(current => (
-                                <DecorativeSquares key={nextId()}/>
-                            ))}
-
+                                <DecorativeSquares
+                                    key={nextId()}
+                                    squareOrientation='horizontal' />))}
                         </div>
                     </SwiperSlide>)}
             </Swiper>
-
         </>
 
     );

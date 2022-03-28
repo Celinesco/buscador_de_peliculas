@@ -23,17 +23,15 @@
 .main__container {
     display: flex;
     flex-wrap: wrap;
-    max-width: 2000px;
+    width: auto;
     border: 10px solid rgb(0, 0, 0);
     border-radius: 10px;
     margin: 50px 0;
     background-color: rgba(0, 0, 0, 0.712);
- 
-    }
     h3 {
         margin-top: 30px;
         font-size: calc(3.5rem - 1vw);
-    }
+    } 
     .container__poster {
         width: 500px;
         overflow: hidden;
@@ -63,7 +61,35 @@
                 margin: 0 5px;
                 padding: 10px;
             }
+        }
     }
+    .container__cast {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        .container__card-actor {
+            display: flex;
+            width: 130px;
+            text-align: center;
+            flex-wrap: wrap;
+            flex-direction: column;
+            overflow: hidden;
+            margin: 5px;
+            p {
+                font-style: italic;
+                font-size: 15px;
+            }
+            .container__img-actor {
+                width: 130px;
+                img {
+                    border-radius: 5px;
+                    width: 100%;
+                }
+            }
+        }
+    }
+
+  
     .container__raiting-year {
         display: flex;
         width: 90%;
@@ -103,7 +129,7 @@
             div {
                 flex-wrap: wrap;
                 p {
-                    font-size: calc(2.5rem - 1vw);
+                    font-size: calc(2.3rem - 1vw);
                 }
             }
         }
