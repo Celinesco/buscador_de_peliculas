@@ -60,8 +60,6 @@
 .swiper-slide {
   background-size: cover;
   background-position:top;
-
- 
 }
 .mySwiper2 {
   height: 800px;
@@ -70,6 +68,7 @@
 .mySwiper {
   height: 20%;
   box-sizing: border-box;
+  margin-bottom: 150px;
   @include media('<=tablet') {
     display: none;
   }
