@@ -61,5 +61,10 @@
             border: 1px solid $main-color
         }
     }
+    @include media ('<=320px') {
+        .edgePage {
+            display: none;
+        }
+    }
 }
 

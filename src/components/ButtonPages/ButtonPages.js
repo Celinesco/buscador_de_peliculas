@@ -42,24 +42,13 @@ const ButtonPages = ({ page, totalPages, setPage, setSearchParams
         <div className='pagination-controls'>
             <div className='container__button-pages'>
                 <button aria-label='erste Seite' 
-                className='buttonPage' 
+                className='buttonPage edgePage' 
                 onClick={()=> {
-                    setPage(1);  
-                //     setSearchParams
-                //     ({
-                //     current_page: 1,
-                //   });
-                }}>1</button>
+                    setPage(1)}}>1</button>
 
                 <button aria-label='vorherige Seite' 
                 className='buttonPage' disabled={page === 1} 
-                onClick={()=> {
-                    setPage(page - 1);  
-                //     setSearchParams
-                //     ({
-                //     current_page: page - 1,
-                //   });
-                }}><AiOutlineLeft /></button>
+                onClick={()=> {setPage(page - 1)}}><AiOutlineLeft /></button>
 
                 <div className='buttonPage'>{page}</div>
 
@@ -67,22 +56,12 @@ const ButtonPages = ({ page, totalPages, setPage, setSearchParams
                 className='buttonPage' 
                 disabled={page === totalPages} 
                 onClick={()=> {
-                    setPage(page + 1);  
-                //     setSearchParams
-                //     ({
-                //     current_page: page + 1,
-                //   });
-                }}><AiOutlineRight /></button>
+                    setPage(page + 1)}}><AiOutlineRight /></button>
 
                 <button aria-label='letzte Seite' 
-                className='buttonPage' 
+                className='buttonPage  edgePage' 
                 onClick={()=> {
-                    setPage(totalPages);  
-                //     setSearchParams
-                //     ({
-                //     current_page: totalPages,
-                //   });
-                }}>{totalPages}</button>
+                    setPage(totalPages)}}>{totalPages}</button>
             </div>
             <form onSubmit={handleSubmit}>
                 <label htmlFor="select-page">Seitenzahl eingeben</label>

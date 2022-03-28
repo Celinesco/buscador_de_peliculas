@@ -3,12 +3,6 @@ import { QUERY_LANGUAGE, URL_BASE, API_KEY } from "../components/export_files";
 
 const useFetchSearch =  (searchType, searchValue, lang, page) => {
 
-    // recibe  como prop el input del usuario y el select. Y :
-    //siempre va a devolver info, totalPages , el inputValue, el genero elegido y Page.
-    //la info la va a construir depende si:
-    // Existe una URL o no. Si no, recibe por default la palabra adaptation
-    //Si esa URL es de genero o de busqueda por nombre
-
 
     let option;
     let parametro;
@@ -38,8 +32,7 @@ const useFetchSearch =  (searchType, searchValue, lang, page) => {
                 data?.total_pages < 500 ? setTotalPages(data.total_pages) : setTotalPages(500)
             })
 
-
-    }, [page, searchType, searchValue])
+    }, [page, searchValue])
 
     return ([info, totalPages])
 
