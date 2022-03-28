@@ -1,7 +1,12 @@
 import './Card.scss'
 import { BsFillStarFill } from "react-icons/bs";
+import DecorativeSquares from '../DecorativeSquares/DecorativeSquares';
 
 const Card = ({ img, title, overview, rating, lang }) => {
+    
+    let arrayDecorativeSquares = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16];
+
+
     return (
 
         <article className="card__container">
@@ -15,42 +20,14 @@ const Card = ({ img, title, overview, rating, lang }) => {
                 </div>
                 <div className='face bottom-face'>
                     <div className="square__container square__container-right">
-                        <div className="square"></div>
-                        <div className="square"></div>
-                        <div className="square"></div>
-                        <div className="square"></div>
-                        <div className="square"></div>
-                        <div className="square"></div>
-                        <div className="square"></div>
-                        <div className="square"></div>
-                        <div className="square"></div>
-                        <div className="square"></div>
-                        <div className="square"></div>
-                        <div className="square"></div>
-                        <div className="square"></div>
-                        <div className="square"></div>
-                        <div className="square"></div>
-                        <div className="square"></div>
-                        <div className="square"></div>
+                        {arrayDecorativeSquares.map((current, index)=> (
+                            <DecorativeSquares  key={index}/>
+                        ))}
                     </div>
                     <div className="square__container square__container-left">
-                        <div className="square"></div>
-                        <div className="square"></div>
-                        <div className="square"></div>
-                        <div className="square"></div>
-                        <div className="square"></div>
-                        <div className="square"></div>
-                        <div className="square"></div>
-                        <div className="square"></div>
-                        <div className="square"></div>
-                        <div className="square"></div>
-                        <div className="square"></div>
-                        <div className="square"></div>
-                        <div className="square"></div>
-                        <div className="square"></div>
-                        <div className="square"></div>
-                        <div className="square"></div>
-                        <div className="square"></div>
+                    {arrayDecorativeSquares.map((current, index)=> (
+                            <DecorativeSquares  key={index + 1}/>
+                        ))}
                     </div>
                     <h4>Handlung</h4>
                     <p className="sinopsis" lang={lang}>{overview}</p>

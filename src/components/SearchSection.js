@@ -11,62 +11,60 @@ import useFetchSearch from '../hooks/useFetchSearch';
 
 const SearchSection = () => {
 
-    const navigate = useNavigate()
-    const urlParams = useParams()
+    const navigate = useNavigate();
+    const urlParams = useParams();
 
     let initialPage = urlParams.page
-    if( isNaN(initialPage) ) {
-         initialPage = 1
-    }
+    if (isNaN(initialPage)) {
+        initialPage = 1
+    };
 
     let initialOption;
-    let initialType = urlParams.type 
-    if( initialType !== 'genre') {
+    let initialType = urlParams.type
+    if (initialType !== 'genre') {
         initialType = 'contains';
         initialOption = true
     };
 
-    const [genresList, setGenresList] = useState([]);
     const [page, setPage] = useState(Number(initialPage));
     const [searchType, setSearchType] = useState(initialType);
     const [searchValue, setSearchValue] = useState(urlParams.value ? urlParams.value : 'adaptation');
     const [optionInput, setOptionInput] = useState(initialOption);
     const inputSearch = useRef();
 
-    const [info, totalPages] = useFetchSearch(searchType, searchValue, 'de', page)
-    const [infoEN] = useFetchSearch(searchType, searchValue, 'en', page )
+    const [info, totalPages] = useFetchSearch(searchType, searchValue, 'de', page);
+    const [infoEN] = useFetchSearch(searchType, searchValue, 'en', page);
+    const [genresList, setGenresList] = useState([]);
 
     const handleClickOption = () => {
         setOptionInput(!optionInput)
         searchType === 'contains' ? setSearchType('genre') : setSearchType('contains')
-    }
-    
+    };
+
     const handleClick = (e) => {
         setPage(1)
         setSearchValue(inputSearch.current.value)
         e.preventDefault()
-    }
+    };
 
     let valorSelect;
-    // const handleChange = e =>  valorSelect = e.target.value;
-
     const handleSubmit = (e) => {
         e.preventDefault()
         setPage(1)
         setSearchValue(valorSelect)
-    }
+    };
 
     useEffect(() => {
         navigate(`/search/${searchType}/${searchValue}/${page}`)
-    }, [page, searchValue])
+    }, [page, searchValue]);
 
-    useEffect(()=> {
+    useEffect(() => {
         fetch(`https://api.themoviedb.org/3/genre/movie/list${API_KEY}${QUERY_LANGUAGE}de`)
-        .then(res => res.json())
-        .then(data => {
-            setGenresList(data?.genres)
-        })
-    },[])
+            .then(res => res.json())
+            .then(data => {
+                setGenresList(data?.genres)
+            })
+    }, []);
 
 
     return (
@@ -80,17 +78,17 @@ const SearchSection = () => {
             <div className="container__forms">
                 <div className="column__form-button">
                     <button onClick={handleClickOption}>Nach Namen suchen</button>
-                  {optionInput && 
-                  <form className="form__search-section">
-                  <input ref={inputSearch} type="text" ></input>
-                  <button aria-label='nach Namen suchen' type="submit" onClick={handleClick}><VscSearch /></button>
-              </form>}   
+                    {optionInput &&
+                        <form className="form__search-section">
+                            <input ref={inputSearch} type="text" ></input>
+                            <button aria-label='nach Namen suchen' type="submit" onClick={handleClick}><VscSearch /></button>
+                        </form>}
                 </div>
                 <p>OR</p>
                 <div className="column__form-button">
                     <button onClick={handleClickOption}>Nach Genre suchen </button>
-                     {!optionInput && <form className="form__search-section" onSubmit={handleSubmit}>
-                        <select name='genre' value={valorSelect} onChange={(e)=> {valorSelect = e.target.value}}>
+                    {!optionInput && <form className="form__search-section" onSubmit={handleSubmit}>
+                        <select name='genre' value={valorSelect} onChange={(e) => { valorSelect = e.target.value }}>
                             <option value="" >Wähle ein Genre</option>
                             {genresList.map(genre => (
                                 <option key={genre.id} value={genre.id}>{genre.name}</option>
@@ -119,25 +117,20 @@ const SearchSection = () => {
                                         rating={movie.vote_average}
                                     />
                                 </Link>
-                            )
-                            )}
+                            ))}
                         </div>
                         <ButtonPages
                             page={page}
                             setPage={setPage}
-                            totalPages={totalPages}
-                        />
+                            totalPages={totalPages} />
                     </>
                     :
                     <>
                         <p className="no-results">Leider ergab die Suche kein Ergebnis</p>
                         <p className="no-results">Versuche es erneut mit einem anderen Suchbegriff.</p>
                     </>
-
                 }
-
             </div>
-
         </section>
     )
 }

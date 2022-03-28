@@ -22,7 +22,7 @@ const MostPopularSection = () => {
     }
   
     const [page, setPage] = useState(initialPage);
-    const [popularDE, loadingPopular] = useFetchDefaultLists('popular', 'de', page);
+    const [popularDE, loadingPopular] = useFetchDefaultLists('popular', 'de', `&page=${page}`);
     const [popularUS] = useFetchDefaultLists('popular', '', page);
 
     useEffect(()=> {
