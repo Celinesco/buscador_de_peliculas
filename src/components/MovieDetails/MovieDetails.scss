@@ -28,7 +28,10 @@
     border-radius: 10px;
     margin: 50px 0;
     background-color: rgba(0, 0, 0, 0.712);
+ 
+    }
     h3 {
+        margin-top: 30px;
         font-size: calc(3.5rem - 1vw);
     }
     .container__poster {
@@ -41,12 +44,25 @@
         }
     }
     .container__info {
+        position: relative;
         max-width: 500px;
         height: 730px;
         overflow-y: scroll;
         padding: 25px;
         display: flex;
         flex-direction: column;
+        .container__butons-info-options {
+            position: absolute;
+            top: 0px;
+            right: 10px;
+            .info-cast {
+                background-color:#ff8018;
+                border: none;
+                font-weight: bold;
+                border-radius: 0px 0px 5px 5px;
+                margin: 0 5px;
+                padding: 10px;
+            }
     }
     .container__raiting-year {
         display: flex;
