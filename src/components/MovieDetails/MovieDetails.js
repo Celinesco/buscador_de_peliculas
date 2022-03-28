@@ -44,8 +44,9 @@ const MovieDetails = () => {
 
     return (
         <section className='section__details'>
-            <div className="container__background-img" style={{ backgroundImage: `url(${IMGoriginal_URL}${movieInfo.backdrop_path})`}}>
+            <div className="container__background-img" style={{ backgroundImage: `url(${IMGoriginal_URL}${movieInfo.backdrop_path})` }}>
                 <div className="main__container">
+             
                     <div className="container__poster">
                         {movieInfo.poster_path !== null
                             ? <img src={`${IMGw500_URL}${movieInfo.poster_path}`} alt="Filmposter"></img>
@@ -53,6 +54,10 @@ const MovieDetails = () => {
                         }
                     </div>
                     <div className="container__info">
+                    <div className="container__butons-info-options">
+                        <button className="info-cast">Info</button>
+                        <button className="info-cast">Cast</button>
+                    </div>
                         <h3>{movieInfo.title}</h3>
                         <div className="container__raiting-year">
                             {!isNaN(jahre) && <p>{jahre}</p>}
@@ -77,13 +82,13 @@ const MovieDetails = () => {
                         </div>
                         {filtrarTrailer &&
                             <div className="container__video">
-                                <iframe 
-                                title={`YouTube video player. Trailer von ${movieInfo.title}`} 
-                                gyroscope="true" 
-                                encrypted-media='true'
-                                frameBorder='0' 
-                                src={`${URL_VIDEO}${filtrarTrailer.key}`} 
-                                allowFullScreen />
+                                <iframe
+                                    title={`YouTube video player. Trailer von ${movieInfo.title}`}
+                                    gyroscope="true"
+                                    encrypted-media='true'
+                                    frameBorder='0'
+                                    src={`${URL_VIDEO}${filtrarTrailer.key}`}
+                                    allowFullScreen />
                             </div>}
 
                     </div>
