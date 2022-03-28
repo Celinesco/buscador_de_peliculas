@@ -5,19 +5,12 @@ import Card from './Cards/Card';
 import './SectionSearch.scss';
 import posterNotFound from '../assets/posterNotFound.png'
 import ButtonPages from "./ButtonPages/ButtonPages";
-import { API_KEY, IMGw300_URL, URL_BASE, QUERY_LANGUAGE } from "./export_files";
+import { API_KEY, IMGw300_URL, QUERY_LANGUAGE } from "./export_files";
 import backgroundTitleSection from '../assets/backgroundTitleSection.png';
 import useFetchSearch from '../hooks/useFetchSearch';
 
 const SearchSection = () => {
 
- //este componente va a leer una url, y le va a pasar a useFetchSearch la info necesaria para que haga el fetch.
- // la info necesaria es: numero de pagina, tipo de busqueda(genero o por nombre), y el valor de la busqueda que el usuario quiere. 
- //va a recibir a cambio: totalPages, info, page e infoEnglish
-
-    const [genresList, setGenresList] = useState([])
-
-    
     const navigate = useNavigate()
     const urlParams = useParams()
 
@@ -26,29 +19,22 @@ const SearchSection = () => {
          initialPage = 1
     }
 
-    
+    let initialOption;
     let initialType = urlParams.type 
     if( initialType !== 'genre') {
-        initialType = 'contains'
+        initialType = 'contains';
+        initialOption = true
     };
 
+    const [genresList, setGenresList] = useState([]);
     const [page, setPage] = useState(Number(initialPage));
     const [searchType, setSearchType] = useState(initialType);
-    const [searchValue, setSearchValue] = useState(urlParams.value ? urlParams.value : 'adaptation')
-
-    
-    const inputSearch = useRef()
+    const [searchValue, setSearchValue] = useState(urlParams.value ? urlParams.value : 'adaptation');
+    const [optionInput, setOptionInput] = useState(initialOption);
+    const inputSearch = useRef();
 
     const [info, totalPages] = useFetchSearch(searchType, searchValue, 'de', page)
-
-    let initialOption;
-    if (initialType !== 'genre') {
-        initialOption = true
-    }
-
-    const [ optionInput, setOptionInput] = useState(initialOption)
-  
-
+    const [infoEN] = useFetchSearch(searchType, searchValue, 'en', page )
 
     const handleClickOption = () => {
         setOptionInput(!optionInput)
@@ -60,22 +46,27 @@ const SearchSection = () => {
         setSearchValue(inputSearch.current.value)
         e.preventDefault()
     }
-    const handleChange = (e) => {
+
+    let valorSelect;
+    // const handleChange = e =>  valorSelect = e.target.value;
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
         setPage(1)
-        setSearchValue(e.target.value)
+        setSearchValue(valorSelect)
     }
-
-
 
     useEffect(() => {
         navigate(`/search/${searchType}/${searchValue}/${page}`)
-        fetch(`https://api.themoviedb.org/3/genre/movie/list${API_KEY}${QUERY_LANGUAGE}de`)
-            .then(res => res.json())
-            .then(data => {
-                setGenresList(data?.genres)
-            })
-    }, [page, searchType, searchValue])
+    }, [page, searchValue])
 
+    useEffect(()=> {
+        fetch(`https://api.themoviedb.org/3/genre/movie/list${API_KEY}${QUERY_LANGUAGE}de`)
+        .then(res => res.json())
+        .then(data => {
+            setGenresList(data?.genres)
+        })
+    },[])
 
 
     return (
@@ -98,18 +89,16 @@ const SearchSection = () => {
                 <p>OR</p>
                 <div className="column__form-button">
                     <button onClick={handleClickOption}>Nach Genre suchen </button>
-                     {!optionInput && <form className="form__search-section">
-                        <select name='genre' onChange={handleChange}>
+                     {!optionInput && <form className="form__search-section" onSubmit={handleSubmit}>
+                        <select name='genre' value={valorSelect} onChange={(e)=> {valorSelect = e.target.value}}>
                             <option value="" >Wähle ein Genre</option>
                             {genresList.map(genre => (
                                 <option key={genre.id} value={genre.id}>{genre.name}</option>
                             ))}
                         </select>
+                        <button aria-label='nach Namen suchen' type="submit"><VscSearch /></button>
                     </form>}
                 </div>
-
-
-
             </div>
             <div className="container__results">
                 {info.length >= 1 ?
@@ -125,7 +114,7 @@ const SearchSection = () => {
                                         alt={movie.poster_path !== null
                                             ? `Poster from ${movie.title}`
                                             : `Poster not available`}
-                                        overview={movie.overview ? movie.overview : info[index]?.overview}
+                                        overview={movie.overview ? movie.overview : infoEN[index]?.overview}
                                         lang={!movie.overview ? 'en' : 'de'}
                                         rating={movie.vote_average}
                                     />
@@ -137,7 +126,6 @@ const SearchSection = () => {
                             page={page}
                             setPage={setPage}
                             totalPages={totalPages}
-                            // setSearchParams={setSearchParams}
                         />
                     </>
                     :
