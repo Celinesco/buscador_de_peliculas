@@ -1,12 +1,10 @@
 @import '../../styles/variables';
+@import '../../styles/mixin';
 
 .footer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    border-top: 4px solid $main-color;
+    @include flex-centrar();
     height: 200px;
+    border-top: 4px solid $main-color;
     padding: 40px;
     background: rgb(0, 0, 0);
     p {

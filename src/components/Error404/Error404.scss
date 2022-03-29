@@ -1,11 +1,10 @@
+@import '../../styles/mixin';
+
 .container__img-404 {
-    background-color: black;
+    @include flex-centrar($direccion:normal);
     width: 100vw ;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     min-height: 90vh;
-    
+    background-color: black;  
     img {
         width:100%;
     }
