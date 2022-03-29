@@ -21,7 +21,7 @@ I implemented the following libraries:
 
 And for the data [The Movie Data Base API](https://www.themoviedb.org/?language=es)
 
-The page is in german, and most of the information (movies overviews, titles) too, with some exceptions that the API didn't provide so I chose English as a second option. Some of the titles are written in their original language. 
+The page is in german, and most of the information (movies overviews, titles) too, with some exceptions that the API doesn't provide so I chose English as a second option. Some of the titles are written in their original language. 
 Check the [site here](https://infokleinkino.netlify.app/)
 
 
