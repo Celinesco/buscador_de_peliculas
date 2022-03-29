@@ -11,7 +11,7 @@
 ![Made with Sass](https://shields.io/badge/made%20with-Sass-ff69b4?logo=sass&style=plastic)
 
 This is my last project of the Bootcamp ADA ITW. I was given [this page](https://app-movie-jonhks.herokuapp.com/) as a model with the posibility to change styles.
-I implemented this libraries:
+I implemented the following libraries:
 
 - [swiper](https://swiperjs.com/)
 - [sass](https://sass-lang.com/) 
@@ -19,7 +19,7 @@ I implemented this libraries:
 - [react icons](https://react-icons.github.io/react-icons/)
 - and [this amazing code](https://github.com/wrongakram/sass-mediaqueries/blob/master/src/breakpoints/breakpoints.scss) for the breakpoints
 
-And [The Movie Data Base API](https://www.themoviedb.org/?language=es)
+And for the data [The Movie Data Base API](https://www.themoviedb.org/?language=es)
 
 The page is in german, and most of the information (movies overviews, titles) too, with some exceptions that the API didn't provide so I chose English as a second option. Some of the titles are written in their original language. 
 Check the [site here](https://infokleinkino.netlify.app/)
