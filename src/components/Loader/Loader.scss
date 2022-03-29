@@ -1,9 +1,8 @@
+@import '../../styles/mixin';
+
 .container__loader {
+    @include flex-centrar();
     position: absolute;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
     width: 300px;
     height: 300px;
     p {

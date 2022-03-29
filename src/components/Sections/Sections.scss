@@ -1,26 +1,21 @@
 @import '../../styles/variables';
 @import '../../styles/breakpoints';
+@import '../../styles/mixin';
 
 .section__search {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+   @include flex-centrar($direccion:normal);
 }
 
 .container__movie-cards {
     width: 100%;
-    display: flex;
-    justify-content:center;
-    align-items: center;
+    @include flex-centrar($direccion:normal);
     flex-wrap: wrap;
 }
 
 .container__results {
-  display: flex;
-  position: relative;
+  @include flex-centrar($content:normal);
   flex-wrap: wrap;
-  flex-direction: column;
-  align-items: center;
+  position: relative;
   padding: 100px 50px;
   .title__search-results {
       color:white;
@@ -34,13 +29,11 @@
 }
 
 .container__title-background-image {
+  @include flex-centrar($direccion:normal);
   margin-top: 150px;
   background-color: rgb(68, 68, 68);
   position: relative;
   width: 600px;
-  display: flex;
-  justify-items: center;
-  align-items: center;
   h2 {
     font-size: 50px;
     width: 100%;
@@ -65,7 +58,6 @@
 .form__search-section {
   display: flex;
   align-items: center;
- 
   input {
     padding: 10px;
   }
@@ -93,11 +85,8 @@
 }
 
 .container__title-section {
+  @include flex-centrar();
   position: absolute;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   width: 100%;
 }
 
