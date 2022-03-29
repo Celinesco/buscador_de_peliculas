@@ -5,7 +5,8 @@ import DecorativeSquares from '../DecorativeSquares/DecorativeSquares';
 const Card = ({ img, title, overview, rating, lang }) => {
     
     let arrayDecorativeSquares = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16];
-
+    //esto es algo que no va a cambiar, haria falta igual declararlo como un estado?
+    //la misma pregunta va para todas las veces que aparece este array
 
     return (
 
