@@ -2,8 +2,6 @@
 @import '../../styles/breakpoints';
 @import '../../styles/mixin';
 
-
-
 .pagination-controls {
     @include flex-centrar();
     .buttonPage {
@@ -40,7 +38,6 @@
         margin: 20px 0;
         background-color: $main-color;
     }
-
     .container__button-pages {
         display: flex;
         justify-content: center;
