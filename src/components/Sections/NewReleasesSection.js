@@ -4,7 +4,7 @@ import { Link, useParams, useNavigate } from 'react-router-dom';
 import Card from '../Cards/Card';
 import posterNotFound from '../../assets/posterNotFound.png'
 import ButtonPages from "../ButtonPages/ButtonPages";
-import './SectionSearch.scss';
+import './Sections.scss';
 import backgroundTitleSection from '../../assets/backgroundTitleSection.png';
 import { IMGw300_URL } from '../export_files';
 import Loader from '../Loader/Loader';

@@ -1,11 +1,15 @@
 Componente hooks:
 
-1-En el hook useFetchDefaultLists: Cada vez que cambio la pagina, solo se hace un fetch.
-Entiendo por que pasa (creo), pero no se como solucionarlo. 
 
 
-2-Accesibilidad:
-    videos
-    imagenes de fondo
 
+3- Cuando google me traduce la pagina automaticamente, me cambian las fuentes
+
+4- En la parte de busqueda, como hago para acceder al name de las options del select
+
+5- No entiendo la diferencia entre useSearchParams y useParams
+
+6- dif entre notacion flecha y vieja.
+
+7- que archivos se borran(pueden borrarse) de los archivos iniciales de React
 

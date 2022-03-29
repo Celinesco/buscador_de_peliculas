@@ -144,6 +144,9 @@
         text-align: left;
         font-family: 'Bungee', cursive;
         -webkit-text-stroke: 2px black;
+        font {
+          font-family: 'Bungee', cursive;
+        }
         @include media ('<=tablet') {
             margin-bottom: 25px;
         }

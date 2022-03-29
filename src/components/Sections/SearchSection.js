@@ -2,7 +2,7 @@ import { useEffect, useState, useRef } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { VscSearch } from "react-icons/vsc";
 import Card from '../Cards/Card';
-import './SectionSearch.scss';
+import './Sections.scss';
 import posterNotFound from '../../assets/posterNotFound.png'
 import ButtonPages from "../ButtonPages/ButtonPages";
 import { API_KEY, IMGw300_URL, QUERY_LANGUAGE } from "../export_files";
@@ -15,24 +15,16 @@ const SearchSection = () => {
     const navigate = useNavigate();
     const urlParams = useParams();
 
-    let initialPage = urlParams.page
-    if (isNaN(initialPage)) {
-        initialPage = 1
-    };
-
-    let initialOption;
-    let initialType = urlParams.type
-    if (initialType !== 'genre') {
-        initialType = 'contains';
-        initialOption = true
-    };
-
-    const [page, setPage] = useState(Number(initialPage));
-    const [searchType, setSearchType] = useState(initialType);
+    const [page, setPage] = useState(isNaN(urlParams.page) ? 1 : Number(urlParams.page));
+    const [searchType, setSearchType] = useState(urlParams.type !== 'genre' ? urlParams.type = 'contains' : urlParams.type);
     const [searchValue, setSearchValue] = useState(urlParams.value ? urlParams.value : 'Tom y Jerry');
-    const [optionInput, setOptionInput] = useState(initialOption);
-    const inputSearch = useRef();
+    const [optionInput, setOptionInput] = useState(urlParams.type !== 'genre' ? true : false);
+    const [valorSelect, setValorSelect] = useState();
+    const [genreToShow, setGenreToShow] = useState({name:'Genre'})
 
+    const inputSearch = useRef();
+   
+    //variables del fetch
     const [info, totalPages, loadingResults] = useFetchSearch(searchType, searchValue, 'de', page);
     const [infoEN] = useFetchSearch(searchType, searchValue, 'en', page);
     const [genresList, setGenresList] = useState([]);
@@ -48,11 +40,11 @@ const SearchSection = () => {
         e.preventDefault()
     };
 
-    let valorSelect;
     const handleSubmit = (e) => {
         e.preventDefault()
         setPage(1)
         setSearchValue(valorSelect)
+        setGenreToShow(genresList.find(element=> element.id === Number(valorSelect)))
     };
 
     useEffect(() => {
@@ -67,6 +59,7 @@ const SearchSection = () => {
             })
     }, []);
 
+ 
 
     return (
         <section className="section__search sections__styles">
@@ -89,10 +82,10 @@ const SearchSection = () => {
                 <div className="column__form-button">
                     <button onClick={handleClickOption}>Nach Genre suchen </button>
                     {!optionInput && <form className="form__search-section" onSubmit={handleSubmit}>
-                        <select name='genre' value={valorSelect} onChange={(e) => { valorSelect = e.target.value }}>
+                        <select name='genre' value={valorSelect} onChange={(e) => {setValorSelect(e.target.value)}}>
                             <option value="" >Wähle ein Genre</option>
                             {genresList.map(genre => (
-                                <option key={genre.id} value={genre.id}>{genre.name}</option>
+                                <option key={genre.id} value={genre.id} name={genre.name}>{genre.name}</option>
                             ))}
                         </select>
                         <button aria-label='nach Namen suchen' type="submit"><VscSearch /></button>
@@ -104,7 +97,7 @@ const SearchSection = () => {
                     : <>
                         {info.length >= 1 ?
                             <>
-                                <h3 className="title__search-results">{`Ergebnisse für: ${isNaN(searchValue) ? searchValue : 'Genre'}`}</h3>
+                                <h3 className="title__search-results">{`Ergebnisse für: ${isNaN(searchValue) ? searchValue : genreToShow?.name}`}</h3>
                                 <div className="container__movie-cards">
                                     {info.map((movie, index) => (
                                         <Link to={`/movie/${movie.id}`} key={movie.id}>
