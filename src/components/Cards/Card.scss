@@ -1,43 +1,33 @@
 @import '../../styles/variables';
 @import '../../styles/breakpoints';
+@import '../../styles/mixin';
 
 .card__container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    @include flex-centrar($content:normal);
     position: relative;
     margin: 20px 10px;
     width: 280px;
     height: 520px;
     border-radius: 10px;
-    border-top: 15px ou black;
-    box-shadow: 
-    6px 7px 5px 2px rgba(0, 0, 0, 0.521),
-        0px 0px 0px 2px $main-color;
-        
+    box-shadow: 6px 7px 5px 2px rgba(0, 0, 0, 0.521), 0px 0px 0px 2px $main-color;
     overflow: hidden;
-
     @include media ('<=phone','>280px') {
         width: 260px;
     }
 }
 
-
 .container__raiting {
+    @include flex-centrar();
     position: absolute;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 65px;
-    background-color: black;
-    height: 65px;
     top: 10px;
     right: 10px;
+    width: 65px;
+    height: 65px;
     border-radius: 100%;
     border-left: 2px solid #b4b3b3;
     border-top: 1px solid #a5a5a5;
     border-bottom: 3px solid #adadad;
+    background-color: black;
     span {
         margin-top: 2px;
         font-weight: bold;
@@ -65,11 +55,9 @@
 }
 
 .bottom-face {
-    display: flex;
+    @include flex-centrar($content:normal);
     position: relative;
-    flex-direction: column;
     padding: 20px;
-    align-items: center;
     height: 450px;
     width: 100%;
     background-color: $main-color;
@@ -97,11 +85,11 @@
 }
 
 .square {
-    border: 6px solid black;
     width: 30px;
     height: 26px;
+    border: 6px solid black;
 }
-.sinopsis {
+.overview {
     overflow: scroll;
     padding: 20px;
     width: 200px;
@@ -112,7 +100,7 @@
     hyphens: auto;
 }
 
-.sinopsis::-webkit-scrollbar {
+.overview::-webkit-scrollbar {
     display: none;
 }
 .face {
@@ -128,21 +116,18 @@
         width: 100%;
     }
 }
-.container-movie-title {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.container__movie-title {
+    @include flex-centrar($direccion:normal);
     position: absolute;
-    box-shadow:
-        0px -1px 6px 2px rgba(255, 119, 5, 0.6);
     bottom: 0;
     height: 100px;
     width: 100%;
     padding: 0 5px;
+    box-shadow: 0px -1px 6px 2px rgba(255, 119, 5, 0.6);
     background-color: black;
     .title__card {
         text-align: center;
-        color: white;
+        color: $movie-titles;
     }
     @include media ('<=phone','>=280px') {
         padding: 0 10px;
@@ -153,7 +138,6 @@
             text-overflow: ellipsis;
         }
     }
-  
 }
 
 

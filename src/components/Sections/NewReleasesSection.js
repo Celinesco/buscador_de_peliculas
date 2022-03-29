@@ -15,17 +15,10 @@ const NewReleasesSection = () => {
 
     const navigate = useNavigate()
     const urlParams = useParams()
-
-    let initialPage = urlParams.page
-    if( isNaN(initialPage) ) {
-         initialPage = 1
-    }
   
-    const [page, setPage] = useState(initialPage);
+    const [page, setPage] = useState(isNaN(urlParams.page) ? 1 : Number(urlParams.page));
     const [newReleasesDE, loadingNewReleases, totalPages] = useFetchDefaultLists('now_playing', 'de',`&page=${page}`);
     const [newReleasesUS] = useFetchDefaultLists('now_playing', '', page);
-
-  
 
     useEffect(()=> {
         navigate(`/now_playing/${page}`)

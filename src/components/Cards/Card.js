@@ -30,10 +30,10 @@ const Card = ({ img, title, overview, rating, lang }) => {
                         ))}
                     </div>
                     <h4>Handlung</h4>
-                    <p className="sinopsis" lang={lang}>{overview}</p>
+                    <p className="overview" lang={lang}>{overview}</p>
                 </div>
             </div>
-            <div className="container-movie-title">
+            <div className="container__movie-title">
                 <h3 className='title__card'>{title}</h3>
             </div>
         </article>

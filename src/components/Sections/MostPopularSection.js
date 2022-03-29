@@ -15,13 +15,7 @@ const MostPopularSection = () => {
     const navigate = useNavigate()
     const urlParams = useParams()
     
-
-    let initialPage = urlParams.page
-    if( isNaN(initialPage) ) {
-         initialPage = 1
-    }
-  
-    const [page, setPage] = useState(initialPage);
+    const [page, setPage] = useState(isNaN(urlParams.page) ? 1 : Number(urlParams.page));
     const [popularDE, loadingPopular] = useFetchDefaultLists('popular', 'de', `&page=${page}`);
     const [popularUS] = useFetchDefaultLists('popular', '', page);
 
