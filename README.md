@@ -19,6 +19,8 @@ I implemented the following libraries:
 - and [this amazing code](https://github.com/wrongakram/sass-mediaqueries/blob/master/src/breakpoints/breakpoints.scss) for the breakpoints
 
 And for the data [The Movie Data Base API](https://www.themoviedb.org/?language=es)
+
+
 ![Gif presentacion](https://media.giphy.com/media/mCK49Dq2QGwWwUFBpQ/giphy.gif)
 
 The page is in german, and most of the information (movies overviews, titles) too, with some exceptions that the API doesn't provide so I chose English as a second option. Some of the titles are written in their original language. 

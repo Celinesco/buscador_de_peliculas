@@ -2,7 +2,7 @@ import './MovieLists.scss';
 import useFetchDefaultLists from '../../hooks/useFetchDefaultLists';
 import { IMGw300_URL } from '../export_files';
 import ItemMovieList from '../ItemMovieList/ItemMovieList';
-import DecorativeSquares from '../DecorativeSquares/DecorativeSquares';
+import nextId from 'react-id-generator';
 
 
 const MovieLists = ({ endpoint, listTitle }) => {
@@ -14,17 +14,17 @@ const MovieLists = ({ endpoint, listTitle }) => {
         <div className="container__movie-list">
             <div className='container__title-list'>
                 <div className='container__horizontal-square'>
-                    {arrayDecorativeSquares.map((current, index) => (
-                        <DecorativeSquares
-                            key={index}
-                            squareOrientation='horizontal' />
+                    {arrayDecorativeSquares.map(() => (
+                        <div
+                            key={nextId()}
+                            className='horizontal-square' />
                     ))}
                 </div>
                 <div className='container__horizontal-square-bottom'>
-                    {arrayDecorativeSquares.map((current, index) => (
-                        <DecorativeSquares
-                            key={index + 2}
-                            squareOrientation='horizontal' />
+                    {arrayDecorativeSquares.map(() => (
+                        <div
+                            key={nextId()}
+                            className='horizontal-square' />
                     ))}
                 </div>
                 <h3>{listTitle}</h3>

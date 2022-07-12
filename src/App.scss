@@ -31,3 +31,27 @@ a:link, a:visited, a:active {
 button {
   cursor: pointer;
 }
+
+.square__container {
+  position: absolute;
+  top:0;
+  display: flex;
+  flex-direction: column;
+}
+.square__container-right {
+  right: 0;
+}
+.square__container-left {
+  left: 0;
+}
+.square {
+  border: 6px solid black;
+  width: 30px;
+  height: 26px;
+}
+
+.horizontal-square {
+  border: 6px solid black;
+  width: 25px;
+  height: 20px;
+}

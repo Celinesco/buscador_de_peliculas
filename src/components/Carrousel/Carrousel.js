@@ -16,7 +16,6 @@ import 'swiper/scss/a11y';
 import 'swiper/scss/thumbs';
 import "swiper/scss/free-mode";
 import "swiper/scss/effect-fade";
-import DecorativeSquares from '../DecorativeSquares/DecorativeSquares';
 
 
 
@@ -45,6 +44,7 @@ const Carrousel = ({ info, infoEnglish }) => {
     for (let i = 0; i < numberOfDecorativeSquares; i++) {
         arrayDecorativeSquares.push(1)
     }
+
 
 
     return (
@@ -90,17 +90,19 @@ const Carrousel = ({ info, infoEnglish }) => {
                 {info?.map((movie) =>
                     <SwiperSlide className="small-view-slides" key={movie.id}>
                         <div className='container__horizontal-square'>
-                            {arrayDecorativeSquares.map(current => (
-                                <DecorativeSquares
+                            {arrayDecorativeSquares.map(() => (
+                                <div
+                                    className='horizontal-square'
                                     key={nextId()}
-                                    squareOrientation='horizontal' />))}
+                                />))}
                         </div>
                         <img src={`${IMGw300_URL}${movie.backdrop_path}`} alt={`Filmposter von ${movie.title}`}></img>
                         <div className='container__horizontal-square-bottom'>
-                            {arrayDecorativeSquares.map(current => (
-                                <DecorativeSquares
+                            {arrayDecorativeSquares.map(() => (
+                                <div
                                     key={nextId()}
-                                    squareOrientation='horizontal' />))}
+                                    className='horizontal-square' />
+                            ))}
                         </div>
                     </SwiperSlide>)}
             </Swiper>
